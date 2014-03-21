@@ -87,15 +87,15 @@ public class ExchangeRatesProvider extends ContentProvider
 	@CheckForNull
 	private Map<String, ExchangeRate> exchangeRates = null;
 	private long lastUpdated = 0;
-    private float dogeBtcConversion = -1;
+	private float dogeBtcConversion = -1;
 
 	private static final URL BITCOINAVERAGE_URL;
 	private static final String[] BITCOINAVERAGE_FIELDS = new String[] { "24h_avg", "last" };
 	private static final URL BLOCKCHAININFO_URL;
 	private static final String[] BLOCKCHAININFO_FIELDS = new String[] { "15m" };
-    private static final URL DOGEPOOL_URL;
-    private static final URL CRYPTSY_URL;
-    private static final URL VIRCUREX_URL;
+	private static final URL DOGEPOOL_URL;
+	private static final URL CRYPTSY_URL;
+	private static final URL VIRCUREX_URL;
 
 	// https://bitmarket.eu/api/ticker
 
@@ -104,10 +104,10 @@ public class ExchangeRatesProvider extends ContentProvider
 		try
 		{
 			BITCOINAVERAGE_URL = new URL("https://api.bitcoinaverage.com/ticker/global/all");
-            BLOCKCHAININFO_URL = new URL("https://blockchain.info/ticker");
-            DOGEPOOL_URL = new URL("http://dogepool.com/lastdoge");
-            CRYPTSY_URL = new URL("http://pubapi.cryptsy.com/api.php?method=singlemarketdata&marketid=132");
-            VIRCUREX_URL = new URL("https://api.vircurex.com/api/get_last_trade.json?base=DOGE&alt=BTC");
+			BLOCKCHAININFO_URL = new URL("https://blockchain.info/ticker");
+			DOGEPOOL_URL = new URL("http://dogepool.com/lastdoge");
+			CRYPTSY_URL = new URL("http://pubapi.cryptsy.com/api.php?method=singlemarketdata&marketid=132");
+			VIRCUREX_URL = new URL("https://api.vircurex.com/api/get_last_trade.json?base=DOGE&alt=BTC");
 		}
 		catch (final MalformedURLException x)
 		{
@@ -147,23 +147,23 @@ public class ExchangeRatesProvider extends ContentProvider
 	public Cursor query(final Uri uri, final String[] projection, final String selection, final String[] selectionArgs, final String sortOrder)
 	{
 		final long now = System.currentTimeMillis();
-        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getContext());
-        int provider = Integer.parseInt(sp.getString(Configuration.PREFS_KEY_EXCHANGE_PROVIDER, "0"));
-        boolean forceRefresh = sp.getBoolean(Configuration.PREFS_KEY_EXCHANGE_FORCE_REFRESH, false);
-        if (forceRefresh)
-            sp.edit().putBoolean(Configuration.PREFS_KEY_EXCHANGE_FORCE_REFRESH, false).commit();
+		SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getContext());
+		int provider = Integer.parseInt(sp.getString(Configuration.PREFS_KEY_EXCHANGE_PROVIDER, "0"));
+		boolean forceRefresh = sp.getBoolean(Configuration.PREFS_KEY_EXCHANGE_FORCE_REFRESH, false);
+		if (forceRefresh)
+			sp.edit().putBoolean(Configuration.PREFS_KEY_EXCHANGE_FORCE_REFRESH, false).commit();
 
 		if (lastUpdated == 0 || now - lastUpdated > UPDATE_FREQ_MS)
 		{
-            float newDogeBtcConversion = -1;
-            if ((dogeBtcConversion == -1 && newDogeBtcConversion == -1) || forceRefresh)
-                newDogeBtcConversion = requestDogeBtcConversion(provider);
+			float newDogeBtcConversion = -1;
+			if ((dogeBtcConversion == -1 && newDogeBtcConversion == -1) || forceRefresh)
+				newDogeBtcConversion = requestDogeBtcConversion(provider);
 
-            if (newDogeBtcConversion != -1)
-                dogeBtcConversion = newDogeBtcConversion;
+			if (newDogeBtcConversion != -1)
+				dogeBtcConversion = newDogeBtcConversion;
 
-            if (dogeBtcConversion == -1)
-                return null;
+			if (dogeBtcConversion == -1)
+				return null;
 
 			Map<String, ExchangeRate> newExchangeRates = null;
 			if (newExchangeRates == null)
@@ -173,22 +173,24 @@ public class ExchangeRatesProvider extends ContentProvider
 
 			if (newExchangeRates != null)
 			{
-                String providerUrl;
-                switch (provider) {
-                    case 0:
-                        providerUrl = "http://www.cryptsy.com";
-                        break;
-                    case 1:
-                        providerUrl = "http://www.vircurex.com";
-                        break;
-                    default:
-                        providerUrl = "";
-                        break;
-                }
-                float mBTCRate = dogeBtcConversion*1000;
-                String strmBTCRate = String.format("%.5f", mBTCRate).replace(',', '.');
-                newExchangeRates.put("mBTC", new ExchangeRate("mBTC", new BigDecimal(GenericUtils.toNanoCoins(strmBTCRate, 0)).toBigInteger(), providerUrl));
-                newExchangeRates.put("DOGE", new ExchangeRate("DOGE", BigInteger.valueOf(100000000), "priceofdoge.com"));
+				String providerUrl;
+				switch (provider)
+				{
+					case 0:
+						providerUrl = "http://www.cryptsy.com";
+						break;
+					case 1:
+						providerUrl = "http://www.vircurex.com";
+						break;
+					default:
+						providerUrl = "";
+						break;
+				}
+				float mBTCRate = dogeBtcConversion * 1000;
+				String strmBTCRate = String.format("%.5f", mBTCRate).replace(',', '.');
+				newExchangeRates.put("mBTC", new ExchangeRate("mBTC", new BigDecimal(GenericUtils.toNanoCoins(strmBTCRate, 0)).toBigInteger(),
+						providerUrl));
+				newExchangeRates.put("DOGE", new ExchangeRate("DOGE", BigInteger.valueOf(100000000), "priceofdoge.com"));
 				exchangeRates = newExchangeRates;
 				lastUpdated = now;
 
@@ -236,7 +238,7 @@ public class ExchangeRatesProvider extends ContentProvider
 		return exchangeRates.get(Constants.DEFAULT_EXCHANGE_CURRENCY);
 	}
 
-    private String defaultCurrencyCode()
+	private String defaultCurrencyCode()
 	{
 		try
 		{
@@ -281,7 +283,8 @@ public class ExchangeRatesProvider extends ContentProvider
 		throw new UnsupportedOperationException();
 	}
 
-	private static Map<String, ExchangeRate> requestExchangeRates(final URL url, float dogeBtcConversion, final String userAgent, final String... fields)
+	private static Map<String, ExchangeRate> requestExchangeRates(final URL url, float dogeBtcConversion, final String userAgent,
+			final String... fields)
 	{
 		final long start = System.currentTimeMillis();
 
@@ -324,7 +327,7 @@ public class ExchangeRatesProvider extends ContentProvider
 								try
 								{
 									BigDecimal btcRate = new BigDecimal(GenericUtils.toNanoCoins(rate, 0));
-                                	BigInteger dogeRate = btcRate.multiply(BigDecimal.valueOf(dogeBtcConversion)).toBigInteger();
+									BigInteger dogeRate = btcRate.multiply(BigDecimal.valueOf(dogeBtcConversion)).toBigInteger();
 
 									if (dogeRate.signum() > 0)
 									{
@@ -375,91 +378,94 @@ public class ExchangeRatesProvider extends ContentProvider
 		return null;
 	}
 
-    private static float requestDogeBtcConversion(int provider) {
-        HttpURLConnection connection = null;
-        Reader reader = null;
-        URL providerUrl;
-        switch (provider) {
-            case 0:
-                providerUrl = DOGEPOOL_URL;
-                break;
-            case 1:
-                providerUrl = VIRCUREX_URL;
-                break;
-            default:
-                providerUrl = DOGEPOOL_URL;
-                break;
-        }
+	private static float requestDogeBtcConversion(int provider)
+	{
+		HttpURLConnection connection = null;
+		Reader reader = null;
+		URL providerUrl;
+		switch (provider)
+		{
+			case 0:
+				providerUrl = DOGEPOOL_URL;
+				break;
+			case 1:
+				providerUrl = VIRCUREX_URL;
+				break;
+			default:
+				providerUrl = DOGEPOOL_URL;
+				break;
+		}
 
-        try
-        {
-            connection = (HttpURLConnection) providerUrl.openConnection();
-            connection.setConnectTimeout(Constants.HTTP_TIMEOUT_MS);
-            connection.setReadTimeout(Constants.HTTP_TIMEOUT_MS);
-            connection.connect();
+		try
+		{
+			connection = (HttpURLConnection) providerUrl.openConnection();
+			connection.setConnectTimeout(Constants.HTTP_TIMEOUT_MS);
+			connection.setReadTimeout(Constants.HTTP_TIMEOUT_MS);
+			connection.connect();
 
-            final int responseCode = connection.getResponseCode();
-            if (responseCode == HttpURLConnection.HTTP_OK)
-            {
-                reader = new InputStreamReader(new BufferedInputStream(connection.getInputStream(), 1024), Constants.UTF_8);
-                final StringBuilder content = new StringBuilder();
-                Io.copy(reader, content);
+			final int responseCode = connection.getResponseCode();
+			if (responseCode == HttpURLConnection.HTTP_OK)
+			{
+				reader = new InputStreamReader(new BufferedInputStream(connection.getInputStream(), 1024), Constants.UTF_8);
+				final StringBuilder content = new StringBuilder();
+				Io.copy(reader, content);
 
-                try
-                {
-                    float rate;
-                    switch (provider) {
-                        case 0:
-                            /*rate = Float.parseFloat(
-                                json.getJSONObject("return")
-                                    .getJSONObject("markets")
-                                    .getJSONObject("DOGE")
-                                    .getString("lasttradeprice"));*/ //For later use.
-                            rate = Float.parseFloat(content.toString());
-                            break;
-                        case 1:
-                            final JSONObject json = new JSONObject(content.toString());
-                            rate = Float.parseFloat(
-                                    json.getString("value"));
-                            break;
-                        default:
-                            return -1;
-                    }
-                    return rate;
-                } catch (NumberFormatException e)
-                {
-                    log.debug("Couldn't get the current exchnage rate from provider " + String.valueOf(provider));
-                    return -1;
-                }
+				try
+				{
+					float rate;
+					switch (provider)
+					{
+						case 0:
+							/*rate = Float.parseFloat(
+								json.getJSONObject("return")
+									.getJSONObject("markets")
+									.getJSONObject("DOGE")
+									.getString("lasttradeprice"));*/ //For later use.
+							rate = Float.parseFloat(content.toString());
+							break;
+						case 1:
+							final JSONObject json = new JSONObject(content.toString());
+							rate = Float.parseFloat(json.getString("value"));
+							break;
+						default:
+							return -1;
+					}
+					return rate;
+				}
+				catch (NumberFormatException e)
+				{
+					log.debug("Couldn't get the current exchnage rate from provider " + String.valueOf(provider));
+					return -1;
+				}
 
-            }
-            else
-            {
-                log.debug("http status " + responseCode + " when fetching " + providerUrl);
-            }
-        }
-        catch (final Exception x)
-        {
-            log.debug("problem reading exchange rates", x);
-        }
-        finally
-        {
-            if (reader != null)
-            {
-                try
-                {
-                    reader.close();
-                }
-                catch (final IOException x)
-                {
-                    // swallow
-                }
-            }
+			}
+			else
+			{
+				log.debug("http status " + responseCode + " when fetching " + providerUrl);
+			}
+		}
+		catch (final Exception x)
+		{
+			log.debug("problem reading exchange rates", x);
+		}
+		finally
+		{
+			if (reader != null)
+			{
+				try
+				{
+					reader.close();
+				}
+				catch (final IOException x)
+				{
+					// swallow
+				}
+			}
 
-            if (connection != null)
-                connection.disconnect();
-        }
+			if (connection != null)
+				connection.disconnect();
+		}
 
-        return -1;
-    }
+		return -1;
+	}
 }

@@ -138,16 +138,17 @@ public final class CameraManager
 	{
 		if (camera != null)
 		{
-            try
-            {
-                camera.stopPreview();
-                camera.setPreviewCallback(null);
+			try
+			{
+				camera.stopPreview();
+				camera.setPreviewCallback(null);
 
-                camera.release();
-            } catch (RuntimeException ignore)
-            {
-                //Swallow. We tried to release after release. We don't want to crash, eh?
-            }
+				camera.release();
+			}
+			catch (RuntimeException ignore)
+			{
+				//Swallow. We tried to release after release. We don't want to crash, eh?
+			}
 		}
 	}
 

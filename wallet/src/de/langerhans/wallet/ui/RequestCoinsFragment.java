@@ -320,20 +320,21 @@ public final class RequestCoinsFragment extends SherlockFragment
 
 		updateShareIntent();
 
-        if (!checkForLocalApp())
-            menu.removeItem(2); //The "Request from local" menu entry.
+		if (!checkForLocalApp())
+			menu.removeItem(2); //The "Request from local" menu entry.
 
 		super.onCreateOptionsMenu(menu, inflater);
 	}
 
-    private boolean checkForLocalApp() {
-        final Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("dogecoin:DEwTHxztkSDUJEMywbPk5zVUGrupaNRqEy")); //Just for testing; will never be fired.
-        PackageManager manager = getActivity().getPackageManager();
-        List<ResolveInfo> infos = manager.queryIntentActivities(intent, 0);
-        return infos.size() > 0 ? true : false;
-    }
+	private boolean checkForLocalApp()
+	{
+		final Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("dogecoin:DEwTHxztkSDUJEMywbPk5zVUGrupaNRqEy")); //Just for testing; will never be fired.
+		PackageManager manager = getActivity().getPackageManager();
+		List<ResolveInfo> infos = manager.queryIntentActivities(intent, 0);
+		return infos.size() > 0 ? true : false;
+	}
 
-    @Override
+	@Override
 	public boolean onOptionsItemSelected(final MenuItem item)
 	{
 		switch (item.getItemId())

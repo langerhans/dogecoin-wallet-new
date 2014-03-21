@@ -555,25 +555,24 @@ public class WalletApplication extends Application
 		final Configuration config = new Configuration(PreferenceManager.getDefaultSharedPreferences(context));
 
 		final long lastUsedAgo = config.getLastUsedAgo();
-        final long alarmInterval;
-        if (lastUsedAgo < Constants.LAST_USAGE_THRESHOLD_JUST_MS)
-            alarmInterval = AlarmManager.INTERVAL_FIFTEEN_MINUTES;
-        else if (lastUsedAgo < Constants.LAST_USAGE_THRESHOLD_RECENTLY_MS)
-            alarmInterval = AlarmManager.INTERVAL_HALF_DAY;
-        else
-            alarmInterval = AlarmManager.INTERVAL_DAY;
+		final long alarmInterval;
+		if (lastUsedAgo < Constants.LAST_USAGE_THRESHOLD_JUST_MS)
+			alarmInterval = AlarmManager.INTERVAL_FIFTEEN_MINUTES;
+		else if (lastUsedAgo < Constants.LAST_USAGE_THRESHOLD_RECENTLY_MS)
+			alarmInterval = AlarmManager.INTERVAL_HALF_DAY;
+		else
+			alarmInterval = AlarmManager.INTERVAL_DAY;
 
-        log.info("last used {} minutes ago, rescheduling sync in roughly {} minutes", lastUsedAgo / DateUtils.MINUTE_IN_MILLIS, alarmInterval
-                / DateUtils.MINUTE_IN_MILLIS);
+		log.info("last used {} minutes ago, rescheduling sync in roughly {} minutes", lastUsedAgo / DateUtils.MINUTE_IN_MILLIS, alarmInterval
+				/ DateUtils.MINUTE_IN_MILLIS);
 
-        final AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-        final Intent startIntent = new Intent(context, AutosyncReceiver.class);
-        startIntent.setAction("de.langerhans.wallet.AUTOSYNC_ACTION");
-        final PendingIntent alarmIntent = PendingIntent.getBroadcast(context, 0, startIntent, 0);
-        alarmManager.cancel(alarmIntent);
-        
+		final AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+		final Intent startIntent = new Intent(context, AutosyncReceiver.class);
+		startIntent.setAction("de.langerhans.wallet.AUTOSYNC_ACTION");
+		final PendingIntent alarmIntent = PendingIntent.getBroadcast(context, 0, startIntent, 0);
+		alarmManager.cancel(alarmIntent);
 
 		final long now = System.currentTimeMillis();
-            alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, now + alarmInterval, alarmInterval, alarmIntent);
+		alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, now + alarmInterval, alarmInterval, alarmIntent);
 	}
 }

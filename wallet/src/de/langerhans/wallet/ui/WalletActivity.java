@@ -320,7 +320,7 @@ public final class WalletActivity extends AbstractOnDemandServiceActivity
 		getWalletApplication().stopBlockchainService();
 		finish();
 	}
-	
+
 	private void handleDonate()
 	{
 		try
@@ -485,14 +485,14 @@ public final class WalletActivity extends AbstractOnDemandServiceActivity
 		fileView.setOnItemSelectedListener(dialogButtonEnabler);
 
 		final CheckBox showView = (CheckBox) alertDialog.findViewById(R.id.import_keys_from_storage_show);
-		showView.setOnCheckedChangeListener(new ShowPasswordCheckListener(new EditText[]{passwordView}));
+		showView.setOnCheckedChangeListener(new ShowPasswordCheckListener(new EditText[] { passwordView }));
 	}
 
 	private Dialog createExportKeysDialog()
 	{
 		final View view = getLayoutInflater().inflate(R.layout.export_keys_dialog, null);
 		final EditText passwordView = (EditText) view.findViewById(R.id.export_keys_dialog_password);
-        final EditText passwordRepeatView = (EditText) view.findViewById(R.id.export_keys_dialog_password_repeat);
+		final EditText passwordRepeatView = (EditText) view.findViewById(R.id.export_keys_dialog_password_repeat);
 
 		final DialogBuilder dialog = new DialogBuilder(this);
 		dialog.setTitle(R.string.export_keys_dialog_title);
@@ -503,10 +503,10 @@ public final class WalletActivity extends AbstractOnDemandServiceActivity
 			public void onClick(final DialogInterface dialog, final int which)
 			{
 				final String password = passwordView.getText().toString().trim();
-                passwordView.setText(null); // get rid of it asap
-                passwordRepeatView.setText(null);
+				passwordView.setText(null); // get rid of it asap
+				passwordRepeatView.setText(null);
 
-                exportPrivateKeys(password);
+				exportPrivateKeys(password);
 			}
 		});
 		dialog.setNegativeButton(R.string.button_cancel, new OnClickListener()
@@ -515,7 +515,7 @@ public final class WalletActivity extends AbstractOnDemandServiceActivity
 			public void onClick(final DialogInterface dialog, final int which)
 			{
 				passwordView.setText(null); // get rid of it asap
-                passwordRepeatView.setText(null);
+				passwordRepeatView.setText(null);
 			}
 		});
 		dialog.setOnCancelListener(new OnCancelListener()
@@ -524,7 +524,7 @@ public final class WalletActivity extends AbstractOnDemandServiceActivity
 			public void onCancel(final DialogInterface dialog)
 			{
 				passwordView.setText(null); // get rid of it asap
-                passwordRepeatView.setText(null);
+				passwordRepeatView.setText(null);
 			}
 		});
 		return dialog.create();
@@ -533,40 +533,49 @@ public final class WalletActivity extends AbstractOnDemandServiceActivity
 	private void prepareExportKeysDialog(final Dialog dialog)
 	{
 		final AlertDialog alertDialog = (AlertDialog) dialog;
-        final Button button = alertDialog.getButton(DialogInterface.BUTTON_POSITIVE);
-        button.setEnabled(false);
+		final Button button = alertDialog.getButton(DialogInterface.BUTTON_POSITIVE);
+		button.setEnabled(false);
 
 		final EditText passwordView = (EditText) alertDialog.findViewById(R.id.export_keys_dialog_password);
 		passwordView.setText(null);
-        final EditText passwordRepeatView = (EditText) alertDialog.findViewById(R.id.export_keys_dialog_password_repeat);
-        passwordRepeatView.setText(null);
-        passwordRepeatView.addTextChangedListener(new TextWatcher() {
-            @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-            @Override public void onTextChanged(CharSequence s, int start, int before, int count) {}
+		final EditText passwordRepeatView = (EditText) alertDialog.findViewById(R.id.export_keys_dialog_password_repeat);
+		passwordRepeatView.setText(null);
+		passwordRepeatView.addTextChangedListener(new TextWatcher()
+		{
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count, int after)
+			{
+			}
 
-            @Override
-            public void afterTextChanged(Editable s) {
-                final String password = passwordView.getText().toString().trim();
-                final String passwordRepeat = passwordRepeatView.getText().toString().trim();
-                if (!password.equals(passwordRepeat))
-                {
-                    button.setEnabled(false);
-                    // Only show an error popup if we think it's a typo. Not yet when the user entered just one char of his 20 char pass.
-                    if (passwordRepeat.length() - password.length() >= 0)
-                        passwordRepeatView.setError(getString(R.string.export_keys_dialog_pass_dont_match));
-                }
-                else
-                {
-                    button.setEnabled(true);
-                }
-            }
-        });
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before, int count)
+			{
+			}
+
+			@Override
+			public void afterTextChanged(Editable s)
+			{
+				final String password = passwordView.getText().toString().trim();
+				final String passwordRepeat = passwordRepeatView.getText().toString().trim();
+				if (!password.equals(passwordRepeat))
+				{
+					button.setEnabled(false);
+					// Only show an error popup if we think it's a typo. Not yet when the user entered just one char of his 20 char pass.
+					if (passwordRepeat.length() - password.length() >= 0)
+						passwordRepeatView.setError(getString(R.string.export_keys_dialog_pass_dont_match));
+				}
+				else
+				{
+					button.setEnabled(true);
+				}
+			}
+		});
 
 //		final ImportDialogButtonEnablerListener dialogButtonEnabler = new ImportDialogButtonEnablerListener(passwordView, alertDialog);
 //		passwordView.addTextChangedListener(dialogButtonEnabler);
 
 		final CheckBox showView = (CheckBox) alertDialog.findViewById(R.id.export_keys_dialog_show);
-		showView.setOnCheckedChangeListener(new ShowPasswordCheckListener(new EditText[]{passwordView, passwordRepeatView}));
+		showView.setOnCheckedChangeListener(new ShowPasswordCheckListener(new EditText[] { passwordView, passwordRepeatView }));
 	}
 
 	private Dialog createChangeLogDialog()

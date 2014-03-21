@@ -247,8 +247,8 @@ public class TransactionsListFragment extends SherlockListFragment implements Lo
 					final DateFormat dateFormat = android.text.format.DateFormat.getDateFormat(activity);
 					final DateFormat timeFormat = android.text.format.DateFormat.getTimeFormat(activity);
 
-					mode.setTitle(time != null ? (DateUtils.isToday(time.getTime()) ? activity.getString(R.string.time_today) : dateFormat.format(time))
-							+ ", " + timeFormat.format(time) : null);
+					mode.setTitle(time != null ? (DateUtils.isToday(time.getTime()) ? activity.getString(R.string.time_today) : dateFormat
+							.format(time)) + ", " + timeFormat.format(time) : null);
 
 					final BigInteger value = tx.getValue(wallet);
 					final boolean sent = value.signum() < 0;
@@ -316,11 +316,14 @@ public class TransactionsListFragment extends SherlockListFragment implements Lo
 			@Override
 			public void onDestroyActionMode(final ActionMode mode)
 			{
-                try {
-                    Nfc.unpublish(nfcManager, activity);
-                } catch (IllegalStateException ise) {
-                    // Swallow. Activity is probably paused currently. No need to unpublish.
-                }
+				try
+				{
+					Nfc.unpublish(nfcManager, activity);
+				}
+				catch (IllegalStateException ise)
+				{
+					// Swallow. Activity is probably paused currently. No need to unpublish.
+				}
 			}
 
 			private void handleEditAddress(@Nonnull final Transaction tx)

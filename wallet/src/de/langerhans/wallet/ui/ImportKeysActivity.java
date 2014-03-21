@@ -155,7 +155,7 @@ public final class ImportKeysActivity extends AbstractWalletActivity
 		passwordView.addTextChangedListener(dialogButtonEnabler);
 
 		final CheckBox showView = (CheckBox) alertDialog.findViewById(R.id.import_keys_from_content_dialog_show);
-		showView.setOnCheckedChangeListener(new ShowPasswordCheckListener(new EditText[]{passwordView}));
+		showView.setOnCheckedChangeListener(new ShowPasswordCheckListener(new EditText[] { passwordView }));
 	}
 
 	private void importPrivateKeys(final InputStream is, final String password)

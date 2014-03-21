@@ -30,13 +30,13 @@ import android.widget.EditText;
 public final class ShowPasswordCheckListener implements OnCheckedChangeListener
 {
 	private EditText passwordView;
-    private EditText passwordRepeatView;
+	private EditText passwordRepeatView;
 
 	public ShowPasswordCheckListener(@Nonnull final EditText[] passwordViews)
 	{
 		this.passwordView = passwordViews[0];
-        if (passwordViews.length == 2)
-            this.passwordRepeatView = passwordViews[1];
+		if (passwordViews.length == 2)
+			this.passwordRepeatView = passwordViews[1];
 	}
 
 	@Override
@@ -44,8 +44,8 @@ public final class ShowPasswordCheckListener implements OnCheckedChangeListener
 	{
 		passwordView.setInputType(InputType.TYPE_CLASS_TEXT
 				| (isChecked ? InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD : InputType.TYPE_TEXT_VARIATION_PASSWORD));
-        if (passwordRepeatView instanceof EditText)
-            passwordRepeatView.setInputType(InputType.TYPE_CLASS_TEXT
-                    | (isChecked ? InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD : InputType.TYPE_TEXT_VARIATION_PASSWORD));
+		if (passwordRepeatView instanceof EditText)
+			passwordRepeatView.setInputType(InputType.TYPE_CLASS_TEXT
+					| (isChecked ? InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD : InputType.TYPE_TEXT_VARIATION_PASSWORD));
 	}
 }

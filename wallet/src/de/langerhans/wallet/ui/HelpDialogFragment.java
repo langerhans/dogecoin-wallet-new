@@ -39,13 +39,16 @@ public final class HelpDialogFragment extends DialogFragment
 	public static void page(final FragmentManager fm, @Nonnull final int messageResId)
 	{
 		final DialogFragment newFragment = HelpDialogFragment.instance(messageResId);
-        FragmentTransaction ft = fm.beginTransaction();
-        ft.add(newFragment, FRAGMENT_TAG);
-        try {
-            ft.commit();
-        } catch (IllegalStateException ise) {
-            ft.commitAllowingStateLoss();
-        }
+		FragmentTransaction ft = fm.beginTransaction();
+		ft.add(newFragment, FRAGMENT_TAG);
+		try
+		{
+			ft.commit();
+		}
+		catch (IllegalStateException ise)
+		{
+			ft.commitAllowingStateLoss();
+		}
 	}
 
 	private static HelpDialogFragment instance(@Nonnull final int messageResId)

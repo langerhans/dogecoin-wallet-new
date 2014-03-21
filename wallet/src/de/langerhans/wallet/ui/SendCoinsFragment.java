@@ -835,19 +835,19 @@ public final class SendCoinsFragment extends SherlockFragment
 		sendRequest.changeAddress = returnAddress;
 		sendRequest.emptyWallet = paymentIntent.mayEditAmount() && finalAmount.equals(wallet.getBalance(BalanceType.AVAILABLE));
 
-        //Emptying a wallet with less than 2 DOGE can't be possible due to min fee 2 DOGE of such a tx.
+		//Emptying a wallet with less than 2 DOGE can't be possible due to min fee 2 DOGE of such a tx.
 /*        if (amount.compareTo(BigInteger.valueOf(200000000)) < 0 && sendRequest.emptyWallet)
-        {
-            AlertDialog.Builder bld = new AlertDialog.Builder(activity);
-                bld.setTitle(R.string.send_coins_error_msg);
-                bld.setMessage(R.string.send_coins_error_desc);
-                bld.setNeutralButton(activity.getResources().getString(android.R.string.ok), null);
-                bld.setCancelable(false);
-                bld.create().show();
-            state = State.FAILED;
-            updateView();
-            return;
-        }*/
+		{
+			AlertDialog.Builder bld = new AlertDialog.Builder(activity);
+				bld.setTitle(R.string.send_coins_error_msg);
+				bld.setMessage(R.string.send_coins_error_desc);
+				bld.setNeutralButton(activity.getResources().getString(android.R.string.ok), null);
+				bld.setCancelable(false);
+				bld.create().show();
+			state = State.FAILED;
+			updateView();
+			return;
+		}*/
 
 		new SendCoinsOfflineTask(wallet, backgroundHandler)
 		{

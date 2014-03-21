@@ -48,24 +48,27 @@ public class GenericUtils
 	public static String formatValue(@Nonnull final BigInteger value, @Nonnull final String plusSign, @Nonnull final String minusSign,
 			final int precision, final int shift)
 	{
-        BigInteger newValue = value;
+		BigInteger newValue = value;
 
 		final String sign = value.signum() == -1 ? minusSign : plusSign;
 
 		if (shift == 0)
 		{
 			if (precision == 2)
-                newValue = value.subtract(value.mod(new BigInteger("1000000"))).add(value.mod(new BigInteger("1000000")).divide(new BigInteger("500000")).multiply(new BigInteger("1000000")));
+				newValue = value.subtract(value.mod(new BigInteger("1000000"))).add(
+						value.mod(new BigInteger("1000000")).divide(new BigInteger("500000")).multiply(new BigInteger("1000000")));
 			else if (precision == 4)
-                newValue = value.subtract(value.mod(new BigInteger("10000"))).add(value.mod(new BigInteger("10000")).divide(new BigInteger("5000")).multiply(new BigInteger("10000")));
+				newValue = value.subtract(value.mod(new BigInteger("10000"))).add(
+						value.mod(new BigInteger("10000")).divide(new BigInteger("5000")).multiply(new BigInteger("10000")));
 			else if (precision == 6)
-                newValue = value.subtract(value.mod(new BigInteger("100"))).add(value.mod(new BigInteger("100")).divide(new BigInteger("50")).multiply(new BigInteger("100")));
+				newValue = value.subtract(value.mod(new BigInteger("100"))).add(
+						value.mod(new BigInteger("100")).divide(new BigInteger("50")).multiply(new BigInteger("100")));
 			else if (precision == 8)
 				;
 			else
 				throw new IllegalArgumentException("cannot handle precision/shift: " + precision + "/" + shift);
 
-            final BigInteger absValue = newValue.abs();
+			final BigInteger absValue = newValue.abs();
 			final long coins = (absValue.divide(new BigInteger(String.valueOf(ONE_BTC_INT)))).longValue();
 			final int satoshis = (absValue.mod(new BigInteger(String.valueOf(ONE_BTC_INT))).intValue());
 
@@ -81,17 +84,19 @@ public class GenericUtils
 		else if (shift == 3)
 		{
 			if (precision == 2)
-                newValue = value.subtract(value.mod(new BigInteger("1000"))).add(value.mod(new BigInteger("1000")).divide(new BigInteger("500")).multiply(new BigInteger("1000")));
+				newValue = value.subtract(value.mod(new BigInteger("1000"))).add(
+						value.mod(new BigInteger("1000")).divide(new BigInteger("500")).multiply(new BigInteger("1000")));
 			else if (precision == 4)
-                newValue = value.subtract(value.mod(new BigInteger("10"))).add(value.mod(new BigInteger("10")).divide(new BigInteger("5")).multiply(new BigInteger("10")));
+				newValue = value.subtract(value.mod(new BigInteger("10"))).add(
+						value.mod(new BigInteger("10")).divide(new BigInteger("5")).multiply(new BigInteger("10")));
 			else if (precision == 5)
 				;
 			else
 				throw new IllegalArgumentException("cannot handle precision/shift: " + precision + "/" + shift);
 
-            final BigInteger absValue = newValue.abs();
-            final long coins = (absValue.divide(new BigInteger(String.valueOf(ONE_MBTC_INT)))).longValue();
-            final int satoshis = (absValue.mod(new BigInteger(String.valueOf(ONE_MBTC_INT))).intValue());
+			final BigInteger absValue = newValue.abs();
+			final long coins = (absValue.divide(new BigInteger(String.valueOf(ONE_MBTC_INT)))).longValue();
+			final int satoshis = (absValue.mod(new BigInteger(String.valueOf(ONE_MBTC_INT))).intValue());
 
 			if (satoshis % 1000 == 0)
 				return String.format(Locale.US, "%s%d.%02d", sign, coins, satoshis / 1000);
