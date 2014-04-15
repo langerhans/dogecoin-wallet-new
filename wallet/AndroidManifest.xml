@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:tools="http://schemas.android.com/tools"
-	package="de.langerhans.wallet"
+	package="com.jculb.wallet"
 	android:installLocation="internalOnly"
 	android:versionCode="157"
 	android:versionName="1.07" >
@@ -56,20 +56,20 @@
 		android:xlargeScreens="true" />
 
 	<application
-		android:name="de.langerhans.wallet.WalletApplication"
+		android:name="com.jculb.wallet.WalletApplication"
 		android:allowBackup="false"
 		android:hardwareAccelerated="true"
 		android:icon="@drawable/app_icon"
 		android:label="@string/app_name"
 		android:theme="@style/My.Theme" >
 		<activity
-			android:name="de.langerhans.wallet.ui.WalletActivity"
+			android:name="com.jculb.wallet.ui.WalletActivity"
 			android:configChanges="keyboard|keyboardHidden"
 			android:launchMode="singleTask" />
 
 		<activity-alias
-			android:name="de.langerhans.wallet.WalletActivity"
-			android:targetActivity="de.langerhans.wallet.ui.WalletActivity" >
+			android:name="com.jculb.wallet.WalletActivity"
+			android:targetActivity="com.jculb.wallet.ui.WalletActivity" >
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />
 
@@ -85,7 +85,7 @@
 		</activity-alias>
 
 		<activity
-			android:name="de.langerhans.wallet.ui.SendCoinsActivity"
+			android:name="com.jculb.wallet.ui.SendCoinsActivity"
 			android:configChanges="keyboard|keyboardHidden"
 			android:label="@string/send_coins_activity_title"
 			android:screenOrientation="behind"
@@ -121,41 +121,41 @@
 			</intent-filter>
 		</activity>
 		<activity
-			android:name="de.langerhans.wallet.ui.SendCoinsQrActivity"
+			android:name="com.jculb.wallet.ui.SendCoinsQrActivity"
 			android:configChanges="keyboard|keyboardHidden"
 			android:theme="@android:style/Theme.Translucent.NoTitleBar" >
 		</activity>
 		<activity
-			android:name="de.langerhans.wallet.ui.RequestCoinsActivity"
+			android:name="com.jculb.wallet.ui.RequestCoinsActivity"
 			android:configChanges="keyboard|keyboardHidden"
 			android:label="@string/request_coins_activity_title"
 			android:screenOrientation="behind"
 			android:windowSoftInputMode="adjustResize" />
 		<activity
-			android:name="de.langerhans.wallet.ui.AddressBookActivity"
+			android:name="com.jculb.wallet.ui.AddressBookActivity"
 			android:configChanges="keyboard|keyboardHidden"
 			android:label="@string/address_book_activity_title"
 			android:screenOrientation="behind" />
 		<activity
-			android:name="de.langerhans.wallet.ui.ExchangeRatesActivity"
+			android:name="com.jculb.wallet.ui.ExchangeRatesActivity"
 			android:configChanges="keyboard|keyboardHidden"
 			android:label="@string/exchange_rates_activity_title"
 			android:screenOrientation="behind" />
 		<activity
-			android:name="de.langerhans.wallet.ui.NetworkMonitorActivity"
+			android:name="com.jculb.wallet.ui.NetworkMonitorActivity"
 			android:configChanges="keyboard|keyboardHidden"
 			android:label="@string/network_monitor_activity_title"
 			android:screenOrientation="behind" />
 		<activity
-			android:name="de.langerhans.wallet.ui.PreferencesActivity"
+			android:name="com.jculb.wallet.ui.PreferencesActivity"
 			android:label="@string/preferences_activity_title"
 			android:screenOrientation="behind" />
 		<activity
-			android:name="de.langerhans.wallet.ui.AboutActivity"
+			android:name="com.jculb.wallet.ui.AboutActivity"
 			android:label="@string/about_title"
 			android:screenOrientation="behind" />
 		<activity
-			android:name="de.langerhans.wallet.ui.ImportKeysActivity"
+			android:name="com.jculb.wallet.ui.ImportKeysActivity"
 			android:configChanges="orientation|keyboard|keyboardHidden"
 			android:theme="@style/My.Theme.Dialog" >
 			<intent-filter android:label="@string/import_keys_intent_filter_action" >
@@ -168,7 +168,7 @@
 			</intent-filter>
 		</activity>
 		<activity
-			android:name="de.langerhans.wallet.ui.ScanActivity"
+			android:name="com.jculb.wallet.ui.ScanActivity"
 			android:configChanges="orientation|keyboard|keyboardHidden"
 			android:screenOrientation="landscape"
 			android:stateNotNeeded="true"
@@ -176,16 +176,16 @@
 			android:windowSoftInputMode="stateAlwaysHidden" />
 
 		<provider
-			android:name="de.langerhans.wallet.AddressBookProvider"
-			android:authorities="de.langerhans.wallet.address_book"
+			android:name="com.jculb.wallet.AddressBookProvider"
+			android:authorities="com.jculb.wallet.address_book"
 			android:exported="false" />
 		<provider
-			android:name="de.langerhans.wallet.ExchangeRatesProvider"
-			android:authorities="de.langerhans.wallet.exchange_rates"
+			android:name="com.jculb.wallet.ExchangeRatesProvider"
+			android:authorities="com.jculb.wallet.exchange_rates"
 			android:exported="false" />
 
 		<receiver
-			android:name="de.langerhans.wallet.WalletBalanceWidgetProvider"
+			android:name="com.jculb.wallet.WalletBalanceWidgetProvider"
 			android:label="Dogecoin Wallet Balance" >
 			<intent-filter>
 				<action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
@@ -197,13 +197,13 @@
 		</receiver>
 
 		<service
-			android:name="de.langerhans.wallet.service.BlockchainServiceImpl"
+			android:name="com.jculb.wallet.service.BlockchainServiceImpl"
 			android:exported="false" />
 		<service
-			android:name="de.langerhans.wallet.offline.AcceptBluetoothService"
+			android:name="com.jculb.wallet.offline.AcceptBluetoothService"
 			android:exported="false" />
 
-		<receiver android:name="de.langerhans.wallet.service.AutosyncReceiver" >
+		<receiver android:name="com.jculb.wallet.service.AutosyncReceiver" >
 			<intent-filter>
 				<action android:name="android.intent.action.BOOT_COMPLETED" />
 				<action android:name="android.intent.action.ACTION_POWER_CONNECTED" />

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-	package="de.langerhans.wallet.integration.sample"
+	package="com.jculb.wallet.integration.sample"
 	android:versionCode="1"
 	android:versionName="1.0" >
 
@@ -18,7 +18,7 @@
 
 	<application android:label="Sample for Dogecoin Integration" >
 		<activity
-			android:name="de.langerhans.wallet.integration.sample.SampleActivity"
+			android:name="com.jculb.wallet.integration.sample.SampleActivity"
 			android:theme="@android:style/Theme.Light" >
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />

@@ -10,7 +10,7 @@
 	<name>Defcoin Wallet</name>
 
 	<parent>
-		<groupId>de.langerhans.wallet</groupId>
+		<groupId>com.jculb.wallet</groupId>
 		<artifactId>base</artifactId>
 		<version>1</version>
 	</parent>
@@ -58,7 +58,7 @@
 
 		<!-- de.schildbach.wallet.integration.android.* -->
 		<dependency>
-			<groupId>de.langerhans.wallet</groupId>
+			<groupId>com.jculb.wallet</groupId>
 			<artifactId>integration-android</artifactId>
 			<version>2.0</version>
 		</dependency>
