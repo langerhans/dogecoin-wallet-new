@@ -92,9 +92,9 @@ public class Constants
 	public static final String REPORT_SUBJECT_CRASH = "Crash report";
 
 	public static final String LICENSE_URL = "http://www.gnu.org/licenses/gpl-3.0.txt";
-	public static final String SOURCE_URL = "https://github.com/jjculber/dogecoin-wallet-new";
-	public static final String BINARY_URL = "http://jjculber.github.io/dogecoin-wallet-new/";
-	public static final String CREDITS_BITCOINJ_URL = "https://github.com/jjculber/dogecoinj-new";
+	public static final String SOURCE_URL = "https://github.com/jjculber/defcoin-wallet";
+	public static final String BINARY_URL = "http://jjculber.github.io/defcoin-wallet/";
+	public static final String CREDITS_BITCOINJ_URL = "https://github.com/jjculber/defcoinj";
 	public static final String CREDITS_ZXING_URL = "http://code.google.com/p/zxing/";
 	public static final String CREDITS_ICON_URL = "http://defcoin.org/";
 	public static final String AUTHOR_TWITTER_URL = "https://twitter.com/#!/jus341";
