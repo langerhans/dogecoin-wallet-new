@@ -73,7 +73,7 @@ public abstract class InputParser
 		@Override
 		public void parse()
 		{
-			if (input.startsWith("DOGECOIN:-"))
+			if (input.startsWith("DEFCOIN:-"))
 			{
 				try
 				{
@@ -100,7 +100,7 @@ public abstract class InputParser
 					error(R.string.input_parser_invalid_paymentrequest, x.getMessage());
 				}
 			}
-			if (input.startsWith("dogecoin:"))
+			if (input.startsWith("defcoin:"))
 			{
 				try
 				{
@@ -117,7 +117,7 @@ public abstract class InputParser
 				}
 				catch (final BitcoinURIParseException x)
 				{
-					log.info("got invalid dogecoin uri: '" + input + "'", x);
+					log.info("got invalid defcoin uri: '" + input + "'", x);
 
 					error(R.string.input_parser_invalid_bitcoin_uri, input);
 				}

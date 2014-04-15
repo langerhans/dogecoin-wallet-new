@@ -94,7 +94,7 @@ public class ExchangeRatesProvider extends ContentProvider
 	private static final URL BITCOINAVERAGE_URL;
 	private static final String[] BITCOINAVERAGE_FIELDS = new String[] { "24h_avg", "last" };
     private static final String BITCOINAVERAGE_SOURCE = "BitcoinAverage.com";
-    private static final String BLOCKCHAININFO_SOURCE = "blockchain.info";
+    private static final String BLOCKCHAININFO_SOURCE = "block1.assmeow.org";
 	private static final URL BLOCKCHAININFO_URL;
 	private static final String[] BLOCKCHAININFO_FIELDS = new String[] { "15m" };
     private static final URL DOGEPOOL_URL;

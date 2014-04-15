@@ -511,7 +511,7 @@ public final class SendCoinsFragment extends SherlockFragment
 			final String mimeType = intent.getType();
 
 			if ((Intent.ACTION_VIEW.equals(action) || NfcAdapter.ACTION_NDEF_DISCOVERED.equals(action)) && intentUri != null
-					&& "dogecoin".equals(scheme))
+					&& "defcoin".equals(scheme))
 			{
 				initStateFromBitcoinUri(intentUri);
 			}

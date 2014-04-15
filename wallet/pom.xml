@@ -116,6 +116,7 @@
 					<plugin>
 						<groupId>com.jayway.maven.plugins.android.generation2</groupId>
 						<artifactId>android-maven-plugin</artifactId>
+						<version>3.8.0</version>
 						<configuration>
 							<release>true</release>
 							<proguard>
@@ -148,6 +149,7 @@
 			<plugin>
 				<groupId>com.jayway.maven.plugins.android.generation2</groupId>
 				<artifactId>android-maven-plugin</artifactId>
+				<version>3.8.0</version>
 				<configuration>
 					<excludeJarResources>
 						<excludeJarResource>.*\.jar$</excludeJarResource>
@@ -165,7 +167,8 @@
 			</plugin>
             <plugin>
                 <groupId>com.jayway.maven.plugins.android.generation2</groupId>
-                <artifactId>maven-android-plugin</artifactId>
+                <artifactId>android-maven-plugin</artifactId>
+		<version>3.8.0</version>
                 <inherited>true</inherited>
                 <configuration>
                     <sign>
@@ -173,7 +176,7 @@
                     </sign>
                     <zipalign>
                         <verbose>true</verbose>
-                        <inputApk>${project.build.directory}/${project.artifactId}.apk</inputApk>
+                        <inputApk>${project.build.directory}/${project.artifactId}-${project.version}.apk</inputApk>
                         <outputApk>${project.build.directory}/${project.artifactId}-signed-aligned.apk
                         </outputApk>
                     </zipalign>

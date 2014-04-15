@@ -406,7 +406,7 @@ public class BlockchainServiceImpl extends android.app.Service implements Blockc
                     //Try a bit harder to find good peers...
                     Random rand = new Random();
                     int i = rand.nextInt(50);
-                    String channel = "#dogecoin" + String.format("%02d", i);
+                    String channel = "#defcoin" + String.format("%02d", i);
                     private final PeerDiscovery normalPeerDiscovery = new DnsDiscovery(Constants.NETWORK_PARAMETERS);
                     private final PeerDiscovery fallbackPeerDiscovery = new IrcDiscovery(channel);
                     private final PeerDiscovery seedPeers = new SeedPeers(Constants.NETWORK_PARAMETERS);

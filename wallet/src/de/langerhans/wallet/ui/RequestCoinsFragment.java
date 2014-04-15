@@ -318,7 +318,7 @@ public final class RequestCoinsFragment extends SherlockFragment
 	}
 
     private boolean checkForLocalApp() {
-        final Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("dogecoin:DEwTHxztkSDUJEMywbPk5zVUGrupaNRqEy")); //Just for testing; will never be fired.
+        final Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("defcoin:DJWsdcQhAbfSpRogDpqGCpk3w8ibXKVw1P")); //Just for testing; will never be fired.
         PackageManager manager = getActivity().getPackageManager();
         List<ResolveInfo> infos = manager.queryIntentActivities(intent, 0);
         return infos.size() > 0 ? true : false;
