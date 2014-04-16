@@ -32,7 +32,7 @@ import org.slf4j.LoggerFactory;
 import android.os.Handler;
 import android.os.Looper;
 
-import com.google.dogecoin.core.Transaction;
+import com.google.defcoin.core.Transaction;
 
 import com.jculb.wallet.Constants;
 import com.jculb.wallet.PaymentIntent;

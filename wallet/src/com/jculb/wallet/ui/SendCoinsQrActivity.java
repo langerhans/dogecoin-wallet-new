@@ -23,8 +23,8 @@ import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.google.dogecoin.core.Address;
-import com.google.dogecoin.core.Transaction;
+import com.google.defcoin.core.Address;
+import com.google.defcoin.core.Transaction;
 
 import com.jculb.wallet.PaymentIntent;
 import com.jculb.wallet.ui.InputParser.StringInputParser;

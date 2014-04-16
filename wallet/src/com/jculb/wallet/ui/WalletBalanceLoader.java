@@ -28,9 +28,9 @@ import org.slf4j.LoggerFactory;
 import android.content.Context;
 import android.support.v4.content.AsyncTaskLoader;
 
-import com.google.dogecoin.core.Wallet;
-import com.google.dogecoin.core.Wallet.BalanceType;
-import com.google.dogecoin.utils.Threading;
+import com.google.defcoin.core.Wallet;
+import com.google.defcoin.core.Wallet.BalanceType;
+import com.google.defcoin.utils.Threading;
 
 import com.jculb.wallet.util.ThrottlingWalletChangeListener;
 

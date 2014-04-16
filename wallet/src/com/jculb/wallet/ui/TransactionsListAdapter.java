@@ -39,14 +39,14 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.google.dogecoin.core.Address;
-import com.google.dogecoin.core.ScriptException;
-import com.google.dogecoin.core.Transaction;
-import com.google.dogecoin.core.Transaction.Purpose;
-import com.google.dogecoin.core.TransactionConfidence;
-import com.google.dogecoin.core.TransactionConfidence.ConfidenceType;
-import com.google.dogecoin.core.Wallet;
-import com.google.dogecoin.wallet.DefaultCoinSelector;
+import com.google.defcoin.core.Address;
+import com.google.defcoin.core.ScriptException;
+import com.google.defcoin.core.Transaction;
+import com.google.defcoin.core.Transaction.Purpose;
+import com.google.defcoin.core.TransactionConfidence;
+import com.google.defcoin.core.TransactionConfidence.ConfidenceType;
+import com.google.defcoin.core.Wallet;
+import com.google.defcoin.wallet.DefaultCoinSelector;
 
 import com.jculb.wallet.AddressBookProvider;
 import com.jculb.wallet.Constants;

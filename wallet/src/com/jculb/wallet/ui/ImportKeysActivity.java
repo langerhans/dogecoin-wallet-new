@@ -38,8 +38,8 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 
-import com.google.dogecoin.core.ECKey;
-import com.google.dogecoin.core.Wallet;
+import com.google.defcoin.core.ECKey;
+import com.google.defcoin.core.Wallet;
 
 import com.jculb.wallet.Constants;
 import com.jculb.wallet.util.Crypto;

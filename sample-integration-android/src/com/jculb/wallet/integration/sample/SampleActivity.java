@@ -31,10 +31,10 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.dogecoin.core.Address;
-import com.google.dogecoin.core.AddressFormatException;
-import com.google.dogecoin.core.NetworkParameters;
-import com.google.dogecoin.script.ScriptBuilder;
+import com.google.defcoin.core.Address;
+import com.google.defcoin.core.AddressFormatException;
+import com.google.defcoin.core.NetworkParameters;
+import com.google.defcoin.script.ScriptBuilder;
 import com.google.protobuf.ByteString;
 
 import com.jculb.wallet.integration.android.BitcoinIntegration;

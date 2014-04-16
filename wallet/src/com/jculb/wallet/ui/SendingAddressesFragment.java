@@ -44,10 +44,10 @@ import com.actionbarsherlock.view.ActionMode;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
-import com.google.dogecoin.core.Address;
-import com.google.dogecoin.core.AddressFormatException;
-import com.google.dogecoin.core.Transaction;
-import com.google.dogecoin.uri.BitcoinURI;
+import com.google.defcoin.core.Address;
+import com.google.defcoin.core.AddressFormatException;
+import com.google.defcoin.core.Transaction;
+import com.google.defcoin.uri.BitcoinURI;
 
 import com.jculb.wallet.AddressBookProvider;
 import com.jculb.wallet.Constants;

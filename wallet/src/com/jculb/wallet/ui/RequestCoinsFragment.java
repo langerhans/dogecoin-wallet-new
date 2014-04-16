@@ -56,11 +56,11 @@ import com.actionbarsherlock.app.SherlockFragment;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
-import com.google.dogecoin.core.Address;
-import com.google.dogecoin.core.ECKey;
-import com.google.dogecoin.core.Wallet;
-import com.google.dogecoin.script.ScriptBuilder;
-import com.google.dogecoin.uri.BitcoinURI;
+import com.google.defcoin.core.Address;
+import com.google.defcoin.core.ECKey;
+import com.google.defcoin.core.Wallet;
+import com.google.defcoin.script.ScriptBuilder;
+import com.google.defcoin.uri.BitcoinURI;
 
 import com.jculb.wallet.AddressBookProvider;
 import com.jculb.wallet.Configuration;
@@ -379,7 +379,7 @@ public final class RequestCoinsFragment extends SherlockFragment
 		final int size = (int) (256 * getResources().getDisplayMetrics().density);
 		final String qrContent;
 		if (config.getQrPaymentRequestEnabled())
-			qrContent = "DOGECOIN:-" + Qr.encodeBinary(paymentRequest);
+			qrContent = "DEFCOIN:-" + Qr.encodeBinary(paymentRequest);
 		else
 			qrContent = bitcoinRequest;
 		qrCodeBitmap = Qr.bitmap(qrContent, size);

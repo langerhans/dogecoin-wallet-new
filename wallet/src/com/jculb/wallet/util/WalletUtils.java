@@ -46,17 +46,17 @@ import android.text.style.RelativeSizeSpan;
 import android.text.style.StyleSpan;
 import android.text.style.TypefaceSpan;
 
-import com.google.dogecoin.core.Address;
-import com.google.dogecoin.core.AddressFormatException;
-import com.google.dogecoin.core.DumpedPrivateKey;
-import com.google.dogecoin.core.ECKey;
-import com.google.dogecoin.core.ScriptException;
-import com.google.dogecoin.core.Sha256Hash;
-import com.google.dogecoin.core.Transaction;
-import com.google.dogecoin.core.TransactionInput;
-import com.google.dogecoin.core.TransactionOutput;
-import com.google.dogecoin.core.Wallet;
-import com.google.dogecoin.script.Script;
+import com.google.defcoin.core.Address;
+import com.google.defcoin.core.AddressFormatException;
+import com.google.defcoin.core.DumpedPrivateKey;
+import com.google.defcoin.core.ECKey;
+import com.google.defcoin.core.ScriptException;
+import com.google.defcoin.core.Sha256Hash;
+import com.google.defcoin.core.Transaction;
+import com.google.defcoin.core.TransactionInput;
+import com.google.defcoin.core.TransactionOutput;
+import com.google.defcoin.core.Wallet;
+import com.google.defcoin.script.Script;
 
 import com.jculb.wallet.Constants;
 

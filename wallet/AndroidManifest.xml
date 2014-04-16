@@ -78,7 +78,7 @@
 			<intent-filter>
 				<action android:name="android.nfc.action.NDEF_DISCOVERED" />
 
-				<data android:mimeType="application/x-dogetx" />
+				<data android:mimeType="application/x-dfctx" />
 
 				<category android:name="android.intent.category.DEFAULT" />
 			</intent-filter>
@@ -93,7 +93,7 @@
 			<intent-filter android:label="@string/send_coins_activity_title" >
 				<action android:name="android.intent.action.VIEW" />
 
-				<data android:scheme="dogecoin" />
+				<data android:scheme="defcoin" />
 
 				<category android:name="android.intent.category.DEFAULT" />
 				<category android:name="android.intent.category.BROWSABLE" />
@@ -101,21 +101,21 @@
 			<intent-filter android:label="@string/send_coins_activity_title" >
 				<action android:name="android.nfc.action.NDEF_DISCOVERED" />
 
-				<data android:scheme="dogecoin" />
+				<data android:scheme="defcoin" />
 
 				<category android:name="android.intent.category.DEFAULT" />
 			</intent-filter>
 			<intent-filter android:label="@string/send_coins_activity_title">
 				<action android:name="android.intent.action.VIEW" />
 
-				<data android:mimeType="application/dogecoin-paymentrequest" />
+				<data android:mimeType="application/defcoin-paymentrequest" />
 
 				<category android:name="android.intent.category.DEFAULT" />
 			</intent-filter>
 			<intent-filter android:label="@string/send_coins_activity_title" >
 				<action android:name="android.nfc.action.NDEF_DISCOVERED" />
 
-				<data android:mimeType="application/dogecoin-paymentrequest" />
+				<data android:mimeType="application/defcoin-paymentrequest" />
 
 				<category android:name="android.intent.category.DEFAULT" />
 			</intent-filter>
@@ -163,7 +163,7 @@
 
 				<category android:name="android.intent.category.DEFAULT" />
 
-				<data android:mimeType="x-dogecoin/private-keys" />
+				<data android:mimeType="x-defcoin/private-keys" />
 				<data android:mimeType="application/octet-stream" />
 			</intent-filter>
 		</activity>
@@ -186,7 +186,7 @@
 
 		<receiver
 			android:name="com.jculb.wallet.WalletBalanceWidgetProvider"
-			android:label="Dogecoin Wallet Balance" >
+			android:label="Defcoin Wallet Balance" >
 			<intent-filter>
 				<action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
 			</intent-filter>

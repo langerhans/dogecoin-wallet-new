@@ -19,9 +19,9 @@ package com.jculb.wallet.ui;
 
 import javax.annotation.Nonnull;
 
-import com.google.dogecoin.core.Transaction;
-import com.google.dogecoin.core.VerificationException;
-import com.google.dogecoin.core.Wallet;
+import com.google.defcoin.core.Transaction;
+import com.google.defcoin.core.VerificationException;
+import com.google.defcoin.core.Wallet;
 
 import com.jculb.wallet.WalletApplication;
 

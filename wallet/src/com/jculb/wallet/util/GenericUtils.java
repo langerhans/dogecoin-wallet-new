@@ -27,7 +27,7 @@ import javax.annotation.Nonnull;
 import android.view.View;
 import android.widget.TextView;
 
-import com.google.dogecoin.core.NetworkParameters;
+import com.google.defcoin.core.NetworkParameters;
 
 import com.jculb.wallet.Constants;
 

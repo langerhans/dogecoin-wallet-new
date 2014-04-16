@@ -16,7 +16,7 @@
 		android:normalScreens="true"
 		android:smallScreens="true" />
 
-	<application android:label="Sample for Dogecoin Integration" >
+	<application android:label="Sample for Defcoin Integration" >
 		<activity
 			android:name="com.jculb.wallet.integration.sample.SampleActivity"
 			android:theme="@android:style/Theme.Light" >

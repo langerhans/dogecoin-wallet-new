@@ -31,8 +31,8 @@ import android.text.Editable;
 import android.text.SpannableStringBuilder;
 import android.widget.RemoteViews;
 
-import com.google.dogecoin.core.Wallet;
-import com.google.dogecoin.core.Wallet.BalanceType;
+import com.google.defcoin.core.Wallet;
+import com.google.defcoin.core.Wallet.BalanceType;
 
 import com.jculb.wallet.ui.RequestCoinsActivity;
 import com.jculb.wallet.ui.SendCoinsActivity;

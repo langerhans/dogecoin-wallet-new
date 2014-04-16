@@ -44,9 +44,9 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Build;
 
-import com.google.dogecoin.core.Transaction;
-import com.google.dogecoin.core.TransactionOutput;
-import com.google.dogecoin.core.Wallet;
+import com.google.defcoin.core.Transaction;
+import com.google.defcoin.core.TransactionOutput;
+import com.google.defcoin.core.Wallet;
 
 import com.jculb.wallet.Constants;
 import com.jculb.wallet.WalletApplication;

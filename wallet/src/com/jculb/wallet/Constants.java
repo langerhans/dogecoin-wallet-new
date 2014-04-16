@@ -24,9 +24,9 @@ import android.os.Build;
 import android.os.Environment;
 import android.text.format.DateUtils;
 
-import com.google.dogecoin.core.NetworkParameters;
-import com.google.dogecoin.params.MainNetParams;
-import com.google.dogecoin.params.TestNet3Params;
+import com.google.defcoin.core.NetworkParameters;
+import com.google.defcoin.params.MainNetParams;
+import com.google.defcoin.params.TestNet3Params;
 
 /**
  * @author Andreas Schildbach
@@ -51,7 +51,7 @@ public class Constants
 	public static final String CHECKPOINTS_FILENAME = "checkpoints" + FILENAME_NETWORK_SUFFIX;
 
 	private static final String BLOCKEXPLORER_BASE_URL_PROD = "http://block1.assmeow.org/";
-	private static final String BLOCKEXPLORER_BASE_URL_TEST = "https://dogechain.info/testnet/"; //DOGE: Not yet...
+	private static final String BLOCKEXPLORER_BASE_URL_TEST = "https://defchain.info/testnet/"; //DOGE: Not yet...
 	public static final String BLOCKEXPLORER_BASE_URL = NETWORK_PARAMETERS.getId().equals(NetworkParameters.ID_MAINNET) ? BLOCKEXPLORER_BASE_URL_PROD
 			: BLOCKEXPLORER_BASE_URL_TEST;
 

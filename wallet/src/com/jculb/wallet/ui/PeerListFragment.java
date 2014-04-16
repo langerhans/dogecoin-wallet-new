@@ -50,8 +50,8 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.actionbarsherlock.app.SherlockListFragment;
-import com.google.dogecoin.core.Peer;
-import com.google.dogecoin.core.VersionMessage;
+import com.google.defcoin.core.Peer;
+import com.google.defcoin.core.VersionMessage;
 
 import com.jculb.wallet.service.BlockchainService;
 import com.jculb.wallet.service.BlockchainServiceImpl;

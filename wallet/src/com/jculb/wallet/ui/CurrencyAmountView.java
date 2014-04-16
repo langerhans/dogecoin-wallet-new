@@ -42,7 +42,7 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
-import com.google.dogecoin.core.Transaction;
+import com.google.defcoin.core.Transaction;
 
 import com.jculb.wallet.Constants;
 import com.jculb.wallet.util.GenericUtils;

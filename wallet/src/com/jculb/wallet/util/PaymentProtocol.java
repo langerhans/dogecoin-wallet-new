@@ -26,13 +26,13 @@ import javax.annotation.Nullable;
 
 import org.bitcoin.protocols.payments.Protos;
 
-import com.google.dogecoin.core.Address;
-import com.google.dogecoin.core.Transaction;
-import com.google.dogecoin.protocols.payments.PaymentRequestException;
-import com.google.dogecoin.protocols.payments.PaymentSession;
-import com.google.dogecoin.protocols.payments.PaymentSession.PkiVerificationData;
-import com.google.dogecoin.script.Script;
-import com.google.dogecoin.script.ScriptBuilder;
+import com.google.defcoin.core.Address;
+import com.google.defcoin.core.Transaction;
+import com.google.defcoin.protocols.payments.PaymentRequestException;
+import com.google.defcoin.protocols.payments.PaymentSession;
+import com.google.defcoin.protocols.payments.PaymentSession.PkiVerificationData;
+import com.google.defcoin.script.Script;
+import com.google.defcoin.script.ScriptBuilder;
 import com.google.protobuf.ByteString;
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.google.protobuf.UninitializedMessageException;

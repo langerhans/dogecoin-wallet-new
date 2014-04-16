@@ -35,7 +35,7 @@
 		<!-- com.google.bitcoin.* -->
 		<dependency>
 			<groupId>com.google</groupId>
-			<artifactId>dogecoinj</artifactId>
+			<artifactId>defcoinj</artifactId>
 			<version>0.12-SNAPSHOT</version>
 		</dependency>
 

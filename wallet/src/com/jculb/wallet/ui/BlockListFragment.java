@@ -56,11 +56,11 @@ import com.actionbarsherlock.view.ActionMode;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
-import com.google.dogecoin.core.Block;
-import com.google.dogecoin.core.Sha256Hash;
-import com.google.dogecoin.core.StoredBlock;
-import com.google.dogecoin.core.Transaction;
-import com.google.dogecoin.core.Wallet;
+import com.google.defcoin.core.Block;
+import com.google.defcoin.core.Sha256Hash;
+import com.google.defcoin.core.StoredBlock;
+import com.google.defcoin.core.Transaction;
+import com.google.defcoin.core.Wallet;
 
 import com.jculb.wallet.Configuration;
 import com.jculb.wallet.Constants;

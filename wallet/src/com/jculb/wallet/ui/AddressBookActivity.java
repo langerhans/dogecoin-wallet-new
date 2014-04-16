@@ -33,8 +33,8 @@ import android.view.ViewGroup;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.view.MenuItem;
-import com.google.dogecoin.core.Address;
-import com.google.dogecoin.core.ECKey;
+import com.google.defcoin.core.Address;
+import com.google.defcoin.core.ECKey;
 
 import com.jculb.wallet.Constants;
 import com.jculb.wallet.util.ViewPagerTabs;

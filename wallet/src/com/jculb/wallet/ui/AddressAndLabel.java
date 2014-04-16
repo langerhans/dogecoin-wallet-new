@@ -23,10 +23,10 @@ import javax.annotation.Nullable;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.google.dogecoin.core.Address;
-import com.google.dogecoin.core.AddressFormatException;
-import com.google.dogecoin.core.NetworkParameters;
-import com.google.dogecoin.core.WrongNetworkException;
+import com.google.defcoin.core.Address;
+import com.google.defcoin.core.AddressFormatException;
+import com.google.defcoin.core.NetworkParameters;
+import com.google.defcoin.core.WrongNetworkException;
 
 /**
  * @author Andreas Schildbach

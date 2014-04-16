@@ -35,8 +35,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.dogecoin.core.Address;
-import com.google.dogecoin.uri.BitcoinURI;
+import com.google.defcoin.core.Address;
+import com.google.defcoin.uri.BitcoinURI;
 
 import com.jculb.wallet.Configuration;
 import com.jculb.wallet.Constants;

@@ -23,7 +23,7 @@ import java.math.BigInteger;
 
 import org.junit.Test;
 
-import com.google.dogecoin.core.NetworkParameters;
+import com.google.defcoin.core.NetworkParameters;
 
 /**
  * @author Andreas Schildbach

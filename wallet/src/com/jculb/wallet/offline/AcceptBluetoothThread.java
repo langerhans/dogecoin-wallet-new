@@ -34,8 +34,8 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothServerSocket;
 import android.bluetooth.BluetoothSocket;
 
-import com.google.dogecoin.core.ProtocolException;
-import com.google.dogecoin.core.Transaction;
+import com.google.defcoin.core.ProtocolException;
+import com.google.defcoin.core.Transaction;
 
 import com.jculb.wallet.Constants;
 import com.jculb.wallet.util.Bluetooth;

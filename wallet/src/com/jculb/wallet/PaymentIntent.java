@@ -27,14 +27,14 @@ import javax.annotation.Nullable;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.google.dogecoin.core.Address;
-import com.google.dogecoin.core.AddressFormatException;
-import com.google.dogecoin.core.Transaction;
-import com.google.dogecoin.core.Wallet.SendRequest;
-import com.google.dogecoin.core.WrongNetworkException;
-import com.google.dogecoin.script.Script;
-import com.google.dogecoin.script.ScriptBuilder;
-import com.google.dogecoin.uri.BitcoinURI;
+import com.google.defcoin.core.Address;
+import com.google.defcoin.core.AddressFormatException;
+import com.google.defcoin.core.Transaction;
+import com.google.defcoin.core.Wallet.SendRequest;
+import com.google.defcoin.core.WrongNetworkException;
+import com.google.defcoin.script.Script;
+import com.google.defcoin.script.ScriptBuilder;
+import com.google.defcoin.uri.BitcoinURI;
 
 import com.jculb.wallet.util.Bluetooth;
 import com.jculb.wallet.util.GenericUtils;

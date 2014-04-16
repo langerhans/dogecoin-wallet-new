@@ -26,7 +26,7 @@ import android.preference.PreferenceScreen;
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockPreferenceActivity;
 import com.actionbarsherlock.view.MenuItem;
-import com.google.dogecoin.core.VersionMessage;
+import com.google.defcoin.core.VersionMessage;
 
 import com.jculb.wallet.Constants;
 import com.jculb.wallet.WalletApplication;

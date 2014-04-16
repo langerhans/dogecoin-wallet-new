@@ -41,7 +41,7 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
-import com.google.dogecoin.core.Wallet;
+import com.google.defcoin.core.Wallet;
 
 import com.jculb.wallet.Configuration;
 import com.jculb.wallet.Constants;

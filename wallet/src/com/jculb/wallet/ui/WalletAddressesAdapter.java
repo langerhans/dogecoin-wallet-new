@@ -34,9 +34,9 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.google.dogecoin.core.Address;
-import com.google.dogecoin.core.ECKey;
-import com.google.dogecoin.core.Wallet;
+import com.google.defcoin.core.Address;
+import com.google.defcoin.core.ECKey;
+import com.google.defcoin.core.Wallet;
 
 import com.jculb.wallet.AddressBookProvider;
 import com.jculb.wallet.Constants;

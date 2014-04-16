@@ -44,8 +44,8 @@ import com.actionbarsherlock.view.ActionMode;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
-import com.google.dogecoin.core.Wallet;
-import com.google.dogecoin.core.Wallet.BalanceType;
+import com.google.defcoin.core.Wallet;
+import com.google.defcoin.core.Wallet.BalanceType;
 
 import com.jculb.wallet.Configuration;
 import com.jculb.wallet.Constants;

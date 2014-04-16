@@ -25,10 +25,10 @@ import javax.annotation.Nullable;
 import android.os.Handler;
 import android.os.Looper;
 
-import com.google.dogecoin.core.InsufficientMoneyException;
-import com.google.dogecoin.core.Transaction;
-import com.google.dogecoin.core.Wallet;
-import com.google.dogecoin.core.Wallet.SendRequest;
+import com.google.defcoin.core.InsufficientMoneyException;
+import com.google.defcoin.core.Transaction;
+import com.google.defcoin.core.Wallet;
+import com.google.defcoin.core.Wallet.SendRequest;
 
 /**
  * @author Andreas Schildbach

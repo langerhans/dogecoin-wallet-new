@@ -54,15 +54,15 @@ import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.rolling.RollingFileAppender;
 import ch.qos.logback.core.rolling.TimeBasedRollingPolicy;
 
-import com.google.dogecoin.core.Address;
-import com.google.dogecoin.core.ECKey;
-import com.google.dogecoin.core.Transaction;
-import com.google.dogecoin.core.VersionMessage;
-import com.google.dogecoin.core.Wallet;
-import com.google.dogecoin.store.UnreadableWalletException;
-import com.google.dogecoin.store.WalletProtobufSerializer;
-import com.google.dogecoin.utils.Threading;
-import com.google.dogecoin.wallet.WalletFiles;
+import com.google.defcoin.core.Address;
+import com.google.defcoin.core.ECKey;
+import com.google.defcoin.core.Transaction;
+import com.google.defcoin.core.VersionMessage;
+import com.google.defcoin.core.Wallet;
+import com.google.defcoin.store.UnreadableWalletException;
+import com.google.defcoin.store.WalletProtobufSerializer;
+import com.google.defcoin.utils.Threading;
+import com.google.defcoin.wallet.WalletFiles;
 
 import com.jculb.wallet.service.BlockchainService;
 import com.jculb.wallet.service.BlockchainServiceImpl;

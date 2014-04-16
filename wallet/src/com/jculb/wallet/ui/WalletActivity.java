@@ -68,10 +68,10 @@ import android.widget.*;
 
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
-import com.google.dogecoin.core.AddressFormatException;
-import com.google.dogecoin.core.ECKey;
-import com.google.dogecoin.core.Transaction;
-import com.google.dogecoin.core.Wallet;
+import com.google.defcoin.core.AddressFormatException;
+import com.google.defcoin.core.ECKey;
+import com.google.defcoin.core.Transaction;
+import com.google.defcoin.core.Wallet;
 
 import com.jculb.wallet.Configuration;
 import com.jculb.wallet.Constants;
