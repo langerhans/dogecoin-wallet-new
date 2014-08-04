@@ -6,7 +6,7 @@
 			android:key="about_version"
 			android:title="Version" />
 		<Preference
-			android:summary="© 2011-2013, Andreas Schildbach\n© 2013-2014, Maximilian Keller"
+			android:summary="© 2011-2013, Andreas Schildbach\n© 2014, Justin Culbertson"
 			android:title="Copyright" />
 		<Preference
 			android:key="about_license"
@@ -24,11 +24,11 @@
 			android:title="@string/about_community_googleplus_title" />-->
 		<Preference
 			android:key="about_author_twitter"
-			android:summary="\@langer_hans"
+			android:summary="\@jus341"
 			android:title="@string/about_author_twitter_title" />
 		<Preference
 			android:key="about_author_googleplus"
-			android:summary="+Maximilian Keller"
+			android:summary="+JustinCulbertson"
 			android:title="@string/about_author_googleplus_title" />
 		<Preference
 			android:key="about_market_publisher"
