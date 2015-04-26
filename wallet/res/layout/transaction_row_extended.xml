@@ -117,7 +117,7 @@
 			android:layout_marginRight="8dp"
 			android:layout_weight="1" />
 
-		<de.schildbach.wallet.ui.CurrencyTextView
+		<de.langerhans.wallet.ui.CurrencyTextView
 			android:id="@+id/transaction_row_fiat"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
