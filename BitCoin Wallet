@@ -1,0 +1,55 @@
+BITCOIN WALLET
+Welcome to Bitcoin Wallet, a standalone Bitcoin payment app for your Android device!
+
+This project contains several sub-projects:
+
+wallet: The Android app itself. This is probably what you're searching for.
+market: App description and promo material for the Google Play app store.
+integration-android: A tiny library for integrating Bitcoin payments into your own Android app (e.g. donations, in-app purchases).
+sample-integration-android: A minimal example app to demonstrate integration of Bitcoin payments into your Android app.
+PREREQUISITES FOR BUILDING
+You'll need git, a Java 8 SDK (or later) and Gradle 4.4 (or later) for this. We'll assume Ubuntu 18.04 LTS (Bionic Beaver) for the package installs, which comes with OpenJDK 8 and Gradle 4.4.1 out of the box.
+
+# first time only
+sudo apt install git gradle openjdk-8-jdk
+Create a directory for the Android SDK (e.g. android-sdk) and point the ANDROID_HOME variable to it.
+
+Download the Android SDK Tools and unpack it to $ANDROID_HOME/.
+
+Finally, the last preparative step is acquiring the source code. Again in your workspace, use:
+
+# first time only
+git clone -b master https://github.com/bitcoin-wallet/bitcoin-wallet.git bitcoin-wallet
+cd bitcoin-wallet
+BUILDING
+You can build all sub-projects in all flavors at once using Gradle:
+
+# each time
+gradle clean build
+For details about building the wallet see the specific README.
+
+BINARIES
+You can install the app from the app store of your choice:
+
+Testnet: F-Droid | Google Play
+Mainnet: F-Droid | Google Play
+About
+Dogecoin Wallet app for your Android device. Standalone Dogecoin node, no centralized backend required. Forked from the popular Bitcoin Wallet.
+
+Topics
+Resources
+ Readme
+Releases 330
+4AEE18F83AFDEB23
+Latest
+5 days ago
++ 329 releases
+Packages
+No packages published
+Publish your first package
+Languages
+Java
+97.0%
+ 
+C
+3.0%
