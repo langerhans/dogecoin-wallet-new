@@ -1,0 +1,9 @@
+dogecoin-wallet-new
+/
+CVE
+/
+wallet
+/
+assets-prod
+/
+checkpoints.txt
