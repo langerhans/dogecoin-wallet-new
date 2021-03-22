@@ -1,0 +1,62 @@
+
+CoreValExtreme
+/
+dogecoin-wallet-newon
+on.<event_name>.types
+on.<push|pull_request>.<branches|tags>
+on.<push|pull_request>.paths
+on.schedule
+env
+defaults
+defaults.run
+jobs
+jobs.<job_id>
+jobs.<job_id>.name
+jobs.<job_id>.needs
+jobs.<job_id>.runs-on
+jobs.<job_id>.environment
+jobs.<job_id>.outputs
+jobs.<job_id>.env
+jobs.<job_id>.defaults
+jobs.<job_id>.defaults.run
+jobs.<job_id>.if
+jobs.<job_id>.steps
+jobs.<job_id>.steps[*].id
+jobs.<job_id>.steps[*].if
+jobs.<job_id>.steps[*].name
+jobs.<job_id>.steps[*].uses
+jobs.<job_id>.steps[*].run
+jobs.<job_id>.steps[*].with
+jobs.<job_id>.steps[*].with.args
+jobs.<job_id>.steps[*].with.entrypoint
+jobs.<job_id>.steps[*].env
+jobs.<job_id>.steps[*].continue-on-error
+jobs.<job_id>.steps[*].timeout-minutes
+jobs.<job_id>.timeout-minutes
+jobs.<job_id>.strategy
+jobs.<job_id>.strategy.matrix
+jobs.<job_id>.strategy.fail-fast
+jobs.<job_id>.strategy.max-parallel
+jobs.<job_id>.continue-on-error
+jobs.<job_id>.container
+jobs.<job_id>.container.image
+jobs.<job_id>.container.credentials
+jobs.<job_id>.container.env
+jobs.<job_id>.container.ports
+jobs.<job_id>.container.volumes
+jobs.<job_id>.container.options
+jobs.<job_id>.services
+jobs.<job_id>.services.<service_id>.image
+jobs.<job_id>.services.<service_id>.credentials
+jobs.<job_id>.services.<service_id>.env
+jobs.<job_id>.services.<service_id>.ports
+jobs.<job_id>.services.<service_id>.volumes
+jobs.<job_id>.services.<service_id>.options
+Filter pattern cheat sheet
+About YAML syntax for workflows
+Workflow files use YAML syntax, and must have either a .yml or .yaml file extension. If you're new to YAML and want to learn more, see "Learn YAML in five minutes."
+
+You must store workflow files in the .github/workflows directory of your repository.
+
+name
+The name of your workflow. GitHub displays the names of your workflows on your repository's actions page. If you omit name, GitHub sets it to the workflow file path relative to the root of the repository.
