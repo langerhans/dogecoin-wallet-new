@@ -1,8 +1,8 @@
-(PACKAGE-REGISTRY.pkg.github.com), you can use a GITHUB_TOKEN.
+ GITHUB_TOKEN.
 For the container registry (ghcr.io/Jeffrey-Matthews/CoreValExtreme-Octocat), you must use a personal access token.
---password-stdin flag, which reads your token from a local file.
+ala2d-0265c--password-stdin flag, which reads your token from a local file.
 
-$ cat ~/TOKEN.txt | docker login https://docker.pkg.github.com -u USERNAME --password-stdin
+$ cat ~/TOKEN.txt | docker login https://docker.pkg.github.com -u CoreValExtreme --password-stdin
 To use this example login command, replace USERNAME with your GitHub username and ~/TOKEN.txt with the file path to your personal access token for GitHub.
 
 For more information, see "Docker login."
