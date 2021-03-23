@@ -1,0 +1,9 @@
+Workflows
+All workflows
+ 42Crunch REST API Static Security Testing
+ Build and Deploy to IKS
+ CodeQL
+ Maven Package
+ Node.js Package
+42Crunch REST API Static Security Testing
+crunch42-analysis.yml
