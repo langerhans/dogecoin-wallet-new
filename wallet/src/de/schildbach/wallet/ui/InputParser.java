@@ -90,7 +90,7 @@ public abstract class InputParser {
                 }
             } else if (input.startsWith("dogecoin:") || input.startsWith("DOGECOIN:")) {
                 try {
-                    final BitcoinURI bitcoinUri = new BitcoinURI(Constants.NETWORK_PARAMETERS, "dogecoin:" + input.substring(8));
+                    final BitcoinURI bitcoinUri = new BitcoinURI(Constants.NETWORK_PARAMETERS, "dogecoin:" + input.substring(9));
                     final Address address = bitcoinUri.getAddress();
                     if (address != null && !Constants.NETWORK_PARAMETERS.equals(address.getParameters()))
                         throw new BitcoinURIParseException("mismatched network");
