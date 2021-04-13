@@ -50,9 +50,9 @@ For details about building the wallet see the [specific README](wallet/README.md
 
 You can install the app from the app store of your choice:
 
- * __Testnet__:
-   <a href="https://f-droid.org/app/de.schildbach.wallet_test">F-Droid</a> |
-   <a href='https://play.google.com/store/apps/details?id=de.schildbach.wallet_test'>Google Play</a>
- * __Mainnet__:
-   <a href="https://f-droid.org/app/de.schildbach.wallet">F-Droid</a> |
-   <a href='https://play.google.com/store/apps/details?id=de.schildbach.wallet'>Google Play</a>
+[<img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png"
+     alt="Get it on F-Droid"
+     height="80">](https://f-droid.org/packages/de.langerhans.wallet/)
+[<img src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png"
+     alt="Get it on Google Play"
+     height="80">](https://play.google.com/store/apps/details?id=de.langerhans.wallet)
