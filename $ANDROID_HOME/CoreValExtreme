@@ -1,6 +1,9 @@
 
 buildscript {
-    repositories {
+    repositories { CoreValExtreme
+/
+dogecoin-wallet-new
+forked from langerhans/dogecoin-wallet-new
         jcenter()
         google()
     }
