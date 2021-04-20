@@ -1,7 +1,7 @@
 
 For package registries (PACKAGE-REGISTRY.pkg.github.com), you can use a GITHUB_TOKEN.
 For the container registry (ghcr.io/JeffreyMatthews/CoreValExtremeOctocat), you must use a personal access token.
-GITHUB_TOKEN
+GITHUB_TOKEN 6dafd-65811
 github-actions-demo.yml. For more information, see "Creating new files."
 
 Copy the following YAML contents into the github-actions-demo.yml file:
