@@ -160,7 +160,7 @@
   <string name="edit_address_book_entry_dialog_title_add_receive">Добавить метку для вашего адреса</string>
   <string name="edit_address_book_entry_dialog_title_edit_receive">Изменить метку вашего адреса</string>
   <string name="edit_address_book_entry_dialog_address_label">Адрес</string>
-  <string name="edit_address_book_entry_dialog_label_label">Имя</string>
+  <string name="edit_address_book_entry_dialog_label_label">Название</string>
   <string name="edit_address_book_entry_dialog_button_edit">Сохранить</string>
   <string name="transaction_row_fee">Комиссия сети</string>
   <string name="transaction_row_confidence_message_sent_unbroadcasted">Платёж ещё не был передан в сеть.</string>
