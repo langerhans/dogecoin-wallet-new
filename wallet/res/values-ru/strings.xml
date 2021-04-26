@@ -23,8 +23,8 @@
   <string name="exchange_rates_fragment_balance">баланс</string>
   <string name="exchange_rates_fragment_source">Цена получена с %s</string>
   <string name="exchange_rates_options_search">Поиск обменного курса</string>
-  <string name="wallet_transactions_fragment_empty_text_received">Ещё не получено Bitcoin-монет</string>
-  <string name="wallet_transactions_fragment_empty_text_sent">Ещё не отправлено Bitcoin-монет</string>
+  <string name="wallet_transactions_fragment_empty_text_received">Пока Вы не получили Dogecoin-монеты</string>
+  <string name="wallet_transactions_fragment_empty_text_sent">Пока Вы не отправили монеты</string>
   <string name="wallet_transactions_fragment_empty_text_howto">Как получить Dogecoin-монеты?\nПокупайте на обычные деньги,\nпродавайте услуги или товары или\nзарабатывайте.</string>
   <string name="wallet_transactions_fragment_empty_remind_backup">Пожалуйста, сделайте резервную копию кошелька\nперед получением любых платежей!</string>
   <string name="wallet_transactions_row_warning_backup">Поздравляем, вы получили первый платёж! Вы уже &lt;u&gt;сделали резервную копию кошелька&lt;/u&gt;, чтобы обезопаситься от потерь?</string>
@@ -58,7 +58,7 @@
   <string name="wallet_old_sdk_dialog_title">Версия для Android устарела</string>
   <string name="wallet_old_sdk_dialog_message">Ваше устройство скорее всего не будет поддерживаться следующей версией Dogecoin Wallet. В некоторых случаях, это может затруднить отправку с него монет.\n\nРекомендуется перенести монеты на другое устройство, если вы не уверены что можете с этим справиться.</string>
   <string name="alert_dialogs_fragment_settings_failed_title">Проблема с открытием настроек</string>
-  <string name="send_coins_activity_title">Отправка Bitcoin</string>
+  <string name="send_coins_activity_title">Отправка Dogecoin</string>
   <string name="send_coins_fragment_request_payment_request_progress">Получение подписи %s…</string>
   <string name="send_coins_fragment_request_payment_request_failed_title">Не удалось получить запрос платежа</string>
   <string name="send_coins_fragment_request_payment_request_failed_message">Получатель (%1$s) использует несовместимый протокол (причина: %2$s).</string>
@@ -140,7 +140,7 @@
   <string name="request_coins_fragment_initiate_request_nfc">Коснитесь устройства с поддержкой NFC.</string>
   <string name="request_coins_clipboard_msg">Запрос получения монет скопирован</string>
   <string name="request_coins_share_dialog_title">Поделиться запросом монет...</string>
-  <string name="request_coins_no_local_app_msg">Не найдено других Bitcoin приложений</string>
+  <string name="request_coins_no_local_app_msg">Не найдено других Dogecoin приложений</string>
   <string name="request_coins_options_local_app_title">Запрос от локального приложения</string>
   <string name="address_book_activity_title">Адресная книга</string>
   <string name="address_book_list_receiving_title">Ваши адреса</string>
@@ -171,9 +171,9 @@
   <string name="transaction_row_message_purpose_key_rotation">Эта транзакция защищает ваш кошелек от воровства. &lt;u&gt;Узнать больше.&lt;/u&gt;</string>
   <string name="transaction_row_message_purpose_raise_fee">Эта транзакция увеличит комиссию за предыдущий платёж.</string>
   <string name="transaction_row_message_received_direct">Этот платеж был проведен напрямую. Существует риск того, что вы никогда не сможете потратить полученные средства.</string>
-  <string name="transaction_row_message_received_unconfirmed_delayed">Подтверждение платежа задерживается. Возможно, из-за перегрузки сети Bitcoin.</string>
+  <string name="transaction_row_message_received_unconfirmed_delayed">Подтверждение платежа задерживается. Возможно, из-за перегрузки сети Dogecoin.</string>
   <string name="transaction_row_message_received_unconfirmed_unlocked">Этот платёж будет доступен через несколько минут.</string>
-  <string name="transaction_row_message_received_unconfirmed_chain_forking">Из-за техобслуживания сети Bitcoin данная транзакция не будет произведена до тех пор, пока она полностью не подтверждена.</string>
+  <string name="transaction_row_message_received_unconfirmed_chain_forking">Из-за техобслуживания сети Dogecoin данная транзакция не будет произведена до тех пор, пока она полностью не подтверждена.</string>
   <string name="transaction_row_message_received_in_conflict">Этот платёж с высокой вероятностью может быть отменён отправителем! Дождитесь подтверждения, если это возможно.</string>
   <string name="transaction_row_message_received_dead">Этот платёж был отменён отправителем.</string>
   <string name="transaction_row_message_received_dust">Скорее всего, такая малая сумма никогда не будет получена по экономическим причинам.</string>
@@ -302,7 +302,7 @@
   <string name="notification_peers_connected_msg">подключено %d участников</string>
   <string name="notification_inactivity_title">У вас всё ещё есть биткоины на этом устройстве!</string>
   <string name="notification_inactivity_message">Внимание, ваш баланс %s будет потерян, если вы удалите Bitcoin Wallet до того, как перешлёте ваши средства.</string>
-  <string name="notification_inactivity_message_donate">Если вам не нужны монеты, вы можете пожертвовать их проекту Bitcoin Wallet.</string>
+  <string name="notification_inactivity_message_donate">Если вам не нужны монеты, вы можете пожертвовать их проекту Dogecoin Wallet.</string>
   <string name="notification_inactivity_action_dismiss">Напомнить позже</string>
   <string name="notification_inactivity_action_dismiss_forever">Не напоминать</string>
   <string name="notification_bluetooth_service_listening">Готов принимать платежи через Bluetooth</string>
