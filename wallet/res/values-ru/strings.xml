@@ -2,6 +2,8 @@
 <resources>
   <string name="toast_wallet_reset">Ваш кошелёк был сброшен!\nВосстановление займёт некоторое время.</string>
   <string name="wallet_disclaimer_fragment_remind_safety">Используйте на свой страх и риск. Прочитайте &lt;u&gt;заметки безопасности&lt;/u&gt;.</string>
+  <string name="toast_start_external_document_failed">Нет браузера для открытия документа</string>
+    <string name="toast_start_storage_provider_selector_failed">У Вас нет ни одного приложения с облачным хранилешщем.\nУстановите какое-нибудь, например \"Nexcloud\" или \"Google Диск\".</string>
   <string name="wallet_disclaimer_fragment_remind_backup">Вам необходимо &lt;u&gt;сделать резервную копию вашего кошелька&lt;/u&gt;!</string>
   <string name="blockchain_state_progress_hours">%1$s, %2$d часов отставания</string>
   <string name="blockchain_state_progress_days">%1$s, %2$d дней отставания</string>
@@ -9,8 +11,8 @@
   <string name="blockchain_state_progress_months">%1$s, %2$d месяцев отставания</string>
   <string name="blockchain_state_progress_downloading">Синхронизация с сетью</string>
   <string name="blockchain_state_progress_stalled">Синхронизация зависла</string>
-  <string name="blockchain_state_progress_problem_storage">Синхронизация: проблема с хранилищем</string>
-  <string name="blockchain_state_progress_problem_network">Синхронизация: проблема с сетью</string>
+  <string name="blockchain_state_progress_problem_storage">Проблема с синхронизацией: мало свободного места в хранилище</string>
+  <string name="blockchain_state_progress_problem_network">Проблема с синхронизацией: нет подключения к интернету</string>
   <string name="wallet_address_fragment_clipboard_msg">Адрес скопирован в буфер обмена</string>
   <string name="wallet_address_dialog_fragment_hint">Для защиты вашей конфиденциальности ваш адрес будет меняться , как только он получает деньги.</string>
   <string name="wallet_balance_fragment_insecure_device">Ваше устройство устарело и недостаточно защищено. Используйте только для небольших сумм денег.</string>
@@ -300,8 +302,8 @@
   <string name="about_faq_summary">Частые вопросы по приложению</string>
   <string name="notification_coins_received_msg">Получено %s</string>
   <string name="notification_peers_connected_msg">подключено %d участников</string>
-  <string name="notification_inactivity_title">У вас всё ещё есть биткоины на этом устройстве!</string>
-  <string name="notification_inactivity_message">Внимание, ваш баланс %s будет потерян, если вы удалите Bitcoin Wallet до того, как перешлёте ваши средства.</string>
+  <string name="notification_inactivity_title">У вас всё ещё есть монеты на этом устройстве!</string>
+  <string name="notification_inactivity_message">Внимание, ваш баланс %s будет потерян, если вы удалите Dogecoin Wallet до того, как перешлёте ваши средства.</string>
   <string name="notification_inactivity_message_donate">Если вам не нужны монеты, вы можете пожертвовать их проекту Dogecoin Wallet.</string>
   <string name="notification_inactivity_action_dismiss">Напомнить позже</string>
   <string name="notification_inactivity_action_dismiss_forever">Не напоминать</string>
@@ -309,7 +311,7 @@
   <string name="notification_channel_received_name">Полученные выплаты</string>
   <string name="notification_channel_ongoing_name">Фоновая активность</string>
   <string name="notification_channel_important_name">Важные предупреждения</string>
-  <string name="appwidget_wallet_balance_title">Баланс биткоинов</string>
+  <string name="appwidget_wallet_balance_title">Баланс Dogecoin</string>
   <!--generic buttons-->
   <string name="button_ok">OK</string>
   <string name="button_dismiss">Отменить</string>
