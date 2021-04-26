@@ -25,8 +25,8 @@
   <string name="exchange_rates_fragment_balance">баланс</string>
   <string name="exchange_rates_fragment_source">Цена получена с %s</string>
   <string name="exchange_rates_options_search">Поиск обменного курса</string>
-  <string name="wallet_transactions_fragment_empty_text_received">Пока что Вы не получили монеты Dogecoin</string>
-  <string name="wallet_transactions_fragment_empty_text_sent">Пока что Вы не отправили монеты Dogecoin</string>
+  <string name="wallet_transactions_fragment_empty_text_received">Вы не получили ни одной монеты</string>
+  <string name="wallet_transactions_fragment_empty_text_sent">Вы не отправили ни одной монеты</string>
   <string name="wallet_transactions_fragment_empty_text_howto">Как получить Dogecoin-монеты?\nПокупайте на обычные деньги,\nпродавайте услуги или товары или\nзарабатывайте.</string>
   <string name="wallet_transactions_fragment_empty_remind_backup">Пожалуйста, сделайте резервную копию кошелька\nперед получением любых платежей!</string>
   <string name="wallet_transactions_row_warning_backup">Поздравляем, вы получили первый платёж! Вы уже &lt;u&gt;сделали резервную копию кошелька&lt;/u&gt;, чтобы обезопаситься от потерь?</string>
