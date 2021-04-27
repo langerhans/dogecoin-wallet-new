@@ -14,8 +14,8 @@
   <string name="blockchain_state_progress_problem_storage">Проблема с синхронизацией: мало свободного места в хранилище</string>
   <string name="blockchain_state_progress_problem_network">Проблема с синхронизацией: нет подключения к интернету</string>
   <string name="wallet_address_fragment_clipboard_msg">Адрес скопирован в буфер обмена</string>
-  <string name="wallet_address_dialog_fragment_hint">Для защиты вашей конфиденциальности ваш адрес будет меняться , как только он получает деньги.</string>
-  <string name="wallet_balance_fragment_insecure_device">Ваше устройство устарело и недостаточно защищено. Используйте только для небольших сумм денег.</string>
+  <string name="wallet_address_dialog_fragment_hint">Для защиты вашей конфиденциальности ваш адрес будет меняться, как только Вам переведут монеты.</string>
+  <string name="wallet_balance_fragment_insecure_device">Ваше устройство устарело и недостаточно защищено. Используйте только для небольших сумм.</string>
   <string name="wallet_balance_fragment_too_much">Сумма монет довольно существенная для карманного бумажника. Пожалуйста, перенесите её часть в более безопасное хранение.</string>
   <string name="wallet_balance_fragment_replaying">Во время воспроизведения баланс недоступен.</string>
   <string name="exchange_rates_activity_title">Обменный курс</string>
@@ -289,7 +289,7 @@
   <string name="about_license_title">Лицензия</string>
   <string name="about_source_title">Исходный код</string>
   <string name="about_category_credits">Это приложение использует…</string>
-  <string name="about_credits_bitcoinj_title">bitcoinj %s, реализация протокола Bitcoin</string>
+  <string name="about_credits_bitcoinj_title">bitcoinj %s, реализация протокола Dogecoin</string>
   <string name="about_credits_zxing_title">ZXing, библиотека обработки QR-кодов</string>
   <string name="about_credits_bouncycastle_title">Bouncy Castle, криптографическая библиотека</string>
   <string name="about_credits_okhttp_title">OkHttp, библиотека для работы клиента HTTP</string>
