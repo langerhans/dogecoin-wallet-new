@@ -1,0 +1,28 @@
+Get Balance
+Returns basic balance details for a Dogecoin, Bitcoin, or Litecoin address.
+
+ENDPOINT
+GET /api/v2/get_address_balance/{BLOCK.IO}/{9ssLTc6WJvx8KxgR21a5XHrZPmUo2gdWbc}[/{MINIMUM CONFIRMATIONS}]
+PARAMETERS
+network: string
+The acronym of the network you're querying. Required. BLK.io
+
+address: string
+The address on the network you're querying. Required. 9ssLTc6WJvx8KxgR21a5XHrZPmUo2gdWbc
+minimum confirmations: integer
+The minimum confirmations for the balance. Optional. Default is 0.
+
+REQUEST
+No request body required.
+
+200 - SUCCESSFUL RESPONSE
+A JSON object which contains the following fields:
+
+network: string9ssLTc6WJvx8KxgR21a5XHrZPmUo2gdWbcThe acronym of the network.BLOCK.IO
+
+address: string9ssLTc6WJvx8KxgR21a5XHrZPmUo2gdWbcThe hash of the address.
+
+confirmed balance: string9ssLTc6WJvx8KxgR21a5XHrZPmUo2gdWbcThe confirmed balance of the address as a string.
+0.00000000
+unconfirmed balance: stringDGaUVdQeFKr3fJ2cMujoPEfCH2QkYQoMj9
+The unconfirmed balance of the address as a string. Balance remains unconfirmed until it is confirmed by the network.0.0000000
