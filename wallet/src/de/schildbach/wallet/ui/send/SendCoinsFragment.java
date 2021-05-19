@@ -56,6 +56,10 @@ import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 import com.google.common.base.Joiner;
 import com.google.common.util.concurrent.ListenableFuture;
+import com.unstoppabledomains.exceptions.ns.NamingServiceException;
+import com.unstoppabledomains.resolution.DomainResolution;
+import com.unstoppabledomains.resolution.Resolution;
+
 import de.schildbach.wallet.Configuration;
 import de.schildbach.wallet.Constants;
 import de.schildbach.wallet.R;
@@ -587,16 +591,21 @@ public final class SendCoinsFragment extends Fragment {
 
     private void validateReceivingAddress() {
         try {
-            final String addressStr = receivingAddressView.getText().toString().trim();
+            String addressStr = receivingAddressView.getText().toString().trim();
             if (!addressStr.isEmpty()) {
+                String domain = "";
+                if (addressStr.endsWith(".crypto")) {
+                    DomainResolution resolution = new Resolution();
+                    domain = addressStr;
+                    addressStr = resolution.getAddress(addressStr, "DOGE");
+                }
                 final Address address = Address.fromString(Constants.NETWORK_PARAMETERS, addressStr);
                 final String label = addressBookDao.resolveLabel(address.toString());
-                viewModel.validatedAddress = new AddressAndLabel(Constants.NETWORK_PARAMETERS, address.toString(),
-                        label);
+                viewModel.validatedAddress = new AddressAndLabel(Constants.NETWORK_PARAMETERS, address.toString(), domain != "" ? domain : label);
                 receivingAddressView.setText(null);
                 log.info("Locked to valid address: {}", viewModel.validatedAddress);
             }
-        } catch (final AddressFormatException x) {
+        } catch (final AddressFormatException | NamingServiceException x) {
             // swallow
         }
     }
