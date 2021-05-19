@@ -25,6 +25,9 @@ dependencies {
     implementation "androidx.room:room-runtime:2.2.5"
     annotationProcessor "androidx.room:room-compiler:2.2.5"
     api 'com.dogecoin:libdohj-core:0.15-SNAPSHOT'
+    implementation('com.unstoppabledomains:resolution:1.13.3') {
+        exclude group: 'org.bouncycastle'
+    }
     implementation 'com.lambdaworks:scrypt:1.4.0'
     implementation 'com.google.protobuf:protobuf-java:3.7.1'
     implementation 'com.google.guava:guava:29.0-android'
