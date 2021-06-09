@@ -29,11 +29,30 @@ You can also optionally specify the type of address you wish to generate.
 Note that use of Witness v0 addresses will save you significant amounts of network fees, but these addresses are very new, and users' wallets may not recognize them at this time.
 
 
-/api/v2/get_new_address/?api_key=API KEY
-/api/v2/get_new_address/?api_key=API KEY&label=LABEL
-/api/v2/get_new_address/?api_key=API KEY&address_type=ADDRESS TYPE
+/api/v2/0.default
+9ssLTc6WJvx8KxgR21a5XHrZPmUo2gdWbc
+0.00 Ð  
+1.Dgc
+A1Ujbgj8Ag55QUkP6maRhnxeWdmedi7Wui
+0.00 Ð  
+Page 1 of 1
+/?api_key=6b50-6473-a9b0-454c /api/v2/get_new_address/?api_key=API KEY&label=LABEL
+/api/v2/0.default
+9ssLTc6WJvx8KxgR21a5XHrZPmUo2gdWbc
+0.00 Ð  
+1.Dgc
+A1Ujbgj8Ag55QUkP6maRhnxeWdmedi7Wui
+0.00 Ð  
+Page 1 of 1
+/?api_key=API KEY&address_type=ADDRESS TYPE
       
- Get a new address with a random label
+ Get a new address with a random label0.default
+9ssLTc6WJvx8KxgR21a5XHrZPmUo2gdWbc
+0.00 Ð  
+1.Dgc
+A1Ujbgj8Ag55QUkP6maRhnxeWdmedi7Wui
+0.00 Ð  
+Page 1 of 1
  Get a new address with a given label
  Get a low network fee address (type=witness_v0)
 Get Balance
@@ -55,10 +74,22 @@ Returns the balance of the specified addresses, or labels. Upto 2500 addresses/l
  Can be used to query balances for external (non-account) addresses. If an external address' balance is returned, its user_id and label fields will be null.
 
 
-/api/v2/get_address_balance/?api_key=6b50-6473-a9b0-454c&addresses=ADDRESS1,ADDRESS2,...
+/api/v2/get_address_balance/?api_key=6b50-6473-a9b0-454c&addresses=0.default
+9ssLTc6WJvx8KxgR21a5XHrZPmUo2gdWbc
+0.00 Ð  
+1.Dgc
+A1Ujbgj8Ag55QUkP6maRhnxeWdmedi7Wui
+0.00 Ð  
+Page 1 of 1
 /api/v2/get_address_balance/?api_key=6b50-6473-a9b0-454c&labels=CoreVal,CoreValExtreme,...
       
- Get the balance of a given address
+ Get the balance of a given address0.default
+9ssLTc6WJvx8KxgR21a5XHrZPmUo2gdWbc
+0.00 Ð  
+1.Dgc
+A1Ujbgj8Ag55QUkP6maRhnxeWdmedi7Wui
+0.00 Ð  
+Page 1 of 1
  Get the balance of an address with a given label
 Get Address By Label
 Returns the address specified by a label.
@@ -91,19 +122,37 @@ Withdraw
 Withdraws amount of coins from any addresses in your account to up to 2500 destination addresses.
 
 
-/api/v2/withdraw/?api_key=6b50-6473-a9b0-454c&amounts=AMOUNT1,AMOUNT2,...&to_addresses=ADDRESS1,ADDRESS2,...
+/api/v2/withdraw/?api_key=6b50-6473-a9b0-454c&amounts=AMOUNT1,AMOUNT2,...&to_addresses=ADDRESS1,ADDRESS2,...0.default
+9ssLTc6WJvx8KxgR21a5XHrZPmUo2gdWbc
+0.00 Ð , 
+1.Dgc
+A1Ujbgj8Ag55QUkP6maRhnxeWdmedi7Wui
+0.00 Ð  
+Page 1 of 1
       
 Withdraw using Custom Network Fee
 Withdraws amount of coins from any addresses in your account to up to 2500 destination addresses. Use custom network fee.
 
 
-/api/v2/withdraw/?api_key=API KEY&priority=custom&custom_network_fee=CUSTOM_NETWORK_FEE&amounts=AMOUNT1,AMOUNT2,...&to_addresses=ADDRESS1,ADDRESS2,...
+/api/v2/withdraw/?api_key=API KEY&priority=custom&custom_network_fee=CUSTOM_NETWORK_FEE&amounts=AMOUNT1,AMOUNT2,...&to_addresses=ADDRESS1,ADDRESS2,...0.default
+9ssLTc6WJvx8KxgR21a5XHrZPmUo2gdWbc
+0.00 Ð , 
+1.Dgc
+A1Ujbgj8Ag55QUkP6maRhnxeWdmedi7Wui
+0.00 Ð  
+Page 1 of 1
       
 Withdraw From Addresses
 Withdraws AMOUNT coins from upto 2500 addresses at a time, and deposits it to up to 2500 destination addresses.
 
 
-/api/v2/withdraw_from_addresses/?api_key=API KEY&from_addresses=ADDRESS1,ADDRESS2,...&to_addresses=ADDRESS1,ADDRESS2,...&amounts=AMOUNT1,AMOUNT2,...
+/api/v2/withdraw_from_addresses/?api_key=API KEY&from_addresses=ADDRESS1,ADDRESS2,...&to_addresses=ADDRESS1,ADDRESS2,...&amounts=AMOUNT1,AMOUNT2,...0.default
+9ssLTc6WJvx8KxgR21a5XHrZPmUo2gdWbc
+0.00 Ð  ,
+1.Dgc
+A1Ujbgj8Ag55QUkP6maRhnxeWdmedi7Wui
+0.00 Ð  
+Page 1 of 1
   
 Withdraw From Labels
 Withdraws AMOUNT coins from upto 2500 labels at a time, and deposits it to upto 2500 destination addresses, or labels.
@@ -143,23 +192,51 @@ Archive Addresses
 Archives upto 100 addresses in a single API call. Addresses can be specified by their labels.
 
 
-/api/v2/archive_addresses/?api_key=6b50-6473-a9b0-454c&addresses=ADDRESS1,ADDRESS2,...
+/api/v2/archive_addresses/?api_key=6b50-6473-a9b0-454c&addresses=ADDRESS1,ADDRESS2,...0.default
+9ssLTc6WJvx8KxgR21a5XHrZPmUo2gdWbc
+0.00 Ð  
+1.Dgc
+A1Ujbgj8Ag55QUkP6maRhnxeWdmedi7Wui
+0.00 Ð  
+Page 1 of 1
 /api/v2/archive_addresses/?api_key=6b50-6473-a9b0-454c&labels=LABEL1,LABEl2,...
       
- Archive an address on your account
-Unarchive Addresses
+ Archive an address on your account0.default
+9ssLTc6WJvx8KxgR21a5XHrZPmUo2gdWbc
+0.00 Ð  
+1.Dgc
+A1Ujbgj8Ag55QUkP6maRhnxeWdmedi7Wui
+0.00 Ð  
+Page 1 of 1
+Unarchive Addresses0.default
+9ssLTc6WJvx8KxgR21a5XHrZPmUo2gdWbc
+0.00 Ð  
+1.Dgc
+A1Ujbgj8Ag55QUkP6maRhnxeWdmedi7Wui
+0.00 Ð  
+Page 1 of 1
 Unarchives upto 100 addresses in a single API call. Addresses can be specified by their labels.
 
 
-/api/v2/unarchive_addresses/?api_key=6b50-6473-a9b0-454c&addresses=ADDRESS1,ADDRESS2,...
+/api/v2/unarchive_addresses/?api_key=6b50-6473-a9b0-454c&addresses=ADDRESS1,ADDRESS2,...0.default
+9ssLTc6WJvx8KxgR21a5XHrZPmUo2gdWbc
+0.00 Ð  
+1.Dgc
+A1Ujbgj8Ag55QUkP6maRhnxeWdmedi7Wui
+0.00 Ð  
+Page 1 of 1
 /api/v2/unarchive_addresses/?api_key=6b50-6473-a9b0-454c&labels=LABEL1,LABEl2,...
       
- Unarchive an address on your account
+ Unarchive an address on your account0.default
+9ssLTc6WJvx8KxgR21a5XHrZPmUo2gdWbc
+0.00 Ð  
+1.Dgc
+
 Get My Archived Addresses
 Returns your archived addresses, their labels, and user ids on your account. Upto 2500 addresses per page. Page parameter is optional.
 
 
-/api/v2/get_my_archived_addresses/?api_key=6b50-6473-a9b0-454c&page=PAGE NUMBER
+/api/v2/get_my_archived_addresses/?api_key=6b50-6473-a9b0-454c&page=1of1
       
  Get my archived addresses
 Misc. Actions
