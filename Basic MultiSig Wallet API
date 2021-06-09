@@ -1,4 +1,21 @@
 Basic MultiSig Wallet API
+
+
+
+$ curl --ipv4 'https://block.io/ip_echo' # IPv4
+$ curl --ipv6 'https://block.io/ip_echo' # IPv6
+
+
+
+
+
+
+
+
+
+
+
+
 Our Basic Multi-Signature addresses by default require two signatures for all withdrawals: yours, and Block.io's. This method provides exponentially higher security for your Wallets and applications than single-signature addresses. This way, you spend coins yourself, without trusting Block.io with your credentials. For private keys for your wallets, visit the Settings page on your dashboard.
 
 If you require a more elaborate configuration to customize your applications' security, inquire about our Distributed Trust framework by going here. This framework allows up to 5 signatures per address. The use cases are endless!
