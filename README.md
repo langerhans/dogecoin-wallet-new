@@ -1,4 +1,6 @@
-# DOGECOIN WALLET
+# Dogecoin Wallet
+
+![Dogecoin](https://static.tumblr.com/ppdj5y9/Ae9mxmxtp/300coin.png)
 
 Welcome to _Dogecoin Wallet_, a standalone Dogecoin payment app for your Android device!
 
