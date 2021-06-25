@@ -1,0 +1,4 @@
+
+	  $.get( "https://chain.so/api/v2/get_info/DOGE", function( response ) {
+     	       // success! use the data any way you like
+	  });

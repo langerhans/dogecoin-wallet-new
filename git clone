@@ -1,0 +1,3 @@
+# first time only
+git clone -b master https://github.com/bitcoin-wallet/bitcoin-wallet.git bitcoin-wallet
+cd bitcoin-wallet

@@ -1,0 +1,46 @@
+
+Package registries	GitHub Container Registry
+Hosting locations	You can host multiple packages in one repository.	You can host multiple container images in one organization or user account.
+Permissions	Each package inherits the permissions of the repository where the package is hosted.
+
+For example, anyone with read permissions for a repository can install a package as a dependency in a project, and anyone with write permissions can publish a new package version.	For each container image, you can choose the access level that others have. The permissions for container image access are separate from your organization and repository permissions.
+Visibility	You can publish packages in a public repository (public packages) to share with all of GitHub, or in a private repository (private packages) to share with collaborators or an organization.	You can set the visibility of each of your container images. A private container image is only visible to people and teams who are given access within your organization. A public container image is visible to anyone.
+Anonymous access	N/A	You can access public container images anonymously.
+For more information, see "About scopes and permissions for GitHub Container Registry."
+
+Supported formats
+The container registry currently supports the following container image formats:
+
+Docker Image Manifest V2, Schema 2
+Open Container Initiative (OCI) Specifications
+The GitHub Container Registry hosts containers at ghcr.io/OWNER/IMAGE-NAME.
+
+Package client	Language	Package format	Description
+Docker CLI	N/A	Dockerfile	Docker container support.
+Manifest Lists/Image Indexes
+GitHub Container Registry also supports Docker Manifest List/OCI Image Index formats which are defined in the Docker V2, Schema 2 and OCI image specifications.
+
+Visibility and access permissions for container images
+If you have admin permissions to a container image, you can set the container image to private or public. Public images allow anonymous access and can be pulled without authentication or signing in via the CLI.
+
+As an admin, you can also grant access permissions for a container image that are separate from the permissions you've set at the organization and repository levels.
+
+For container images published and owned by a user account, you can give any person an access role. For container images published and owned by an organization, you can give any person or team in the organization an access role.
+
+Permission role	Access description
+Read	Can download package.
+Can read package metadata.
+Write	Can upload and download this package.
+Can read and write package metadata.
+Admin	Can upload, download, delete, and manage this package.
+Can read and write package metadata.
+Can grant package permissions.
+For more information, see "Configuring access control and visibility for container images."
+
+About scopes and permissions for GitHub Container Registry
+To use or manage a package hosted by a package registry, you must use a token with the appropriate scope, and your user account must have appropriate permissions for that repository.
+
+Scope	Description
+read:packages	Download and install container images from GitHub Container Registry
+write:packages	Upload and publish container images to GitHub Container Registry
+delete:packages	Delete specified versions of private or public container images from GitHub Container Registry. For more information, see "Deleting and restoring a package."

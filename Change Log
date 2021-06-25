@@ -1,0 +1,2012 @@
+Change Log
+June 16, 2018
+Auto convert Litecoin P2SH addresses to legacy P2SH version.
+May 26, 2018
+Added Zcash mainnet (ZEC) and testnet (ZECTEST).
+March 18, 2017
+Added Dash mainnet (DASH) and testnet (DASHTEST).
+July 11, 2015
+Confidence rating now considers double spend volume. Ratio of double spends to total transactions determines the maximum confidence achievable by a transaction.
+June 20, 2015
+The default network is Bitcoin (BTC), instead of Dogecoin (DOGE).
+December 13, 2014
+Confidence rating now changes to 0.0 if a double spend is detected. Also added field is_double_spend to the response of the get_confidence API call.
+December 11, 2014
+Added Network Confidence rating for unconfirmed transactions.
+September 14, 2014
+Bugfix in get_address_balance. Now correctly returns balance for given number of confirmations. Go to the API.
+July 18, 2014
+Added realtime balance updates to Pusher/websockets. Go to the API.
+
+Added dynamic balance updates to address pages. Check it out by donating at the DevFund page.
+
+June 14, 2014
+Bug fix: Get Unspent Tx now correctly discards transactions that having been spent even if the spending transaction has not been confirmed.
+
+June 12, 2014
+Bitcoin main net (BTC) added to Explorer, and API.
+
+Added support for CORS (Cross-Origin Resource Sharing).
+
+Added time (UNIX time) field to Get Received Tx, Get Spent Tx, and Get Unspent Tx.
+
+June 4, 2014
+Added version, and locktime to Get Transaction.
+
+June 1, 2014
+Removed SAME-ORIGIN restriction from REST API. You can now use the JSON dataType with Javascript. You no longer need to use JSONP for Javascript accesses, although we will keep supporting it.
+
+Added Javascript, Ruby/Ruby on Rails, and Python examples to get you started. See them here.
+
+May 31, 2014
+Added Litecoin main network to the Blockchain Explorer.
+
+Enabled pagination for get_unspent_tx, get_received_tx, and get_spent_tx. The APIs are now limited to 100 transactions per call, and you can retrieve transactions that occurred specifically after a certain transaction ID. The script field in these API calls is now called script_asm, and we have added script_hex alongside the ASM as well. API calls affected are: Get Unspent Tx, Get Received Tx, and Get Spent Tx. These API calls now return a maximum of 100 unconfirmed transactions as well.
+
+Minor change: price API (Realtime and REST) asked for an optional 'base_currency' parameter, but it read 'base_pair.' This is fixed. See the changes in the appropriate API.
+
+Minor change: added network hash rate to Get Info.
+
+May 28, 2014
+In-depth API documentation and new, granular API calls to save you bandwidth and time. Javascript (JS), Ruby, and Python examples coming soon!
+
+Added support for Litecoin main network, Bitcoin test network to the API.
+
+Networks Supported
+SoChain supports the Dogecoin, Bitcoin, Zcash, Dash, and Litecoin Blockchains, including the relevant Test Networks for experimentation. The API below requires you to specify the NETWORK when use the API. The NETWORK acronyms are as follows:
+
+Blockchain (Network)	Acronym	Info
+Bitcoin	BTC	The main Bitcoin network. Currency has value.
+Dash	DASH	The main Dash network. Currency has value.
+Zcash	ZEC	The main Zcash network. Currency has value.
+Dogecoin	DOGE	The main Dogecoin network. Currency has value.
+Litecoin	LTC	The main Litecoin network. Currency has value.
+Bitcoin (Test Net)	BTCTEST	The Bitcoin test network. Currency has no value.
+Dash (Test Net)	DASHTEST	The Dash test network. Currency has no value.
+Zcash (Test Net)	ZECTEST	The Zcash test network. Currency has no value.
+Dogecoin (Test Net)	DOGETEST	The Dogecoin test network. Currency has no value.
+Litecoin (Test Net)	LTCTEST	The Litecoin test network. Currency has no value.
+Code Examples
+Accessing the SoChain API is simple. Whichever programming language you use, you can call our REST API using any HTTP adapter. Below are some basic examples of how to access our API through Javascript, Ruby/Ruby on Rails, and Python.
+
+In the examples below, we get the name, and number of blocks on the Dogecoin network (DOGE). For more networks, see Networks Supported.
+
+Using Javascript
+For accessing this API using Javascript, we recommend using jQuery. Here is a simple call to get network information for Dogecoin:
+Pre-requisites
+In the example code, we will use jQuery to access the API.
+
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+Example Code
+The following code is an HTML example of the Javascript code. It requires inclusion of the jQuery javascript, as shown above.
+
+
+// get network info for Dogecoin, and display network name and total number of blocks
+<script>
+$.get( "https://chain.so/api/v2/get_info/DOGE", function( response ) {
+  $( "body" )
+    .append( "Name: " + response.data.name + "<br/>" ) // Dogecoin
+    .append( "Total Blocks: " + response.data.blocks + "</br>"); //  current block count
+}, "json" );
+</script>
+Using Ruby
+For accessing this API using Ruby or Ruby on Rails, we recommend using the HTTPClient gem. Furthermore, you will need the JSON gem to properly interpret the JSON response from our API.
+
+Pre-requisites
+In the example code, we use HTTPClient and JSON gems. Here's how to install them if using Ruby:
+
+$ gem install httpclient
+$ gem install json
+If you are using Ruby on Rails instead, add the following lines to your Rails project's Gemfile in the root of your Rails project's directory.
+
+
+gem 'httpclient'
+gem 'json'
+Next, execute the following on the command-line in project's root directory, and you're all set for Ruby on Rails.
+
+$ bundle install
+in the same directory.
+Example Code
+Here is an example script to retrieve basic network information for Dogecoin:
+
+
+require 'httpclient'
+require 'json'
+
+client = HTTPClient.new
+
+response = client.get('https://chain.so/api/v2/get_info/DOGE')
+
+if response.status_code == 200 then
+   # everything went swimmingly
+
+  content = JSON.parse response.content
+
+  puts "Name: "+content['data']['name']
+  puts "Total Blocks: "+content['data']['blocks'].to_s
+
+end
+Using Python
+For accessing the API through Python, we recommend the python-requests package.
+
+Pre-requisites
+Install the python-requests package by executing the following code on your command prompt.
+
+
+$ pip install requests
+If you prefer using apt-get instead to install Python packages, exceute the following code on your command prompt.
+
+$ apt-get install python-requests
+Example Code
+
+import requests
+
+response = requests.get('https://chain.so/api/v2/get_info/DOGE')
+
+if response.status_code == 200:
+    # everything went swimmingly                                                                                                                   
+    # parse the response as JSON
+    content = response.json()
+
+    print "Name:", content['data']['name']
+    print "Total Blocks:", content['data']['blocks']
+
+Get Balance
+Returns basic balance details for a Dogecoin, Bitcoin, or Litecoin address.
+
+ENDPOINT
+GET /api/v2/get_address_balance/{NETWORK}/{ADDRESS}[/{MINIMUM CONFIRMATIONS}]
+PARAMETERS
+network: string
+The acronym of the network you're querying. Required.
+
+address: string
+The address on the network you're querying. Required.
+
+minimum confirmations: integer
+The minimum confirmations for the balance. Optional. Default is 0.
+
+REQUEST
+No request body required.
+
+200 - SUCCESSFUL RESPONSE
+A JSON object which contains the following fields:
+
+network: string
+The acronym of the network.
+
+address: string
+The hash of the address.
+
+confirmed balance: string
+The confirmed balance of the address as a string.
+
+unconfirmed balance: string
+The unconfirmed balance of the address as a string. Balance remains unconfirmed until it is confirmed by the network.
+
+404 - FAILED RESPONSE
+The ADDRESS is not part of the NETWORK's blockchain, the NETWORK is unsupported, or MINIMUM CONFIRMATIONS is invalid.
+
+
+{
+  "status": "fail",
+  "data": {
+    "network": "Network is required (DOGE, DOGETEST, ...)",
+    "address": "A valid address is required",
+    "confirmations": "Minimum number of confirmations (optional)"
+  }
+}
+EXAMPLE REQUESTS
+Description: Get address balance
+
+Link/api/v2/get_address_balance/DOGE/DFundmtrigzA6E25Swr2pRe4Eb79bGP8G1
+Curl
+$ curl https://chain.so/api/v2/get_address_balance/DOGE/DFundmtrigzA6E25Swr2pRe4Eb79bGP8G1/500
+Description: Get address balance with at least 5,000 confirmations
+
+Link/api/v2/get_address_balance/DOGE/DFundmtrigzA6E25Swr2pRe4Eb79bGP8G1/5000
+Curl
+$ curl https://chain.so/api/v2/get_address_balance/DOGE/DFundmtrigzA6E25Swr2pRe4Eb79bGP8G1/5000
+EXAMPLE RESPONSE
+
+{
+  "status": "success",
+  "data": {
+    "network": "DOGE",
+    "address": "DFundmtrigzA6E25Swr2pRe4Eb79bGP8G1",
+    "confirmed_balance": "1175582.39534734",
+    "unconfirmed_balance": "0.0"
+  }
+}
+Get Received Value
+Returns the total value received by the specified Dogecoin, Bitcoin, or Litecoin address.
+
+ENDPOINT
+GET /api/v2/get_address_received/{NETWORK}/{ADDRESS}
+PARAMETERS
+network: string
+The acronym of the network you're querying. Required.
+
+address: string
+The address on the network you're querying. Required.
+
+REQUEST
+No request body required.
+
+200 - SUCCESSFUL RESPONSE
+A JSON object which contains the following fields:
+
+network: string
+The acronym of the network.
+
+address: string
+The hash of the address.
+
+confirmed received value: string
+The confirmed value ever received by the address. Includes all values received from self (!).
+
+unconfirmed receieved value: string
+The received value that is unconfirmed by this address.
+
+404 - FAILED RESPONSE
+The ADDRESS is not part of the NETWORK's blockchain, or the NETWORK is unsupported.
+
+
+{
+  "status": "fail",
+  "data": {
+    "network": "Network is required (DOGE, DOGETEST, ...)",
+    "address": "A valid address is required"
+  }
+}
+EXAMPLE REQUESTS
+Description: Get value received by the address
+
+Link/api/v2/get_address_received/DOGE/DFundmtrigzA6E25Swr2pRe4Eb79bGP8G1
+Curl
+$ curl https://chain.so/api/v2/get_address_received/DOGE/DFundmtrigzA6E25Swr2pRe4Eb79bGP8G1
+EXAMPLE RESPONSE
+
+{
+  "status": "success",
+  "data": {
+    "network": "DOGE",
+    "address": "DFundmtrigzA6E25Swr2pRe4Eb79bGP8G1",
+    "confirmed_received_value": "1181978.39534734",
+    "unconfirmed_received_value": "0.0"
+  }
+}
+Get Spent Value
+Returns the total value spent by the specified Dogecoin, Bitcoin, or Litecoin address.
+
+ENDPOINT
+GET /api/v2/get_address_spent/{NETWORK}/{ADDRESS}
+PARAMETERS
+network: string
+The acronym of the network you're querying. Required.
+
+address: string
+The address on the network you're querying. Required.
+
+REQUEST
+No request body required.
+
+200 - SUCCESSFUL RESPONSE
+A JSON object which contains the following fields:
+
+network: string
+The acronym of the network.
+
+address: string
+The hash of the address.
+
+confirmed spent value: string
+The confirmed value ever spent by the address.
+
+unconfirmed spent value: string
+The spent value that is unconfirmed by this address.
+
+404 - FAILED RESPONSE
+The ADDRESS is not part of the NETWORK's blockchain, or the NETWORK is unsupported.
+
+
+{
+  "status": "fail",
+  "data": {
+    "network": "Network is required (DOGE, DOGETEST, ...)",
+    "address": "A valid address is required"
+  }
+}
+EXAMPLE REQUESTS
+Description: Get value spent by the address
+
+Link/api/v2/get_address_spent/DOGE/DFundmtrigzA6E25Swr2pRe4Eb79bGP8G1
+Curl
+$ curl https://chain.so/api/v2/get_address_spent/DOGE/DFundmtrigzA6E25Swr2pRe4Eb79bGP8G1
+EXAMPLE RESPONSE
+
+{
+  "status": "success",
+  "data": {
+    "network": "DOGE",
+    "address": "DFundmtrigzA6E25Swr2pRe4Eb79bGP8G1",
+    "confirmed_sent_value": "0.0",
+    "unconfirmed_sent_value": "0.0"
+  }
+}
+Get Unspent Transactions
+Returns an array of unspent transactions (and values) for specified Dogecoin, Bitcoin, or Litecoin address.
+
+Transactions are returned in FIFO order. A maximum of 100 unconfirmed transactions may be retrieved.
+
+ENDPOINT
+GET /api/v2/get_tx_unspent/{NETWORK}/{ADDRESS}[/{AFTER TXID}]
+PARAMETERS
+network: string
+The acronym of the network you're querying. Required.
+
+address: string
+The address on the network you're querying. Required.
+
+after txid: string
+The transaction id or hash, if you want only transactions that occurred after this transaction. This transaction must have at least one confirmation. Optional. Default number of transactions returned is 100.
+
+REQUEST
+No request body required.
+
+200 - SUCCESSFUL RESPONSE
+A JSON object which contains the following fields:
+
+network: string
+The acronym of the network.
+
+address: string
+The hash of the address.
+
+txs: array
+The unspent transactions in an array.
+
+404 - FAILED RESPONSE
+The ADDRESS is not part of the NETWORK's blockchain, the NETWORK is unsupported, or NUMBER OF TRANSACTIONS is invalid.
+
+
+{
+  "status": "fail",
+  "data": {
+    "network": "Network is required (DOGE, DOGETEST, ...)",
+    "address": "Valid address or Short required",
+    "after_tx": "Return 100 transactions that occurred after this Transaction ID"
+  }
+}
+EXAMPLE REQUESTS
+Description: Get the first 100 transactions unspent by this address
+
+Link/api/v2/get_tx_unspent/DOGE/DRapidDiBYggT1zdrELnVhNDqyAHn89cRi
+Curl
+$ curl https://chain.so/api/v2/get_tx_unspent/DOGE/DRapidDiBYggT1zdrELnVhNDqyAHn89cRi
+Description: Get 100 transactions unspent by this address after a given transaction
+
+Link/api/v2/get_tx_unspent/DOGE/DRapidDiBYggT1zdrELnVhNDqyAHn89cRi/e83d147c3bcd87c6efd5270896a179f6ecb1de8b8c8cc324645c5a14129baf8c
+Curl
+$ curl https://chain.so/api/v2/get_tx_unspent/DOGE/DRapidDiBYggT1zdrELnVhNDqyAHn89cRi/e83d147c3bcd87c6efd5270896a179f6ecb1de8b8c8cc324645c5a14129baf8c
+EXAMPLE RESPONSE
+
+{
+  "status": "success",
+  "data": {
+    "network": "DOGE",
+    "address": "DRapidDiBYggT1zdrELnVhNDqyAHn89cRi",
+    "txs": [
+      {
+        "txid": "9d80667769d23fd9d5e29903dc821961ccbe7de0db14e2dae9fa6d809c86b779",
+        "output_no": 0,
+        "script_asm": "OP_DUP OP_HASH160 e0401fae9ec7f860ceefd71b17205d219f55f283 OP_EQUALVERIFY OP_CHECKSIG",
+        "script_hex": "76a914e0401fae9ec7f860ceefd71b17205d219f55f28388ac",
+        "value": "90.0",
+        "confirmations": 136204,
+        "time": 1402655577
+      }
+    ]
+  }
+}
+Get Received Transactions
+Returns an array of received transactions (and values) for specified Dogecoin, Bitcoin, or Litecoin address.
+
+Transactions are returned in FIFO order. A maximum of 100 unconfirmed transactions may be retrieved.
+
+ENDPOINT
+GET /api/v2/get_tx_received/{NETWORK}/{ADDRESS}[/{AFTER TXID}]
+PARAMETERS
+network: string
+The acronym of the network you're querying. Required.
+
+address: string
+The address on the network you're querying. Required.
+
+after txid: string
+The transaction id or hash, if you want only transactions that occurred after this transaction. This transaction must have at least one confirmation. Optional. Default number of transactions returned is 100.
+
+REQUEST
+No request body required.
+
+200 - SUCCESSFUL RESPONSE
+A JSON object which contains the following fields:
+
+network: string
+The acronym of the network.
+
+address: string
+The hash of the address.
+
+txs: array
+The received transactions in an array.
+
+404 - FAILED RESPONSE
+The ADDRESS is not part of the NETWORK's blockchain, the NETWORK is unsupported, or NUMBER OF TRANSACTIONS is invalid.
+
+
+{
+  "status": "fail",
+  "data": {
+    "network": "Network is required (DOGE, DOGETEST, ...)",
+    "address": "Valid address or Short required",
+    "after_tx": "Return 100 transactions that occurred after this Transaction ID"
+  }
+}
+EXAMPLE REQUESTS
+Description: Get the first 100 transactions received by this address
+
+Link/api/v2/get_tx_received/DOGE/DRapidDiBYggT1zdrELnVhNDqyAHn89cRi
+Curl
+$ curl https://chain.so/api/v2/get_tx_received/DOGE/DRapidDiBYggT1zdrELnVhNDqyAHn89cRi
+Description: Get 100 transactions received by this address after the given transaction id
+
+Link/api/v2/get_tx_received/DOGE/DRapidDiBYggT1zdrELnVhNDqyAHn89cRi/f770f59ead394431bf2354f78fe014e02ba0df9605208eea3c263db607dd87c6
+Curl
+$ curl https://chain.so/api/v2/get_tx_received/DOGE/DRapidDiBYggT1zdrELnVhNDqyAHn89cRi/f770f59ead394431bf2354f78fe014e02ba0df9605208eea3c263db607dd87c6
+EXAMPLE RESPONSE
+
+{
+  "status": "success",
+  "data": {
+    "network": "DOGE",
+    "address": "DRapidDiBYggT1zdrELnVhNDqyAHn89cRi",
+    "txs": [
+      {
+        "txid": "fc30ad83717ef1de97b09496abe6c4757a8481369136c0c4deb28d97e63afb24",
+        "output_no": 0,
+        "script_asm": "OP_DUP OP_HASH160 e0401fae9ec7f860ceefd71b17205d219f55f283 OP_EQUALVERIFY OP_CHECKSIG",
+        "script_hex": "76a914e0401fae9ec7f860ceefd71b17205d219f55f28388ac",
+        "value": "95.07449732",
+        "confirmations": 130208,
+        "time": 1402655577
+      }
+    ]
+   }
+}
+Get Spent Transactions
+Returns an array of spent transactions (and values) for specified Dogecoin, Bitcoin, or Litecoin address.
+
+Transactions are returned in FIFO order. A maximum of 100 unconfirmed transactions may be retrieved.
+
+ENDPOINT
+GET /api/v2/get_tx_spent/{NETWORK}/{ADDRESS}[/{AFTER TXID}]
+PARAMETERS
+network: string
+The acronym of the network you're querying. Required.
+
+address: string
+The address on the network you're querying. Required.
+
+after txid: string
+The transaction id or hash, if you want only transactions that occurred after this transaction. This transaction must have at least one confirmation. Optional. Default number of transactions returned is 100.
+
+REQUEST
+No request body required.
+
+200 - SUCCESSFUL RESPONSE
+A JSON object which contains the following fields:
+
+network: string
+The acronym of the network.
+
+address: string
+The hash of the address.
+
+txs: array
+The spent transactions in an array.
+
+404 - FAILED RESPONSE
+The ADDRESS is not part of the NETWORK's blockchain, the NETWORK is unsupported, or NUMBER OF TRANSACTIONS is invalid.
+
+
+{
+  "status": "fail",
+  "data": {
+    "network": "Network is required (DOGE, DOGETEST, ...)",
+    "address": "Valid address or Short required",
+    "after_tx": "Retrieve 100 transactions that occurred after this transaction ID"
+  }
+}
+EXAMPLE REQUESTS
+Description: Get the first 100 transactions spent by this address
+
+Link/api/v2/get_tx_spent/DOGE/DRapidDiBYggT1zdrELnVhNDqyAHn89cRi
+Curl
+$ curl https://chain.so/api/v2/get_tx_spent/DOGE/DRapidDiBYggT1zdrELnVhNDqyAHn89cRi
+Description: Get 100 transactions spent by this address after the given transaction occurred
+
+Link/api/v2/get_tx_spent/DOGE/DRapidDiBYggT1zdrELnVhNDqyAHn89cRi/377321dcc5ea79ad0421cc7931d880a52e5d027cfd9e330b6283ae062ea3f442
+Curl
+$ curl https://chain.so/api/v2/get_tx_spent/DOGE/DRapidDiBYggT1zdrELnVhNDqyAHn89cRi/377321dcc5ea79ad0421cc7931d880a52e5d027cfd9e330b6283ae062ea3f442
+EXAMPLE RESPONSE
+
+{
+  "status": "success",
+  "data": {
+    "network": "DOGE",
+    "address": "DRapidDiBYggT1zdrELnVhNDqyAHn89cRi",
+    "txs": [
+      {
+        "txid": "f770f59ead394431bf2354f78fe014e02ba0df9605208eea3c263db607dd87c6",
+        "input_no": 0,
+        "script_asm": "3045022100ae3da71f48ebf452578bdc968c6b0aa5bb70fd09920af33015a0bd01fb2d25ea02205a7e5de97f5fa515401b731c9ed1732f4974be496c8c4cd96a9f62ac41201f9201 045bac63545633d14f00b361204e3496462756ef33be08fa53130558c0ec3b25c3da87af5c32427a8f9849f5607cc96fd12880093b53d57ff9d234ea141b181878",
+        "script_hex": "483045022100ae3da71f48ebf452578bdc968c6b0aa5bb70fd09920af33015a0bd01fb2d25ea02205a7e5de97f5fa515401b731c9ed1732f4974be496c8c4cd96a9f62ac41201f920141045bac63545633d14f00b361204e3496462756ef33be08fa53130558c0ec3b25c3da87af5c32427a8f9849f5607cc96fd12880093b53d57ff9d234ea141b181878",
+        "value": "95.07449732",
+        "confirmations": 130209,
+        "time": 1402655577
+      }
+    ]
+  }
+}
+Is Address Valid?
+Returns basic data saying whether the address is valid for the given network.
+
+ENDPOINT
+GET /api/v2/is_address_valid/{NETWORK}/{ADDRESS}
+PARAMETERS
+network: string
+The acronym of the network you're querying. Required.
+
+address: string
+The address on the network you're querying. Required.
+
+REQUEST
+No request body required.
+
+200 - SUCCESSFUL RESPONSE
+A JSON object which contains the following fields:
+
+network: string
+The acronym of the network.
+
+address: string
+The hash of the address.
+
+is_valid: boolean
+True if the address is valid, false otherwise.
+
+404 - FAILED RESPONSE
+The NETWORK is unsupported, or ADDRESS is missing.
+
+
+{
+  "status": "fail",
+  "data": {
+    "network": "Network is required (DOGE, DOGETEST, ...)",
+    "address": "An Address is required"
+  }
+}
+EXAMPLE REQUESTS
+Description: Ask if address is valid for DOGE network
+
+Link/api/v2/is_address_valid/DOGE/DM7Yo7YqPtgMsGgphX9RAZFXFhu6Kd6JTT
+Curl
+$ curl https://chain.so/api/v2/is_address_valid/DOGE/DM7Yo7YqPtgMsGgphX9RAZFXFhu6Kd6JTT
+EXAMPLE RESPONSE
+
+{
+  "status": "success",
+  "data": {
+    "network": "DOGE",
+    "address": "DM7Yo7YqPtgMsGgphX9RAZFXFhu6Kd6JTT",
+    "is_valid": true
+  }
+}
+Get Display Data
+Returns data needed by SoChain's Explorer display for a given address.
+
+Returns the latest ~50 transactions for a given address.
+
+ENDPOINT
+GET /api/v2/address/{NETWORK}/{ADDRESS}
+PARAMETERS
+network: string
+The acronym of the network you're querying. Required.
+
+address: string
+The address on the network you're querying. Required.
+
+REQUEST
+No request body required.
+
+200 - SUCCESSFUL RESPONSE
+A JSON object which contains the following fields:
+
+network: string
+The acronym of the network.
+
+address: string
+The hash of the address.
+
+balance: string
+The confirmed balance of this address.
+
+received_value: string
+The confirmed received value of this address.
+
+pending_value: string
+The value received/spent that is unconfirmed.
+
+total_txs: integer
+Total transactions this address has been sender/receiver in.
+
+txs: array
+An array of transactions this address is either a sender or receiver in, plus in-depth info about who sent or received the values, and whether the receivers have spent the values we sent.
+
+404 - FAILED RESPONSE
+The NETWORK is unsupported, or ADDRESS is missing.
+
+
+{
+  "status": "fail",
+  "code": 404,
+  "message": "Invalid address"
+}
+EXAMPLE REQUESTS
+Description: Get display data for an address
+
+Link/api/v2/address/DOGE/DM7Yo7YqPtgMsGgphX9RAZFXFhu6Kd6JTT
+Curl
+$ curl https://chain.so/api/v2/address/DOGE/DM7Yo7YqPtgMsGgphX9RAZFXFhu6Kd6JTT
+EXAMPLE RESPONSE
+
+{
+  "status": "success",
+  "data": {
+    "network": "DOGE",
+    "address": "DM7Yo7YqPtgMsGgphX9RAZFXFhu6Kd6JTT",
+    "balance": "31.03885339",
+    "received_value": "25828731.93733507",
+    "pending_value": "0.0",
+    "total_txs": 225,
+    "txs": [ ... ]
+}
+Get Network Confidence New
+Returns a percentage confidence in the transaction as mirrored by the returned number of nodes in the network. SoChain listens to large parts of the Bitcoin/Dogecoin/etc. networks, and provides a numerical value (0.0 to 0.99) of its confidence in a new, unconfirmed transaction. This dramatically speeds up transactions in retail environments, and reliably bypasses the long confirmation times (e.g., 10min for Bitcoin) if required. Confirmed transactions get a confidence rating of 1.0.
+
+If the network detects an attempted double spend of the coins used in a given transaction, the returned is_double_spend field is set to true for unconfirmed transactions, and the confidence field is set to 0.0. When a transaction is confirmed, the is_double_spend and nodes fields return null since they become irrelevant.
+
+Note: There is a margin of error of 1%.
+
+ENDPOINT
+GET /api/v2/get_confidence/{NETWORK}/{TXID}
+PARAMETERS
+network: string
+The acronym of the network you're querying. Required.
+
+txid: string
+The transaction hash (id) on the network you're querying. Required.
+
+REQUEST
+No request body required.
+
+200 - SUCCESSFUL RESPONSE
+A JSON object which contains the following fields:
+
+network: string
+The acronym of the network.
+
+txid: string
+The transaction id.
+
+404 - FAILED RESPONSE
+The NETWORK is unsupported, or TXID is invalid.
+
+
+{
+  "status": "fail",
+  "data": {
+    "network": "Network is required (DOGE, DOGETEST, ...)",
+    "txid": "Valid transaction ID/Hash is required"
+  }
+}
+EXAMPLE REQUESTS
+Description: Get Network confidence in a transaction
+
+Link/api/v2/get_confidence/DOGE/6f47f0b2e1ec762698a9b62fa23b98881b03d052c9d8cb1d16bb0b04eb3b7c5b
+Curl
+$ curl https://chain.so/api/v2/get_confidence/DOGE/6f47f0b2e1ec762698a9b62fa23b98881b03d052c9d8cb1d16bb0b04eb3b7c5b
+EXAMPLE RESPONSE
+
+{
+  "status": "success",
+  "data": {
+    "txid": "6f47f0b2e1ec762698a9b62fa23b98881b03d052c9d8cb1d16bb0b04eb3b7c5b",
+    "confidence": 1.0,
+    "confirmations": 305130,
+    "nodes": null,
+    "is_double_spend": null
+  }
+}
+Get Transaction Inputs
+Returns data contained in all inputs, or the specified input, of the given transaction.
+
+ENDPOINT
+GET /api/v2/get_tx_inputs/{NETWORK}/{TXID}[/{INPUT_NO}]
+PARAMETERS
+network: string
+The acronym of the network you're querying. Required.
+
+txid: string
+The transaction hash (id) on the network you're querying. Required.
+
+input_no: integer
+The input number, or index, of the specific input you want to query. Optional.
+
+REQUEST
+No request body required.
+
+200 - SUCCESSFUL RESPONSE
+A JSON object which contains the following fields:
+
+network: string
+The acronym of the network.
+
+txid: string
+The transaction id.
+
+inputs: array
+The array containing the relevant information for inputs requested.
+
+404 - FAILED RESPONSE
+The NETWORK is unsupported, TXID is invalid, or INPUT_NO is invalid.
+
+
+{
+  "status": "fail",
+  "data": {
+    "network": "Network is required (DOGE, DOGETEST, ...)",
+    "txid": "Valid transaction ID/Hash is required",
+    "input_no": "Valid input number (optional)"
+  }
+}
+EXAMPLE REQUESTS
+Description: Get all inputs for a transaction on the DOGE network
+
+Link/api/v2/get_tx_inputs/DOGE/6f47f0b2e1ec762698a9b62fa23b98881b03d052c9d8cb1d16bb0b04eb3b7c5b
+Curl
+$ curl https://chain.so/api/v2/get_tx_inputs/DOGE/6f47f0b2e1ec762698a9b62fa23b98881b03d052c9d8cb1d16bb0b04eb3b7c5b
+Description: Get the first input for a transaction on the DOGE network
+
+Link/api/v2/get_tx_inputs/DOGE/6f47f0b2e1ec762698a9b62fa23b98881b03d052c9d8cb1d16bb0b04eb3b7c5b/0
+Curl
+$ curl https://chain.so/api/v2/get_tx_inputs/DOGE/6f47f0b2e1ec762698a9b62fa23b98881b03d052c9d8cb1d16bb0b04eb3b7c5b/0
+EXAMPLE RESPONSE
+
+{
+  "status": "success",
+  "data": {
+    "txid": "6f47f0b2e1ec762698a9b62fa23b98881b03d052c9d8cb1d16bb0b04eb3b7c5b",
+    "network": "DOGE",
+    "inputs": [
+      {
+        "from_output": {
+          "txid": "d300f96eb28f43113e219b76bc167ca94ec77071871b114533b2882b7fceea9d",
+          "output_no": 1
+        },
+        "input_no": 0,
+        "value": "1133.15453258",
+        "address": "DM7Yo7YqPtgMsGgphX9RAZFXFhu6Kd6JTT",
+        "type": "pubkeyhash",
+        "script": "3045022100c25659a2e7f5d5f5347527282fff2e5f8492565acc972cf861a301be4062dbdc022003871c880d38115e3f3b4fb7eda478f5b25dba3e698e8e9c9eff5a03ecacc4a601 02d3d9fc27d80b5e6437bc40f0544e7968a3b720196834ebb14ec932b20b59aba7"
+      }
+     ]
+  }
+}
+Get Transaction Outputs
+Returns data contained in all outputs, or the specified output, of the given transaction.
+
+ENDPOINT
+GET /api/v2/get_tx_outputs/{NETWORK}/{TXID}[/{OUTPUT_NO}]
+PARAMETERS
+network: string
+The acronym of the network you're querying. Required.
+
+txid: string
+The transaction hash (id) on the network you're querying. Required.
+
+output_no: integer
+The output number, or index, of the specific output you want to query. Optional.
+
+REQUEST
+No request body required.
+
+200 - SUCCESSFUL RESPONSE
+A JSON object which contains the following fields:
+
+network: string
+The acronym of the network.
+
+txid: string
+The transaction id.
+
+outputs: array
+The array containing the relevant information for outputs requested.
+
+404 - FAILED RESPONSE
+The NETWORK is unsupported, TXID is invalid, or OUTPUT_NO is invalid.
+
+
+{
+  "status": "fail",
+  "data": {
+    "network": "Network is required (DOGE, DOGETEST, ...)",
+    "txid": "Valid transaction ID/Hash is required",
+    "output_no": "Valid output number (optional)"
+  }
+}
+EXAMPLE REQUESTS
+Description: Get all outputs for a transaction on the DOGE network
+
+Link/api/v2/get_tx_outputs/DOGE/6f47f0b2e1ec762698a9b62fa23b98881b03d052c9d8cb1d16bb0b04eb3b7c5b
+Curl
+$ curl https://chain.so/api/v2/get_tx_outputs/DOGE/6f47f0b2e1ec762698a9b62fa23b98881b03d052c9d8cb1d16bb0b04eb3b7c5b
+Description: Get the first output for a transaction on the DOGE network
+
+Link/api/v2/get_tx_outputs/DOGE/6f47f0b2e1ec762698a9b62fa23b98881b03d052c9d8cb1d16bb0b04eb3b7c5b/0
+Curl
+$ curl https://chain.so/api/v2/get_tx_outputs/DOGE/6f47f0b2e1ec762698a9b62fa23b98881b03d052c9d8cb1d16bb0b04eb3b7c5b/0
+EXAMPLE RESPONSE
+
+{
+  "status": "success",
+  "data": {
+    "txid": "6f47f0b2e1ec762698a9b62fa23b98881b03d052c9d8cb1d16bb0b04eb3b7c5b",
+    "network": "DOGE",
+    "outputs": {
+      "output_no": 0,
+      "value": "11000.0",
+      "address": "DPFN5VrZqBMn6yyAitDBoKqju8dSDAEVah",
+      "type": "pubkeyhash",
+      "script": "OP_DUP OP_HASH160 c6a1bb19ea8dd88b83733ef40d2ac99767da8885 OP_EQUALVERIFY OP_CHECKSIG"
+    }
+  }
+}
+Get Transaction
+Returns detailed information about a transaction on a given network.
+
+ENDPOINT
+GET /api/v2/get_tx/{NETWORK}/{TXID}
+PARAMETERS
+network: string
+The acronym of the network you're querying. Required.
+
+txid: string
+The transaction hash (id) on the network you're querying. Required.
+
+REQUEST
+No request body required.
+
+200 - SUCCESSFUL RESPONSE
+A JSON object which contains the following fields:
+
+network: string
+The acronym of the network.
+
+txid: string
+The transaction id.
+
+blockhash: string or null
+The block hash (id) of the block this transaction belongs to. If confirmations = 0, this is null.
+
+confirmations: integer
+The number of times this transaction has been confirmed.
+
+time: integer
+The time this transaction was received by SoChain, or included in its block.
+
+inputs: array
+The relevant information for all inputs for this transaction.
+
+outputs: array
+The relevant information for all outputs of this transaction.
+
+tx_hex: string
+The hexadecimal of the string as sent by the sender(s).
+
+size: integer
+The size of the transaction on the network, in bytes.
+
+version: integer
+The transaction version as defined by the sender. See discussion.
+
+locktime: integer
+If 0, the transaction must be included in a block. If nonzero, the transaction can be updated before the locktime expires. See discussion.
+
+404 - FAILED RESPONSE
+The NETWORK is unsupported, or TXID is invalid.
+
+
+{
+  "status": "fail",
+  "data": {
+    "network": "Network is required (DOGE, DOGETEST, ...)",
+    "txid": "Valid transaction ID/Hash is required",
+  }
+}
+EXAMPLE REQUESTS
+Description: Get a transaction on the DOGE network
+
+Link/api/v2/get_tx/DOGE/6f47f0b2e1ec762698a9b62fa23b98881b03d052c9d8cb1d16bb0b04eb3b7c5b
+Curl
+$ curl https://chain.so/api/v2/get_tx/DOGE/6f47f0b2e1ec762698a9b62fa23b98881b03d052c9d8cb1d16bb0b04eb3b7c5b
+EXAMPLE RESPONSE
+
+{
+  "status": "success",
+  "data": {
+    "txid": "6f47f0b2e1ec762698a9b62fa23b98881b03d052c9d8cb1d16bb0b04eb3b7c5b",
+    "blockhash": "326b27664910f299e26d4bcbc087c88a45830249baf8a429158127ac8efc711d",
+    "confirmations": 46336,
+    "time": 1398122840,
+    "inputs": [ ... ],
+    "outputs": [ ... ],
+    "tx_hex": "...",
+    "size": 1848,
+    "version": 1,
+    "locktime": 0
+  }
+}
+Is Transaction Confirmed?
+Returns data about a transaction's confirmations.
+
+ENDPOINT
+GET /api/v2/is_tx_confirmed/{NETWORK}/{TXID}
+PARAMETERS
+network: string
+The acronym of the network you're querying. Required.
+
+txid: string
+The transaction hash (id) on the network you're querying. Required.
+
+REQUEST
+No request body required.
+
+200 - SUCCESSFUL RESPONSE
+A JSON object which contains the following fields:
+
+network: string
+The acronym of the network.
+
+txid: string
+The transaction id.
+
+confirmations: integer
+The number of times this transaction has been confirmed.
+
+is_confirmed: boolean
+This is true if the network considers the transaction confirmed. For newly generated coins (i.e., input_no=0,address="coinbase"), confirmations=240 for a 'confirmed' transaction.
+
+404 - FAILED RESPONSE
+The NETWORK is unsupported, or TXID is invalid.
+
+
+{
+  "status": "fail",
+  "data": {
+    "network": "Network is required (DOGE, DOGETEST, ...)",
+    "txid": "Valid transaction ID/Hash is required",
+  }
+}
+EXAMPLE REQUESTS
+Description: Ask if transaction is confirmed on the DOGE network
+
+Link/api/v2/is_tx_confirmed/DOGE/6f47f0b2e1ec762698a9b62fa23b98881b03d052c9d8cb1d16bb0b04eb3b7c5b
+Curl
+$ curl https://chain.so/api/v2/is_tx_confirmed/DOGE/6f47f0b2e1ec762698a9b62fa23b98881b03d052c9d8cb1d16bb0b04eb3b7c5b
+EXAMPLE RESPONSE
+
+{
+  "status": "success",
+  "data": {
+    "txid": "6f47f0b2e1ec762698a9b62fa23b98881b03d052c9d8cb1d16bb0b04eb3b7c5b",
+    "network": "DOGE",
+    "confirmations": 46340,
+    "is_confirmed": true
+  }
+}
+Is Transaction Output Spent?
+Returns information about whether a transaction has been spent, and if so, in which transaction id as what input_no.
+
+ENDPOINT
+GET /api/v2/is_tx_spent/{NETWORK}/{TXID}/{OUTPUT_NO}
+PARAMETERS
+network: string
+The acronym of the network you're querying. Required.
+
+txid: string
+The transaction hash (id) on the network you're querying. Required.
+
+output_no: integerThe output number to check. Required.
+
+REQUEST
+No request body required.
+
+200 - SUCCESSFUL RESPONSE
+A JSON object which contains the following fields:
+
+network: string
+The acronym of the network.
+
+txid: string
+The transaction id.
+
+output_no: integer
+The output number checked.
+
+is_spent: boolean
+True if the output has been spent.
+
+spent: dictionary/hash
+Null if is_spent is false. Contains spending txid and input_no, if is_spent is true.
+
+404 - FAILED RESPONSE
+The NETWORK is unsupported, TXID is invalid, or OUTPUT_NO is invalid.
+
+
+{
+  "status": "fail",
+  "data": {
+    "network": "Network is required (DOGE, DOGETEST, ...)",
+    "txid": "Valid transaction ID/Hash is required",
+    "output_no": "Output number is required"
+  }
+}
+EXAMPLE REQUESTS
+Description: Ask if transaction output has been spent
+
+Link/api/v2/is_tx_spent/DOGE/6f47f0b2e1ec762698a9b62fa23b98881b03d052c9d8cb1d16bb0b04eb3b7c5b/0
+Curl
+$ curl https://chain.so/api/v2/is_tx_spent/DOGE/6f47f0b2e1ec762698a9b62fa23b98881b03d052c9d8cb1d16bb0b04eb3b7c5b/0
+EXAMPLE RESPONSE
+
+{
+  "status": "success",
+  "data": {
+    "txid": "6f47f0b2e1ec762698a9b62fa23b98881b03d052c9d8cb1d16bb0b04eb3b7c5b",
+    "network": "DOGE",
+    "output_no": 0,
+    "is_spent": true,
+    "spent": {
+      "txid": "8d2fbe28ca0c4545f6ec6751941305d3ea95f959b7d2feca72f75dafed20f106",
+      "input_no": 0
+    }
+  }
+}
+Get Transaction Display Data
+Returns data needed by SoChain's Explorer display for a given transaction.
+
+ENDPOINT
+GET /api/v2/tx/{NETWORK}/{TXID}
+PARAMETERS
+network: string
+The acronym of the network you're querying. Required.
+
+txid: string
+The transaction hash or id on the network you're querying. Required.
+
+REQUEST
+No request body required.
+
+200 - SUCCESSFUL RESPONSE
+A JSON object which contains the following fields:
+
+network: string
+The acronym of the network.
+
+txid: string
+The transaction id or hash.
+
+blockhash: string, null
+The block hash or id if this transaction has 1 or more confirmations. If it has 0 confirmations, blockhash=null.
+
+block_no: integer
+The block number this transaction belongs to if it has 1 or more confirmations.
+
+confirmations: integer
+The number of times this transaction has been confirmed.
+
+time: integer
+The time at which this transaction received by SoChain, or was mined by the miner.
+
+sent_value: string
+The total value of all coins sent in this transaction.
+
+fee: string
+The fee paid to the miner.
+
+inputs: array
+The inputs for this transaction.
+
+outputs: array
+The outputs of this transaction.
+
+tx_hex: string
+The transaction as a hexadecimal string.
+
+404 - FAILED RESPONSE
+The NETWORK is unsupported, or TXID is invalid.
+
+
+{
+  "status": "fail",
+  "code": 404,
+  "message": "Invalid transaction id"
+}
+EXAMPLE REQUESTS
+Description: Get display data for a transaction
+
+Link/api/v2/tx/DOGE/6f47f0b2e1ec762698a9b62fa23b98881b03d052c9d8cb1d16bb0b04eb3b7c5b
+Curl
+$ curl https://chain.so/api/v2/tx/DOGE/6f47f0b2e1ec762698a9b62fa23b98881b03d052c9d8cb1d16bb0b04eb3b7c5b
+EXAMPLE RESPONSE
+
+{
+  "status": "success",
+  "data": {
+    "network": "DOGE",
+    "txid": "6f47f0b2e1ec762698a9b62fa23b98881b03d052c9d8cb1d16bb0b04eb3b7c5b",
+    "blockhash": "326b27664910f299e26d4bcbc087c88a45830249baf8a429158127ac8efc711d",
+    "block_no": 191172,
+    "confirmations": 46366,
+    "time": 1398122840,
+    "sent_value": "11126.89077926",
+    "fee": "2.0",
+    "inputs": [ ... ],
+    "outputs": [ ... ],
+    "tx_hex": "..."
+  },
+  "code": 200,
+  "message": ""
+}
+Get Block Hash
+Returns the blockhash for a given block number.
+
+ENDPOINT
+GET /api/v2/get_blockhash/{NETWORK}/{BLOCK_NO}
+PARAMETERS
+network: string
+The acronym of the network you're querying. Required.
+
+block_no: integer
+The block number, or height of the block in the blockchain. Required.
+
+REQUEST
+No request body required.
+
+200 - SUCCESSFUL RESPONSE
+A JSON object which contains the following fields:
+
+network: string
+The acronym of the network.
+
+blockhash: string
+The block id of the given block number.
+
+block_no: integer
+The block number or blockchain height.
+
+404 - FAILED RESPONSE
+The NETWORK is unsupported, or BLOCK_NO is invalid.
+
+
+{
+  "status": "fail",
+  "data": {
+    "network": "Network is required (DOGE, DOGETEST, ...)",
+    "block_no": "Block number is required"
+  }
+}
+EXAMPLE REQUESTS
+Description: Get the blockhash for the 200,000th block
+
+Link/api/v2/get_blockhash/DOGE/200000
+Curl
+$ curl https://chain.so/api/v2/get_blockhash/DOGE/200000
+EXAMPLE RESPONSE
+
+{
+  "status": "success",
+  "data": {
+    "network": "DOGE",
+    "blockhash": "092fd3e76db5ff35fbfefe48d5c53ca26e799f0654a4036ddd5fd78de77418c2",
+    "block_no": 200000
+  }
+}
+Get Block
+Returns relevant data for a block.
+
+ENDPOINT
+GET /api/v2/get_block/{NETWORK}/{BLOCKHASH||BLOCK_NO}
+PARAMETERS
+network: string
+The acronym of the network you're querying. Required.
+
+blockhash: string OR block_no: integer
+The blockhash or height (number) on the network you're querying. Required.
+
+REQUEST
+No request body required.
+
+200 - SUCCESSFUL RESPONSE
+A JSON object which contains the following fields:
+
+network: string
+The acronym of the network.
+
+blockhash: string
+The block hash or id.
+
+block_no: integer
+The height of the block in the blockchain, or its number.
+
+mining_difficulty: string
+The difficulty of mining blocks in the network at the time the block was mined.
+
+time: integer
+The time at which this block was mined by the miner.
+
+confirmations: integer
+The number of times this transaction has been confirmed.
+
+is_orphan: boolean
+True if the block is not part of the main blockchain.
+
+txs: array
+The array of ids of all transactions in this block, starting with the newly generated coins (address="coinbase").
+
+merkleroot: string
+The merkleroot of this block's tree.
+
+previous_blockhash: string
+The block hash of the previous block in the blockchain.
+
+next_blockhash: string, null
+The block hash of the next block in the blockchain. next_blockhash=null if this is the last block in the blockchain.
+
+size
+The size of the block in bytes.
+
+404 - FAILED RESPONSE
+The NETWORK is unsupported, or BLOCKHASH is invalid, or BLOCK_NO is invalid.
+
+
+{
+  "status": "fail",
+  "data": {
+    "network": "Network is required (DOGE, DOGETEST, ...)",
+    "blockid": "Block number or Hash is required"
+  }
+}
+EXAMPLE REQUESTS
+Description: Get the 200,000th block on the DOGE network
+
+Link/api/v2/get_block/DOGE/200000
+Curl
+$ curl https://chain.so/api/v2/get_block/DOGE/200000
+EXAMPLE RESPONSE
+
+{
+  "status": "success",
+  "data": {
+    "network": "DOGE",
+    "blockhash": "092fd3e76db5ff35fbfefe48d5c53ca26e799f0654a4036ddd5fd78de77418c2",
+    "block_no": 200000,
+    "mining_difficulty": "978.38700727",
+    "time": 1398695540,
+    "confirmations": 37571,
+    "is_orphan": false,
+    "txs": [ ... ],
+    "merkleroot": "f1eb4ef8dc1e5652d1dcffbf3b41809bf778a69e7be2f305241ce027d396986e",
+    "previous_blockhash": "2856afe5f4955cb5f75817dfa10a865e9b5389496356e07094b0d2f0627bfa84",
+    "next_blockhash": "985ea95b848b49cbb7271f95b11d1ae92ab02eda522206619ea55f5bf8dc1885",
+    "size": 20686
+  }
+}
+Get Prices
+Returns prices of coins in multiple base pairs. This API supports the exchanges Coinbase, BitStamp, Gemini, Bittrex, Bitfinex, and Coinspot. The API will return prices for all coins supported by the above exchanges.
+
+ENDPOINT
+GET /api/v2/get_price/{COIN}/{BASE_CURRENCY}
+PARAMETERS
+coin: string
+The acronym of the coin you want prices for, e.g., DOGE, BTC, LTC. Required.
+
+base_currency: string
+The denomination currency of the prices, e.g., USD, BTC, LTC. Optional.
+
+REQUEST
+No request body required.
+
+200 - SUCCESSFUL RESPONSE
+A JSON object which contains the following fields:
+
+network: string
+The acronym of the network.
+
+prices: array
+An array containing hashes/dictionary with prices of coins in price_base currencies, the exchange names, and the time the price was last updated.
+
+404 - FAILED RESPONSE
+If no COIN is specified, the API will default to BTC. There will be no 404 error.
+
+EXAMPLE REQUESTS
+Description: Get prices for Dogecoin
+
+Link/api/v2/get_price/DOGE
+Curl
+$ curl https://chain.so/api/v2/get_price/DOGE
+Description: Get prices for Bitcoin in Chinese Yuan
+
+Link/api/v2/get_price/BTC/CNY
+Curl
+$ curl https://chain.so/api/v2/get_price/BTC/CNY
+Description: Get prices for Dogecoin, denominated in US Dollar
+
+Link/api/v2/get_price/DOGE/USD
+Curl
+$ curl https://chain.so/api/v2/get_price/DOGE/USD
+EXAMPLE RESPONSE
+
+{
+  "status": "success",
+  "data": {
+    "network": "DOGE",
+    "prices": [
+      {
+        "price": "0.00003556",
+        "price_base": "LTC",
+        "exchange": "gemini",
+        "time": 1401185325
+      }
+    ]
+  }
+}
+Get Info
+Returns basic network information for a given network.
+
+ENDPOINT
+GET /api/v2/get_info/{NETWORK}
+PARAMETERS
+network: string
+The acronym of the network. Required.
+
+REQUEST
+No request body required.
+
+200 - SUCCESSFUL RESPONSE
+A JSON object which contains the following fields:
+
+name: string
+The name of the Blockchain or currency.
+
+acronym: string
+The acronym of the currency.
+
+network: string
+The acronym of the network.
+
+symbol_htmlcode: string
+The symbol of the currency.
+
+url: string
+The link to the home page of the currency.
+
+mining_difficulty: string
+The current mining difficulty of the currency.
+
+unconfirmed_txs: integer
+Number of transactions awaiting first confirmation.
+
+blocks: integer
+The total number of blocks in this Blockchain, or the height of the Blockchain.
+
+price: string
+The price of the currency using price_base as the denomination.
+
+price_base: string
+The denominating currency's acronym.
+
+price_update_time: integer
+The time at which the price was last updated.
+
+hashrate: string
+The current cumulative (estimated) hashrate of all miners on the network in hashes per second.
+
+404 - FAILED RESPONSE
+If no NETWORK is specified, the API will default to BTC. There will be no 404 error.
+
+EXAMPLE REQUESTS
+Description: Get information for the Litecoin Blockchain
+
+Link/api/v2/get_info/LTC
+Curl
+$ curl https://chain.so/api/v2/get_info/LTC
+EXAMPLE RESPONSE
+
+{
+  "status": "success",
+  "data": {
+    "name": "Litecoin",
+    "acronym": "LTC",
+    "network": "LTC",
+    "symbol_htmlcode": "Ł",
+    "url": "http://www.litecoin.com/",
+    "mining_difficulty": "8549.63732385",
+    "unconfirmed_txs": 7,
+    "blocks": 574648,
+    "price": "0.0191",
+    "price_base": "BTC",
+    "price_update_time": 1401185628,
+    "hashrate": "45970350290"
+  }
+}
+Get Short Address
+Returns the short form of a network address. Only valid for use within SoChain's block explorer and this API.
+
+ENDPOINT
+GET /api/v2/short/{NETWORK}/{ADDRESS}
+PARAMETERS
+network: string
+The acronym of the network where the address belongs. Required.
+
+address: string
+The address to be shorten or the short form of the address. Required.
+
+REQUEST
+No request body required.
+
+200 - SUCCESSFUL RESPONSE
+A JSON object which contains the following fields:
+
+address: string
+The address shortened.
+
+short: string
+The shortened address (3-6 characters).
+
+network: string
+The acronym of the network.
+
+link: string
+The shortlink to the address display page on the SoChain block explorer.
+
+400 - FAILED RESPONSE
+
+{
+  "status": "fail",
+  "code": 404,
+  "message": "Invalid long/short address"
+}
+EXAMPLE REQUESTS
+Description: Get shortened address on the DOGE network
+
+Link/api/v2/short/DOGE/DSfnDweXHwQmUYhprkNpmGo3nuvKepF851
+Curl
+$ curl https://chain.so/api/v2/short/DOGE/DSfnDweXHwQmUYhprkNpmGo3nuvKepF851
+EXAMPLE RESPONSE
+
+{
+  "status": "success",
+  "data": {
+    "address": "DSfnDweXHwQmUYhprkNpmGo3nuvKepF851",
+    "short": "jvg",
+    "network": "DOGE",
+    "link": "https://chain.so/a/jvg"
+  },
+  "code": 200,
+  "message": ""
+}
+Send Transaction
+Takes a signed transaction in hex format and sends it to the specified network. This is a POST(!) method.
+
+ENDPOINT
+POST /api/v2/send_tx/{NETWORK}
+REQUEST
+Provide a JSON object which contains the following fields:
+
+tx_hex: string
+A hex representation of the signed transaction.
+
+200 - SUCCESSFUL RESPONSE
+The transaction was delivered to the specified network.
+
+
+{
+  "network": "DOGE"
+  "txid": "..."
+}
+404 - FAILED RESPONSE
+The transaction was rejected by the specified network.
+
+
+{
+  "status": "fail",
+  "data": {
+    "network": "Network is required (DOGE, DOGETEST, ...)",
+    "tx_hex": "A valid signed transaction hexadecimal string is required"
+  }
+}
+EXAMPLE REQUEST
+$ curl -d 'tx_hex=0102100001ac…' https://chain.so/api/v2/send_tx/DOGE
+Realtime Balance Updates
+Gives realtime information on balance changes for a given address on a given network. Data received includes details on the transaction that caused the balance update trigger.
+
+Our realtime updates use the Pusher Websocket protocol, and will need necessary dependancies (packages) installed. See Pusher Client libraries. We provide examples for Ruby and Javascript below.
+
+ENDPOINTS
+
+Pusher Channel: 'address_{NETWORK}_{ADDRESS}'
+Update Event: 'balance_update'
+PARAMETERS
+network: string
+The acronym of the coin (in lower case) you want prices for, e.g., doge, btc, ltc. Required.
+
+address: string
+The wallet address you wish to monitor for the given network. Required.
+
+ON BALANCE_UPDATE EVENT
+A JSON object which contains the following fields:
+
+type: string
+The type of information, i.e., it is for an 'address'.
+
+value: json object
+The object containing the updates.
+
+value.address: string
+The address to which this update refers.
+
+value.value_sent: string
+The total amount sent by this address in this transaction.
+
+value.value_received: string
+The total amount received by this address in this transaction.
+
+value.balance_change: string
+The net amount received by this address in this transaction.
+
+value.tx: json
+A JSON object containing transaction ID, inputs, and outputs.
+
+EXAMPLE CODE
+Description: Get realtime balance changes in Javascript for Dogecoin Address DMsC9F9VQSpJFFgBgnqxKSvnSPzSvunZQj
+
+JSRequires jQuery:
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+Requires Pusher:
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pusher/2.1.6/pusher.min.js"></script>
+
+// make sure both jQuery and Pusher JS libraries are included in your HTML before the following
+<script>
+Pusher.host = 'slanger1.chain.so'; // our server
+Pusher.ws_port = 443; // our server's port
+Pusher.wss_port = 443; // ...
+
+// create the pusher client connection
+var pusher = new Pusher('e9f5cc20074501ca7395', { encrypted: true, disabledTransports: ['sockjs'], disableStats: true });
+
+// subscribe to the channel for address balance updates (new transactions only)
+var ticker = pusher.subscribe('address_doge_DMsC9F9VQSpJFFgBgnqxKSvnSPzSvunZQj');
+
+ticker.bind('balance_update', function(data) {
+    if (data.type == "address") {
+      // update an HTML div or span with the new content, for e.g.: data.value.balance_change
+    }
+    });
+</script>
+
+    
+Live DemoDonate to the DevFund and watch live updates.
+Description: Get realtime balance updates in Ruby for Dogecoin Address DMsC9F9VQSpJFFgBgnqxKSvnSPzSvunZQj
+
+RubyRequires Pusher Client gem:
+$ gem install pusher-client
+
+require 'pusher-client' # you must install this gem first
+
+options = {
+  :ws_host => 'slanger1.chain.so', # our server to connect to
+  :encrypted => true, # this connection will be encrypted over SSL
+  :ws_port => 443, # the server's port to connect to
+  :wss_port => 443 # ...
+}
+
+# create the socket we shall use for updates
+socket = PusherClient::Socket.new('e9f5cc20074501ca7395', options)
+
+# subscribe to the channel for transaction updates
+socket.subscribe('address_doge_DMsC9F9VQSpJFFgBgnqxKSvnSPzSvunZQj')
+
+# wait for 'balance_update' events,
+# and show us the JSON object when this event occurs
+socket.bind('balance_update') do |data|
+  puts data # the JSON object with the transaction info
+end
+
+socket.connect
+    
+EXAMPLE RESPONSE
+
+{ 
+  "type": "address", 
+  "value": {
+    "address": "DMsC9F9VQSpJFFgBgnqxKSvnSPzSvunZQj",
+    "value_sent": "0.00000000", 
+    "balance_change": "5.00000000", 
+    "tx": {
+      "inputs": [ ... ],
+      "outputs": [ ... ],
+      "txid": "2f8328692f4158eaa2e9ea0dd9de45f6e3278746cb2a97ea75107610db9554bf"
+    }, 
+    "value_received": "5.00000000"
+  }
+}
+Realtime Latest Blocks
+Sends basic information about new blocks as they are mined. Our realtime updates use the Pusher Websocket protocol, and will need necessary dependancies (packages) installed. See Pusher Client libraries. We provide examples for Ruby and Javascript below.
+
+ENDPOINTS
+
+Pusher Channel: 'blockchain_update_{NETWORK}'
+Update Event: 'block_update'
+PARAMETERS
+network: string
+The acronym of the coin (in lower case) you want prices for, e.g., doge, btc, ltc. Required.
+
+ON BLOCK_UPDATE EVENT
+A JSON object which contains the following fields:
+
+type: string
+The nature of the data, i.e., 'tx'.
+
+value: json object
+The object containing the updates.
+
+value.size: integer
+The size of the block in bytes.
+
+value.total_txs: string
+The number of transactions that were confirmed with this block (for the first time).
+
+value.time: integer
+The time at which this block was received by SoChain.
+
+value.blockhash: string
+The block hash or id.
+
+value.block_no: integer
+The block number or height in the blockchain.
+
+value.previous_blockhash: string
+The block hash of the previous block in this blockchain.
+
+value.mined_by: string
+The name of the miner that mined this block.
+
+value.mining_difficulty: string
+The network difficulty at which this block was mined.
+
+EXAMPLE CODE
+Description: Get latest blocks in realtime in Javascript for Dogecoin
+
+JSRequires jQuery:
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+Requires Pusher:
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pusher/2.1.6/pusher.min.js"></script>
+
+// make sure both jQuery and Pusher JS libraries are included in your HTML before the following
+<script>
+Pusher.host = 'slanger1.chain.so'; // our server
+Pusher.ws_port = 443; // our server's port
+Pusher.wss_port = 443; // ...
+
+// create the pusher client connection
+var pusher = new Pusher('e9f5cc20074501ca7395', { encrypted: true, disabledTransports: ['sockjs'], disableStats: true });
+
+// subscribe to the channel for DOGE updates (new blocks only)
+var ticker = pusher.subscribe('blockchain_update_doge');
+
+ticker.bind('tx_update', function(data) {
+    if (data.type == "block") {
+      // update an HTML div or span with the new content, for e.g.: data.value.blockhash
+    }
+    });
+</script>
+
+    
+Live Demo/blockchain_update.html
+Description: Get latest blocks in realtime in Ruby for Dogecoin
+
+RubyRequires Pusher Client gem:
+$ gem install pusher-client
+
+require 'pusher-client' # you must install this gem first
+
+options = {
+  :ws_host => 'slanger1.chain.so', # our server to connect to
+  :encrypted => true, # this connection will be encrypted over SSL
+  :ws_port => 443, # the server's port to connect to
+  :wss_port => 443 # ...
+}
+
+# create the socket we shall use for updates
+socket = PusherClient::Socket.new('e9f5cc20074501ca7395', options)
+
+# subscribe to the channel for transaction updates
+socket.subscribe('blockchain_update_doge')
+
+# wait for a 'block_update' event,
+# and show us the JSON object when this event occurs
+socket.bind('block_update') do |data|
+  puts data # the JSON object with the block info
+end
+
+socket.connect
+    
+EXAMPLE RESPONSE
+
+{
+  "type": "block",
+  "value": {
+    "size": 139815,
+    "total_txs": 53,
+    "previous_blockhash": "1b6e4ca0da4ca1696278ec54957c09be0728d44e10ef421ac289bde91b71ebd3",
+    "blockhash": "49f76ed45bc358f00d9cc9b89d796197ddd080cd212dd27a6aac7456ffbf8c0a",
+    "time": 1401266368,
+    "merkleroot": "c461fa1b607cb6484ec0ac846d984ca6adab997e4b8723acd1dd6b4c903a494c",
+    "block_no": 238768,
+    "mined_by": "Dogehouse",
+    "mining_difficulty": "868.63769213"
+  }
+}
+Realtime Latest Transactions
+Sends basic information about new transactions as they enter the network. Our realtime updates use the Pusher Websocket protocol, and will need necessary dependancies (packages) installed. See Pusher Client libraries. We provide examples for Ruby and Javascript below.
+
+ENDPOINTS
+
+Pusher Channel: 'blockchain_update_{NETWORK}'
+Update Event: 'tx_update'
+PARAMETERS
+network: string
+The acronym of the coin (in lower case) you want prices for, e.g., doge, btc, ltc. Required.
+
+ON TX_UPDATE EVENT
+A JSON object which contains the following fields:
+
+type: string
+The nature of the data, i.e., 'tx'.
+
+value: json object
+The object containing the updates.
+
+value.unconfirmed_txs: integer
+The number of transactions awaiting confirmation on the network.
+
+value.total_inputs: string
+The number of inputs in this new transaction.
+
+value.time: integer
+The time at which this transaction was received by SoChain.
+
+value.tx_hex: string
+The transaction as a hexadecimal string.
+
+value.sent_value: float
+The total amount of coins sent.
+
+value.total_outputs: string
+The number of outputs in this new transaction.
+
+value.txpm: float
+The transactions per minute entering the network, also known as the 'activity' on the network.
+
+value.txid: string
+The transaction id or hash.
+
+EXAMPLE CODE
+Description: Get latest transactions in realtime in Javascript for Dogecoin
+
+JSRequires jQuery:
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+Requires Pusher:
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pusher/2.1.6/pusher.min.js"></script>
+
+// make sure both jQuery and Pusher JS libraries are included in your HTML before the following
+<script>
+Pusher.host = 'slanger1.chain.so'; // our server
+Pusher.ws_port = 443; // our server's port
+Pusher.wss_port = 443; // ...
+
+// create the pusher client connection
+var pusher = new Pusher('e9f5cc20074501ca7395', { encrypted: true, disabledTransports: ['sockjs'], disableStats: true });
+
+// subscribe to the channel for DOGE updates (new transactions only)
+var ticker = pusher.subscribe('blockchain_update_doge');
+
+ticker.bind('tx_update', function(data) {
+    if (data.type == "tx") {
+      // update an HTML div or span with the new content, for e.g.: data.value.txid
+    }
+    });
+</script>
+
+    
+Live Demo/blockchain_update.html
+Description: Get latest transactions in realtime in Ruby for Dogecoin
+
+RubyRequires Pusher Client gem:
+$ gem install pusher-client
+
+require 'pusher-client' # you must install this gem first
+
+options = {
+  :ws_host => 'slanger1.chain.so', # our server to connect to
+  :encrypted => true, # this connection will be encrypted over SSL
+  :ws_port => 443, # the server's port to connect to
+  :wss_port => 443 # ...
+}
+
+# create the socket we shall use for updates
+socket = PusherClient::Socket.new('e9f5cc20074501ca7395', options)
+
+# subscribe to the channel for transaction updates
+socket.subscribe('blockchain_update_doge')
+
+# wait for a 'tx_update' event,
+# and show us the JSON object when this event occurs
+socket.bind('tx_update') do |data|
+  puts data # the JSON object with the transaction info
+end
+
+socket.connect
+    
+EXAMPLE RESPONSE
+
+{
+  "type": "tx",
+  "value": {
+    "unconfirmed_txs": 3,
+    "total_inputs": "4",
+    "time": 1401265628,
+    "tx_hex": "0100...",
+    "sent_value": 362.89,
+    "total_outputs": "2",
+    "txpm": 6.53,
+    "txid": "397e826ae65667913f3896324446811e1c3dbab9ab9fa69bff159e2e30959aec"
+  }
+}
+Realtime Price Updates
+Sends updates for up-to-date prices. Our realtime updates use the Pusher Websocket protocol, and will need necessary dependancies (packages) installed. See Pusher Client libraries. We provide examples for Ruby and Javascript below.
+
+This API supports the exchanges Coinbase, Gemini, BitStamp, Bitfinex, Bittrex, and Coinspot. The API will return prices for all coins supported by the above exchanges.
+
+ENDPOINTS
+
+Pusher Channel: 'ticker_{NETWORK}_{BASE_CURRENCY}'
+Update Event: 'price_update'
+PARAMETERS
+network: string
+The acronym of the coin you want prices for, e.g., DOGE, BTC, LTC. Required.
+
+base_currency: string
+The denomination currency of the prices, e.g., USD, BTC, LTC. Required.
+
+ON PRICE_UPDATE EVENT
+A JSON object which contains the following fields:
+
+type: string
+The nature of the data, i.e., 'price'.
+
+value: json object
+The object containing the updates.
+
+value.time: integer
+The time at which the price was updated.
+
+value.price: string
+The price of the coin in base_pair denomination.
+
+value.price_base: string
+The denominating currency.
+
+value.symbol: string
+The acronym of the currency the price is for.
+
+value.exchange: string
+The name of the exchange which published the price of the coin.
+
+EXAMPLE CODE
+Description: Get price updates in Javascript for BTC in USD
+
+JSRequires jQuery:
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+Requires Pusher:
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pusher/2.1.6/pusher.min.js"></script>
+
+// make sure both jQuery and Pusher JS libraries are included in your HTML before the following
+<script>
+Pusher.host = 'slanger1.chain.so'; // our server
+Pusher.ws_port = 443; // our server's port
+Pusher.wss_port = 443; // ...
+
+// create the pusher client connection
+var pusher = new Pusher('e9f5cc20074501ca7395', { encrypted: true, disabledTransports: ['sockjs'], disableStats: true });
+
+// subscribe to the channel for BTC/USD updates
+var ticker = pusher.subscribe('ticker_btc_usd');
+
+ticker.bind('price_update', function(data) {
+    // show price updates
+    if (data.type == "price" and data.value.exchange=="bitstamp") {
+    $('span#csprice').replaceWith('<span id="csprice">' + data.value.price + ' BTC/'+data.value.price_base+'</span>')
+    }
+    });
+</script>
+
+<span id="csprice">Waiting for price updates from Bittrex...</span>
+    
+Live Demo/blockchain_update.html
+Description: Get price updates in Ruby for DOGE in BTC
+
+RubyRequires Pusher Client gem:
+$ gem install pusher-client
+
+require 'pusher-client' # you must install this gem first
+
+options = {
+  :ws_host => 'slanger1.chain.so', # our server to connect to
+  :encrypted => true, # this connection will be encrypted over SSL
+  :ws_port => 443, # the server's port to connect to
+  :wss_port => 443 # ...
+}
+
+# create the socket we shall use for updates
+socket = PusherClient::Socket.new('e9f5cc20074501ca7395', options)
+
+# subscribe to the channel for DOGE/BTC price updates
+socket.subscribe('ticker_doge_btc')
+
+# wait for a 'price_update' event,
+# and show us the JSON object when this event occurs
+socket.bind('price_update') do |data|
+  puts data # the JSON object with the price update
+end
+
+socket.connect
+    
+EXAMPLE RESPONSE
+
+{ 
+  "type": "price", 
+  "value": 
+          {
+           "time": 1401262135, 
+           "price": "0.00000070", 
+           "price_base": "BTC", 
+           "symbol": "DOGE", 
+           "exchange": "bter"
+          }
+}
+Block.io, Inc. 2021.Status: connected

@@ -1,0 +1,13 @@
+dogecoin-wallet-new
+/
+CVE
+/
+wallet
+/
+assets-prod
+/
+checkpoints.txt
+
+
+DFWaFdEw8Cx6uuP6WvQ1objpU2VUbVjB9i
+@CoreValExtreme

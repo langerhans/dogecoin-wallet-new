@@ -1,0 +1,980 @@
+Installation
+Jekyll is a Ruby Gem that can be installed on most systems.
+
+RequirementsPermalink
+Ruby version 2.4.0 or higher, including all development headers (check your Ruby version using ruby -v)
+RubyGems (check your Gems version using gem -v)
+GCC and Make (check versions using gcc -v,g++ -v, and make -v)
+ @CoreValExtreme
+CoreValExtreme 1 hour ago • 
+ Author Owner
+source "https://rubygems.org"
+
+gem "jekyll"
+
+group :jekyll_plugins do
+gem "jekyll-feed"
+gem "jekyll-seo-tag"
+end
+Install Bundler using gem install bundler. You only need to install it once, not every time you create a new Jekyll project.
+
+To install gems in your Gemfile using Bundler, run the following in the directory that has the Gemfile:
+
+bundle install
+bundle exec jekyll serve
+jekyll serve
+
+ @CoreValExtreme
+CoreValExtreme 1 hour ago Author Owner
+4AEE18F83AFDEB23
+
+ @CoreValExtreme
+CoreValExtreme 12 minutes ago Author Owner
+jekyll command [argument] [option] [argument_to_option]
+
+Examples:
+jekyll new site/ --blank
+jekyll serve --config _alternative_config.yml_config.toml file placed in your site’s root directory, or can be specified as flags for the jekyll executable in the terminal.
+
+Configuration Options
+Default Configuration
+Front Matter Defaults
+Environments
+Markdown Options
+Liquid Options
+Webrick Options
+Incremental RegenerationRendering Process
+For any Jekyll site, a build session consists of discrete phases in the following order — setting up plugins, reading source files, running generators, rendering templates, and finally writing files to disk.
+
+While the phases above are self-explanatory, the one phase that warrants dissection is the rendering phase.
+
+The rendering phase is further divisible into three optional stages. Every file rendered, passes through one or more of these stages as determined by the file’s content string, front matter and extension. The stages are akin to an assembly line, with the output from a stage being the input for the succeeding stage:
+
+Interpreting Liquid expressions in the file
+This stage evaluates Liquid expressions in the current file. By default, the interpretation is shallow — in that any Liquid expression in resulting output is not further interpreted. Moreover, any Liquid expression in the file’s front matter is left untouched.
+Unleashing the converters
+This stage invokes the converter mapped to the current file’s extension and converts the input string. This is when Markdown gets converted into HTML and Sass / Scss into CSS or CoffeeScript into JavaScript, etc, etc. Since this stage is determined by the file’s extension, Markdown or Sass inside a .html file will remain untouched.
+Populating the layouts
+By this stage, the source file is considered rendered and it will not be revisited. However, based on the file’s extension and consequently based on the front matter, it is determined whether to take the output string from the preceding stage and place into layouts or not. Whereas output from Sass files or CoffeeScript files are never placed into a layout, regular text output can go either ways based on whether a layout has been assigned via the front matter.
+
+Placement into layouts work similar to how Russian dolls encase the smaller ones within itself or how an oyster generates a pearl — the converted output from the preceding stage forms the core and layout(s) are successively rendered separately onto the core.
+Pages
+Pages are the most basic building block for content. They’re useful for standalone content (content which is not date based or is not a group of content such as staff members or recipes).
+
+The simplest way of adding a page is to add an HTML file in the root directory with a suitable filename. You can also write a page in Markdown using a .md extension which converts to HTML on build. For a site with a homepage, an about page, and a contact page, here’s what the root directory and associated URLs might look like:
+
+.
+├── about.md # => http://example.com/about.html
+├── index.html # => http://example.com/
+└── contact.html # => http://example.com/contact.html
+If you have a lot of pages, you can organize them into subfolders. The same subfolders that are used to group your pages in your project’s source will then exist in the _site folder when your site builds. However, when a page has a different permalink set in the front matter, the subfolder at _site changes accordingly.
+
+.
+├── about.md # => http://example.com/about.html
+├── documentation # folder containing pages
+│ └── doc1.md # => http://example.com/documentation/doc1.html
+├── design # folder containing pages
+│ └── draft.md # => http://example.com/design/draft.html
+Changing the output URLPermalink
+You might want to have a particular folder structure for your source files that changes for the built site. With permalinks you have full control of the output URL.
+
+Excerpts for pagesPermalink
+From Jekyll 4.1.1 onwards, one can choose to generate excerpts for their pages by setting page_excerpts to true in their config file.
+Posts
+Blogging is baked into Jekyll. You write blog posts as text files and Jekyll provides everything you need to turn it into a blog.
+
+The Posts FolderPermalink
+The _posts folder is where your blog posts live. You typically write posts in Markdown, HTML is also supported.
+
+Creating PostsPermalink
+To create a post, add a file to your _posts directory with the following format:
+
+YEAR-MONTH-DAY-title.MARKUP
+Where YEAR is a four-digit number, MONTH and DAY are both two-digit numbers, and MARKUP is the file extension representing the format used in the file. For example, the following are examples of valid post filenames:
+
+2011-12-31-new-years-eve-is-awesome.md
+2012-09-12-how-to-write-a-blog.md
+All blog post files must begin with front matter which is typically used to set a layout or other meta data. For a simple example this can just be empty:
+
+layout: post
+title: "Welcome to Jekyll!"
+Welcome
+Hello world, this is my first Jekyll blog post.
+
+I hope you like it!
+ProTip™: Link to other posts
+Use the post_url tag to link to other posts without having to worry about the URLs breaking when the site permalink style changes.
+
+Be aware of character sets
+Content processors can modify certain characters to make them look nicer. For example, the smart extension in Redcarpet converts standard, ASCII quotation characters to curly, Unicode ones. In order for the browser to display those characters properly, define the charset meta value by including in the of your layout.
+
+Including images and resourcesPermalink
+At some point, you’ll want to include images, downloads, or other digital assets along with your text content. One common solution is to create a folder in the root of the project directory called something like assets, into which any images, files or other resources are placed. Then, from within any post, they can be linked to using the site’s root as the path for the asset to include. The best way to do this depends on the way your site’s (sub)domain and path are configured, but here are some simple examples in Markdown:
+
+Including an image asset in a post:
+
+... which is shown in the screenshot below:
+My helpful screenshot
+Linking to a PDF for readers to download:
+
+... you can get the PDF directly.
+Displaying an index of postsPermalink
+Creating an index of posts on another page should be easy thanks to Liquid and its tags. Here’s a simple example of how to create a list of links to your blog posts:
+
+{% for post in site.posts %}
+{{ post.title }}
+{% endfor %}
+You have full control over how (and where) you display your posts, and how you structure your site. You should read more about how templates work with Jekyll if you want to know more.
+Note that the post variable only exists inside the for loop above. If you wish to access the currently-rendering page/posts’s variables (the variables of the post/page that has the for loop in it), use the page variable instead.
+
+Tags and CategoriesPermalink
+Jekyll has first class support for tags and categories in blog posts.
+
+TagsPermalink
+Tags for a post are defined in the post’s front matter using either the key tag for a single entry or tags for multiple entries.
+Since Jekyll expects multiple items mapped to the key tags, it will automatically split a string entry if it contains whitespace. For example, while front matter tag: classic hollywood will be processed into a singular entity "classic hollywood", front matter tags: classic hollywood will be processed into an array of entries ["classic", "hollywood"].
+
+Irrespective of the front matter key chosen, Jekyll stores the metadata mapped to the plural key which is exposed to Liquid templates.
+
+All tags registered in the current site are exposed to Liquid templates via site.tags. Iterating over site.tags on a page will yield another array with two items, where the first item is the name of the tag and the second item being an array of posts with that tag.
+
+{% for tag in site.tags %}
+
+{{ tag[0] }}
+{% for post in tag[1] %}
+{{ post.title }}
+{% endfor %}
+{% endfor %} CategoriesPermalink Categories of a post work similar to the tags above:
+They can be defined via the front matter using keys category or categories (that follow the same logic as for tags)
+All categories registered in the site are exposed to Liquid templates via site.categories which can be iterated over (similar to the loop for tags above.)
+The similarity between categories and tags however, ends there.
+
+Unlike tags, categories for posts can also be defined by a post’s file path. Any directory above _post will be read-in as a category. For example, if a post is at path movies/horror/_posts/2019-05-21-bride-of-chucky.markdown, then movies and horror are automatically registered as categories for that post.
+
+When the post also has front matter defining categories, they just get added to the existing list if not present already.
+
+The hallmark difference between categories and tags is that categories of a post may be incorporated into the generated URL for the post, while tags cannot be.
+
+Therefore, depending on whether front matter has category: classic hollywood, or categories: classic hollywood, the example post above would have the URL as either movies/horror/classic%20hollywood/2019/05/21/bride-of-chucky.html or movies/horror/classic/hollywood/2019/05/21/bride-of-chucky.html respectively.
+
+Post excerptsPermalink
+You can access a snippet of a posts’s content by using excerpt variable on a post. By default this is the first paragraph of content in the post, however it can be customized by setting a excerpt_separator variable in front matter or _config.yml.
+
+excerpt_separator:
+Excerpt with multiple paragraphs
+
+Here's another paragraph in the excerpt.
+
+Out-of-excerpt
+Here’s an example of outputting a list of blog posts with an excerpt:
+
+{% for post in site.posts %}
+{{ post.title }} {{ post.excerpt }}
+{% endfor %}
+DraftsPermalink Drafts are posts without a date in the filename. They’re posts you’re still working on and don’t want to publish yet. To get up and running with drafts, create a _drafts folder in your site’s root and create your first draft:
+.
+├── _drafts
+│ └── a-draft-post.md
+...
+To preview your site with drafts, run jekyll serve or jekyll build with the --drafts switch. Each will be assigned the value modification time of the draft file for its date, and thus you will see currently edited drafts as the latest posts.
+layout: post
+title: Blogging Like a Hacker
+VARIABLE	DESCRIPTION
+label	The name of your collection, e.g. my_collection.
+docs	An array of documents.
+files	An array of static files in the collection.
+relative_directory	The path to the collection's source directory, relative to the site source.
+directory	The full path to the collections's source directory.
+output	Whether the collection's documents will be output as individual files.
+Data Files	
+In addition to the built-in variables available from Jekyll, you can specify your own custom data that can be accessed via the Liquid templating system.	
+Jekyll supports loading data from YAML, JSON, CSV, and TSV files located in the _data directory. Note that CSV and TSV files must contain a header row.
+
+This powerful feature allows you to avoid repetition in your templates and to set site specific options without changing _config.yml.
+
+Plugins/themes can also leverage Data Files to set configuration variables.
+
+The Data FolderPermalink
+The _data folder is where you can store additional data for Jekyll to use when generating your site. These files must be YAML, JSON, TSV or CSV files (using either the .yml, .yaml, .json, .tsv, or .csv extension), and they will be accessible via site.data.
+
+Example: List of membersPermalink
+Here is a basic example of using Data Files to avoid copy-pasting large chunks of code in your Jekyll templates:
+
+In _data/members.yml:
+
+name: Eric Mill
+github: konklone
+
+name: Parker Moore
+github: parkr
+
+name: Liu Fengyun
+github: liufengyun
+Or _data/members.csv:
+
+name,github
+Eric Mill,konklone
+Parker Moore,parkr
+Liu Fengyun,liufengyun
+This data can be accessed via site.data.members (notice that the file’s basename determines the variable name and therefore one should avoid having data files with the same basename but different extensions, in the same directory).
+
+You can now render the list of members in a template:
+
+{% for member in site.data.members %}
+{{ member.name }}
+{% endfor %}
+SubfoldersPermalink Data files can also be placed in sub-folders of the _data folder. Each folder level will be added to a variable’s namespace. The example below shows how GitHub organizations could be defined separately in a file under the orgs folder:
+In _data/orgs/jekyll.yml:
+
+username: jekyll
+name: Jekyll
+members:
+
+name: Tom Preston-Werner
+github: mojombo
+
+name: Parker Moore
+github: parkr
+In _data/orgs/doeorg.yml:
+
+username: doeorg
+name: Doe Org
+members:
+
+name: John Doe
+github: jdoe
+The organizations can then be accessed via site.data.orgs, followed by the file name:
+{% for org_hash in site.data.orgs %} {% assign org = org_hash[1] %}
+{{ org.name }} ({{ org.members | size }} members)
+{% endfor %}
+Example: Accessing a specific authorPermalink Pages and posts can also access a specific data item. The example below shows how to access a specific item:
+_data/people.yml:
+
+dave:
+name: David Smith
+twitter: DavidSilvaSmith
+The author can then be specified as a page variable in a post’s front matter:
+
+title: sample post
+author: dave
+{% assign author = site.data.people[page.author] %}
+
+{{ author.name }}
+
+For information on how to build robust navigation for your site (especially if you have a documentation website or another type of Jekyll site with a lot of pages to organize), see Navigation.
+
+GETTING STARTED
+Quickstart
+Installation
+Ruby 101
+Community
+Step by Step Tutorial
+BUILD
+Command Line Usage
+Configuration
+Rendering Process
+CONTENT
+Pages
+Posts
+Front Matter
+Collections
+Data Files
+Assets
+Static Files
+SITE STRUCTURE
+Directory Structure
+Liquid
+Variables
+Includes
+Layouts
+Permalinks
+Themes
+Pagination
+GUIDES
+Plugins
+Blog Migrations
+Upgrading
+Deployment
+Data Files
+In addition to the built-in variables available from Jekyll, you can specify your own custom data that can be accessed via the Liquid templating system.
+
+Jekyll supports loading data from YAML, JSON, CSV, and TSV files located in the _data directory. Note that CSV and TSV files must contain a header row.
+
+This powerful feature allows you to avoid repetition in your templates and to set site specific options without changing _config.yml.
+
+Plugins/themes can also leverage Data Files to set configuration variables.
+
+The Data FolderPermalink
+The _data folder is where you can store additional data for Jekyll to use when generating your site. These files must be YAML, JSON, TSV or CSV files (using either the .yml, .yaml, .json, .tsv, or .csv extension), and they will be accessible via site.data.
+
+Example: List of membersPermalink
+Here is a basic example of using Data Files to avoid copy-pasting large chunks of code in your Jekyll templates:
+
+In _data/members.yml:
+
+name: Eric Mill
+github: konklone
+
+name: Parker Moore
+github: parkr
+
+name: Liu Fengyun
+github: liufengyun
+Or _data/members.csv:
+
+name,github
+Eric Mill,konklone
+Parker Moore,parkr
+Liu Fengyun,liufengyun
+This data can be accessed via site.data.members (notice that the file’s basename determines the variable name and therefore one should avoid having data files with the same basename but different extensions, in the same directory).
+
+You can now render the list of members in a template:
+
+{% for member in site.data.members %}
+{{ member.name }}
+{% endfor %}
+SubfoldersPermalink Data files can also be placed in sub-folders of the _data folder. Each folder level will be added to a variable’s namespace. The example below shows how GitHub organizations could be defined separately in a file under the orgs folder:
+In _data/orgs/jekyll.yml:
+
+username: jekyll
+name: Jekyll
+members:
+
+name: Tom Preston-Werner
+github: mojombo
+
+name: Parker Moore
+github: parkr
+In _data/orgs/doeorg.yml:
+
+username: CoreValExtreme
+name: Val-Equity
+members:
+
+name: Jeffrey Matthews
+github: CoreValExtreme
+The organizations can then be accessed via site.data.orgs, followed by the file name:
+{% for org_hash in site.data.orgs %} {% assign org = org_hash[1] %}
+{{ org.val-equity }} ({{ org.members | size }} members)
+{% endfor %}
+Example: Accessing a specific authorPermalink Pages and posts can also access a specific data item. The example below shows how to access a specific item:
+_data/people.yml:
+
+dave:
+name: David Smith
+twitter: DavidSilvaSmith
+The author can then be specified as a page variable in a post’s front matter:
+
+title: sample post
+author: dave
+{% assign author = site.data.people[page.author] %}
+
+{{ author.name }}
+
+For information on how to build robust navigation for your site (especially if you have a documentation website or another type of Jekyll site with a lot of pages to organize), see Navigation.
+
+GETTING STARTED
+Quickstart
+Installation
+Ruby 101
+Community
+Step by Step Tutorial
+BUILD
+Command Line Usage
+Configuration
+Rendering Process
+CONTENT
+Pages
+Posts
+Front Matter
+Collections
+Data Files
+Assets
+Static Files
+SITE STRUCTURE
+Directory Structure
+Liquid
+Variables
+Includes
+Layouts
+Permalinks
+Themes
+Pagination
+GUIDES
+Plugins
+Blog Migrations
+Upgrading
+Deploymentssets
+Jekyll provides built-in support for Sass and can work with CoffeeScript via a Ruby gem. In order to use them, you must first create a file with the proper extension name (one of .sass, .scss, or .coffee) and start the file with two lines of triple dashes, like this:
+
+// start content
+.my-definition
+font-size: 1.2em
+Jekyll treats these files the same as a regular page, in that the output file will be placed in the same directory that it came from. For instance, if you have a file named css/styles.scss in your site’s source folder, Jekyll will process it and put it in your site’s destination folder under css/styles.css.
+
+Jekyll processes all Liquid filters and tags in asset files
+If you are using Mustache or another JavaScript templating language that conflicts with the Liquid template syntax, you will need to place {% raw %} and {% endraw %} tags around your code.
+
+Sass/SCSSPermalink
+Jekyll allows you to customize your Sass conversion in certain ways.
+
+Place all your partials in your sass_dir, which defaults to /_sass. Place your main SCSS or Sass files in the place you want them to be in the output file, such as /css. For an example, take a look at this example site using Sass support in Jekyll.
+
+If you are using Sass @import statements, you’ll need to ensure that your sass_dir is set to the base directory that contains your Sass files:
+
+sass:
+sass_dir: _sass
+The Sass converter will default the sass_dir configuration option to _sass.
+
+The sass_dir is only used by Sass
+Note that the sass_dir becomes the load path for Sass imports, nothing more. This means that Jekyll does not know about these files directly. Any files here should not contain the empty front matter as described above. If they do, they'll not be transformed as described above. This folder should only contain imports.
+
+You may also specify the output style with the style option in your _config.yml file:
+
+sass:
+style: compressed
+These are passed to Sass, so any output style options Sass supports are valid here, too.
+
+CoffeescriptPermalink
+To enable Coffeescript in Jekyll 3.0 and up you must
+
+Install the jekyll-coffeescript gem
+Ensure that your _config.yml is up-to-date and includes the following:
+plugins:
+
+jekyll-coffeescript
+VARIABLE	DESCRIPTION
+file.path	The relative path to the file, e.g. /assets/img/image.jpg
+file.modified_time	The Time the file was last modified, e.g. 2016-04-01 16:35:26 +0200
+file.name	The string name of the file e.g. image.jpg for image.jpg
+file.basename	The string basename of the file e.g. image for image.jpg
+file.extname	The extension name for the file, e.g. .jpg for image.jpg
+FILE / DIRECTORY	DESCRIPTION
+_config.yml	Stores configuration data. Many of these options can be specified from the command line executable but it’s easier to specify them here so you don’t have to remember them.
+_drafts	Drafts are unpublished posts. The format of these files is without a date: title.MARKUP. Learn how to work with drafts.
+_includes	These are the partials that can be mixed and matched by your layouts and posts to facilitate reuse. The liquid tag {% include file.ext %} can be used to include the partial in _includes/file.ext.
+_layouts	These are the templates that wrap posts. Layouts are chosen on a post-by-post basis in the front matter, which is described in the next section. The liquid tag {{ content }} is used to inject content into the web page.
+_posts	Your dynamic content, so to speak. The naming convention of these files is important, and must follow the format: YEAR-MONTH-DAY-title.MARKUP. The permalinks can be customized for each post, but the date and markup language are determined solely by the file name.
+_data	Well-formatted site data should be placed here. The Jekyll engine will autoload all data files (using either the .yml, .yaml, .json, .csv or .tsv formats and extensions) in this directory, and they will be accessible via site.data. If there's a file members.yml under the directory, then you can access contents of the file through site.data.members.
+_sass	These are sass partials that can be imported into your main.scss which will then be processed into a single stylesheet main.css that defines the styles to be used by your site. Learn how to work with assets.
+_site	This is where the generated site will be placed (by default) once Jekyll is done transforming it. It’s probably a good idea to add this to your .gitignore file.
+.jekyll-metadata	This helps Jekyll keep track of which files have not been modified since the site was last built, and which files will need to be regenerated on the next build. This file will not be included in the generated site. It’s probably a good idea to add this to your .gitignore file.
+index.html or index.md and other HTML, Markdown files	Provided that the file has a front matter section, it will be transformed by Jekyll. The same will happen for any .html, .markdown, .md, or .textile file in your site’s root directory or directories not listed above.
+Other Files/Folders	Except for the special cases listed above, every other directory and file—such as css and images folders, favicon.ico files, and so forth—will be copied verbatim to the generated site. There are plenty of sites already using Jekyll if you’re curious to see how they’re laid out.
+Liquid	
+Jekyll uses the Liquid templating language to process templates.	
+Generally in Liquid you output content using two curly braces e.g. {{ variable }} and perform logic statements by surrounding them in a curly brace percentage sign e.g. {% if statement %}. To learn more about Liquid, check out the official Liquid Documentation.
+
+Jekyll provides a number of useful Liquid additions to help you build your site:
+
+Filters
+Tags
+
+VARIABLE	DESCRIPTION
+site	Site wide information + configuration settings from _config.yml. See below for details.
+page	Page specific information + the front matter. Custom variables set via the front matter will be available here. See below for details.
+layout	Layout specific information + the front matter. Custom variables set via front matter in layouts will be available here.
+content	In layout files, the rendered content of the Post or Page being wrapped. Not defined in Post or Page files.
+paginator	When the paginate configuration option is set, this variable becomes available for use. See Pagination for details.
+Includes	
+The include tag allows you to include the content from another file stored in the _includes folder:	
+{% include footer.html %}
+Jekyll will look for the referenced file (in this case, footer.html) in the _includes directory at the root of your source directory and insert its contents.
+
+Including files relative to another filePermalink
+You can choose to include file fragments relative to the current file by using the include_relative tag:
+
+{% include_relative somedir/footer.html %}
+You won’t need to place your included content within the _includes directory. Instead, the inclusion is specifically relative to the file where the tag is being used. For example, if _posts/2014-09-03-my-file.markdown uses the include_relative tag, the included file must be within the _posts directory or one of its subdirectories.
+
+Note that you cannot use the ../ syntax to specify an include location that refers to a higher-level directory.
+
+All the other capabilities of the include tag are available to the include_relative tag, such as variables.
+
+Using variables names for the include filePermalink
+The name of the file you want to embed can be specified as a variable instead of an actual file name. For example, suppose you defined a variable in your page’s front matter like this:
+
+title: My page
+my_variable: footer_company_a.html
+You could then reference that variable in your include:
+
+{% if page.my_variable %}
+{% include {{ page.my_variable }} %}
+{% endif %}
+In this example, the include would insert the file footer_company_a.html from the _includes/footer_company_a.html directory.
+
+Passing parameters to includesPermalink
+You can also pass parameters to an include. For example, suppose you have a file called note.html in your _includes folder that contains this formatting:
+
+Note: {{ include.content }}
+The {{ include.content }} is a parameter that gets populated when you call the include and specify a value for that parameter, like this:
+{% include note.html content="This is my sample note." %}
+The value of content (which is This is my sample note) will be inserted into the {{ include.content }} parameter.
+
+Passing parameters to includes is especially helpful when you want to hide away complex formatting from your Markdown content.
+
+For example, suppose you have a special image syntax with complex formatting, and you don’t want your authors to remember the complex formatting. As a result, you decide to simplify the formatting by using an include with parameters. Here’s an example of the special image syntax you might want to populate with an include:
+
+Jekyll logo This is the Jekyll logo You could templatize this content in your include and make each value available as a parameter, like this: {{ include.alt }} {{ include.caption }} This include contains 5 parameters:
+url
+max-width
+file
+alt
+caption
+Here’s an example that passes all the parameters to this include (the include file is named image.html):
+
+{% include image.html url="http://jekyllrb.com"
+max-width="200px" file="logo.png" alt="Jekyll logo"
+caption="This is the Jekyll logo." %}
+The result is the original HTML code shown earlier.
+
+To safeguard situations where users don’t supply a value for the parameter, you can use Liquid’s default filter.
+
+Overall, you can create includes that act as templates for a variety of uses — inserting audio or video clips, alerts, special formatting, and more. Note that you should avoid using too many includes, as this will slow down the build time of your site. For example, don’t use includes every time you insert an image. (The above technique shows a use case for special images.)
+
+Passing parameter variables to includesPermalink
+Suppose the parameter you want to pass to the include is a variable rather than a string. For example, you might be using {{ site.product_name }} to refer to every instance of your product rather than the actual hard-coded name. (In this case, your _config.yml file would have a key called product_name with a value of your product’s name.)
+
+The string you pass to your include parameter can’t contain curly braces. For example, you can’t pass a parameter that contains this: "The latest version of {{ site.product_name }} is now available."
+
+If you want to include this variable in your parameter that you pass to an include, you need to store the entire parameter as a variable before passing it to the include. You can use capture tags to create the variable:
+
+{% capture download_note %}
+The latest version of {{ site.product_name }} is now available.
+{% endcapture %}
+Then pass this captured variable into the parameter for the include. Omit the quotation marks around the parameter content because it’s no longer a string (it’s a variable):
+
+{% include note.html content=download_note %}
+Layouts
+Layouts are templates that wrap around your content. They allow you to have the source code for your template in one place so you don’t have to repeat things like your navigation and footer on every page.
+
+Layouts live in the _layouts directory. The convention is to have a base template called default.html and have other layouts inherit from this as needed.
+
+Layouts Directory
+Jekyll looks for the _layouts directory either at the root of your site's source or at the root of your theme.
+
+While you can configure the directory name in which your layouts can reside by setting the layouts_dir key in your config file, the directory itself should be located at the root of your site's source directory.
+
+UsagePermalink
+The first step is to put the template source code in default.html. content is a special variable, the value is the rendered content of the post or page being wrapped.
+
+<!doctype html>
+
+<title>{{ page.title }}</title> Home Blog
+{{ page.title }}
+{{ content }} © to me You have full access to the front matter of the origin. In the example above, page.title comes from the page front matter.
+Next you need to specify what layout you’re using in your page’s front matter. You can also use front matter defaults to save you from having to set this on every page.
+
+title: My First Page
+layout: default
+This is the content of my page
+The rendered output of this page is:
+
+<!doctype html>
+
+<title>My First Page</title> Home Blog
+My First Page
+This is the content of my page © to me InheritancePermalink Layout inheritance is useful when you want to add something to an existing layout for a portion of documents on your site. A common example of this is blog posts, you might want a post to display the date and author but otherwise be identical to your base layout.
+To achieve this you need to create another layout which specifies your original layout in front matter. For example this layout will live at _layouts/post.html:
+
+layout: default
+{{ page.date }} - Written by {{ page.author }}
+
+{{ content }}
+Now posts can use this layout while the rest of the pages use the default.
+
+VariablesPermalink
+You can set front matter in layouts, the only difference is when you’re using in Liquid, you need to use the layout variable instead of page. For example:
+
+city: San Francisco
+{{ layout.city }}
+
+{{ content }}
+GETTING STARTED
+Quickstart
+Installation
+Ruby 101
+Community
+Step by Step Tutorial
+BUILD
+Command Line Usage
+Configuration
+Rendering Process
+CONTENT
+Pages
+Posts
+Front Matter
+Collections
+Data Files
+Assets
+Static Files
+SITE STRUCTURE
+Directory Structure
+Liquid
+Variables
+Includes
+Layouts
+Permalinks
+Themes
+Pagination
+GUIDES
+Plugins
+Blog Migrations
+Upgrading
+Deployment
+
+VARIABLE	DESCRIPTION
+year	Year from the post’s filename with four digits. May be overridden via the document’s date front matter.
+short_year	Year from the post’s filename without the century. (00..99) May be overridden via the document’s date front matter.
+month	Month from the post’s filename. (01..12) May be overridden via the document’s date front matter.
+i_month	Month without leading zeros from the post’s filename. May be overridden via the document’s date front matter.
+short_month	Three-letter month abbreviation, e.g. “Jan”.
+long_month4.0	Full month name, e.g. “January”.
+day	Day of the month from the post’s filename. (01..31) May be overridden via the document’s date front matter.
+i_day	Day of the month without leading zeros from the post’s filename. May be overridden via the document’s date front matter.
+y_day	Ordinal day of the year from the post’s filename, with leading zeros. (001..366)
+w_year4.0	Week year which may differ from the month year for up to three days at the start of January and end of December
+week4.0	Week number of the current year, starting with the first week having a majority of its days in January. (01..53)
+w_day4.0	Day of the week, starting with Monday. (1..7)
+short_day4.0	Three-letter weekday abbreviation, e.g. “Sun”.
+long_day4.0	Weekday name, e.g. “Sunday”.
+hour	Hour of the day, 24-hour clock, zero-padded from the post’s date front matter. (00..23)
+minute	Minute of the hour from the post’s date front matter. (00..59)
+second	Second of the minute from the post’s date front matter. (00..59)
+title	Title from the document’s filename. May be overridden via the document’s slug front matter.
+slug	Slugified title from the document’s filename (any character except numbers and letters is replaced as hyphen). May be overridden via the document’s slug front matter.
+categories	The specified categories for this post. If a post has multiple categories, Jekyll will create a hierarchy (e.g. /category1/category2). Also Jekyll automatically parses out double slashes in the URLs, so if no categories are present, it will ignore this.
+slugified_categories4.1	The specified categories for this post but slugified. If a category is a composite of multiple words, Jekyll will downcase all alphabets and replace any non-alphanumeric character with a hyphen. (e.g. "Work 2 Progress" will be converted into "work-2-progress")If a post has multiple categories, Jekyll will create a hierarchy (e.g. /work-2-progress/category2). Also Jekyll automatically parses out double slashes in the URLs, so if no categories are present, it will ignore this.
+Themes	
+Jekyll has an extensive theme system that allows you to leverage community-maintained templates and styles to customize your site’s presentation. Jekyll themes specify plugins and package up assets, layouts, includes, and stylesheets in a way that can be overridden by your site’s content.	
+Pick up a themePermalink
+You can find and preview themes on different galleries:
+
+GitHub.com #jekyll-theme repos
+jamstackthemes.dev
+jekyllthemes.org
+jekyllthemes.io
+jekyll-themes.com
+See also: resources.
+
+Understanding gem-based themesPermalink
+When you create a new Jekyll site (by running the jekyll new command), Jekyll installs a site that uses a gem-based theme called Minima.
+
+With gem-based themes, some of the site’s directories (such as the assets, _layouts, _includes, and _sass directories) are stored in the theme’s gem, hidden from your immediate view. Yet all of the necessary directories will be read and processed during Jekyll’s build process.
+
+In the case of Minima, you see only the following files in your Jekyll site directory:
+
+.
+├── Gemfile
+├── Gemfile.lock
+├── _config.yml
+├── _posts
+│ └── 2016-12-04-welcome-to-jekyll.markdown
+├── about.markdown
+└── index.markdown
+The Gemfile and Gemfile.lock files are used by Bundler to keep track of the required gems and gem versions you need to build your Jekyll site.
+
+Gem-based themes make it easier for theme developers to make updates available to anyone who has the theme gem. When there’s an update, theme developers push the update to RubyGems.
+
+If you have the theme gem, you can (if you desire) run bundle update to update all gems in your project. Or you can run bundle update , replacing with the theme name, such as minima, to just update the theme gem. Any new files or updates the theme developer has made (such as to stylesheets or includes) will be pulled into your project automatically.
+
+The goal of gem-based themes is to allow you to get all the benefits of a robust, continually updated theme without having all the theme’s files getting in your way and over-complicating what might be your primary focus: creating content.
+
+Overriding theme defaultsPermalink
+Jekyll themes set default layouts, includes, and stylesheets. However, you can override any of the theme defaults with your own site content.
+
+To replace layouts or includes in your theme, make a copy in your _layouts or _includes directory of the specific file you wish to modify, or create the file from scratch giving it the same name as the file you wish to override.
+
+For example, if your selected theme has a page layout, you can override the theme’s layout by creating your own page layout in the _layouts directory (that is, _layouts/page.html).
+
+To locate a theme’s files on your computer:
+
+Run bundle info --path followed by the name of the theme’s gem, e.g., bundle info --path minima for Jekyll’s default theme.
+
+This returns the location of the gem-based theme files. For example, the Minima theme’s files might be located in /usr/local/lib/ruby/gems/2.6.0/gems/minima-2.5.1 on macOS.
+
+Open the theme’s directory in Finder or Explorer:
+
+On MacOS
+open $(bundle info --path minima)
+
+On Windows
+First get the gem's installation path:
+bundle info --path minima
+=> C:/Ruby26-x64/lib/ruby/gems/3.0.0/gems/minima-2.5.1
+then invoke explorer with above path, substituting / with \
+explorer C:\Ruby26-x64\lib\ruby\gems\3.0.0\gems\minima-2.5.1
+
+On Linux
+xdg-open $(bundle info --path minima)
+A Finder or Explorer window opens showing the theme’s files and directories. The Minima theme gem contains these files:
+
+.
+├── LICENSE.txt
+├── README.md
+├── _includes
+│ ├── disqus_comments.html
+│ ├── footer.html
+│ ├── google-analytics.html
+│ ├── head.html
+│ ├── header.html
+│ ├── icon-github.html
+│ ├── icon-github.svg
+│ ├── icon-twitter.html
+│ └── icon-twitter.svg
+├── _layouts
+│ ├── default.html
+│ ├── home.html
+│ ├── page.html
+│ └── post.html
+├── _sass
+│ ├── minima
+│ │ ├── _base.scss
+│ │ ├── _layout.scss
+│ │ └── _syntax-highlighting.scss
+│ └── minima.scss
+└── assets
+└── main.scss
+With a clear understanding of the theme’s files, you can now override any theme file by creating a similarly named file in your Jekyll site directory.
+
+Let’s say, for a second example, you want to override Minima’s footer. In your Jekyll site, create an _includes folder and add a file in it called footer.html. Jekyll will now use your site’s footer.html file instead of the footer.html file from the Minima theme gem.
+
+To modify any stylesheet you must take the extra step of also copying the main sass file (_sass/minima.scss in the Minima theme) into the _sass directory in your site’s source.
+
+Jekyll will look first to your site’s content before looking to the theme’s defaults for any requested file in the following folders:
+
+/assets
+/_layouts
+/_includes
+/_sass
+Note that making copies of theme files will prevent you from receiving any theme updates on those files. An alternative, to continue getting theme updates on all stylesheets, is to use higher specificity CSS selectors in your own additional, originally named CSS files.
+
+Refer to your selected theme’s documentation and source repository for more information on which files you can override.
+
+Converting gem-based themes to regular themesPermalink
+Suppose you want to get rid of the gem-based theme and convert it to a regular theme, where all files are present in your Jekyll site directory, with nothing stored in the theme gem.
+
+To do this, copy the files from the theme gem’s directory into your Jekyll site directory. (For example, copy them to /myblog if you created your Jekyll site at /myblog. See the previous section for details.)
+
+Then you must tell Jekyll about the plugins that were referenced by the theme. You can find these plugins in the theme’s gemspec file as runtime dependencies. If you were converting the Minima theme, for example, you might see:
+
+spec.add_runtime_dependency "jekyll-feed", "> 0.12"
+spec.add_runtime_dependency "jekyll-seo-tag", "> 2.6"
+You should include these references in the Gemfile in one of two ways.
+
+You could list them individually in both Gemfile and _config.yml.
+
+./Gemfile
+gem "jekyll-feed", "> 0.12"
+gem "jekyll-seo-tag", "> 2.6"
+
+./_config.yml
+plugins:
+
+jekyll-feed
+jekyll-seo-tag
+Or you could list them explicitly as Jekyll plugins in your Gemfile, and not update _config.yml, like this:
+./Gemfile
+group :jekyll_plugins do
+gem "jekyll-feed", "> 0.12"
+gem "jekyll-seo-tag", "> 2.6"
+end
+Either way, don’t forget to bundle update.
+
+If you’re publishing on GitHub Pages you should update only your _config.yml as GitHub Pages doesn’t load plugins via Bundler.
+
+Finally, remove references to the theme gem in Gemfile and configuration. For example, to remove minima:
+
+Open Gemfile and remove gem "minima", "~> 2.5".
+Open _config.yml and remove theme: minima.
+Now bundle update will no longer get updates for the theme gem.
+
+Installing a gem-based themePermalink
+The jekyll new command isn’t the only way to create a new Jekyll site with a gem-based theme. You can also find gem-based themes online and incorporate them into your Jekyll project.
+
+For example, search for jekyll theme on RubyGems to find other gem-based themes. (Note that not all themes are using jekyll-theme as a convention in the theme name.)
+
+To install a gem-based theme:
+
+Add the theme gem to your site’s Gemfile:
+
+./Gemfile
+This is an example, declare the theme gem you want to use here
+gem "jekyll-theme-minimal"
+Or if you’ve started with the jekyll new command, replace gem "minima", "~> 2.0" with the gem you want, e.g:
+
+./Gemfile
+gem "minima", "~> 2.5"
+gem "jekyll-theme-minimal"
+Install the theme:
+bundle install
+Add the following to your site’s _config.yml to activate the theme:
+
+theme: jekyll-theme-minimal
+Build your site:
+
+bundle exec jekyll serve
+You can have multiple themes listed in your site’s Gemfile, but only one theme can be selected in your site’s _config.yml.
+
+If you’re publishing your Jekyll site on GitHub Pages, note that GitHub Pages supports only some gem-based themes. GitHub Pages also supports using any theme hosted on GitHub using the remote_theme configuration as if it were a gem-based theme.
+
+Creating a gem-based themePermalink
+If you’re a Jekyll theme developer (rather than a consumer of themes), you can package up your theme in RubyGems and allow users to install it through Bundler.
+
+If you’re unfamiliar with creating Ruby gems, don’t worry. Jekyll will help you scaffold a new theme with the new-theme command. Run jekyll new-theme with the theme name as an argument.
+
+Here is an example:
+
+jekyll new-theme jekyll-theme-awesome
+create /path/to/jekyll-theme-awesome/_layouts
+create /path/to/jekyll-theme-awesome/_includes
+create /path/to/jekyll-theme-awesome/_sass
+create /path/to/jekyll-theme-awesome/_layouts/page.html
+create /path/to/jekyll-theme-awesome/_layouts/post.html
+create /path/to/jekyll-theme-awesome/_layouts/default.html
+create /path/to/jekyll-theme-awesome/Gemfile
+create /path/to/jekyll-theme-awesome/jekyll-theme-awesome.gemspec
+create /path/to/jekyll-theme-awesome/README.md
+create /path/to/jekyll-theme-awesome/LICENSE.txt
+initialize /path/to/jekyll-theme-awesome/.git
+create /path/to/jekyll-theme-awesome/.gitignore
+Your new Jekyll theme, jekyll-theme-awesome, is ready for you in /path/to/jekyll-theme-awesome!
+For help getting started, read /path/to/jekyll-theme-awesome/README.md.
+Add your template files in the corresponding folders. Then complete the .gemspec and the README files according to your needs.
+
+Layouts and includesPermalink
+Theme layouts and includes work just like they work in any Jekyll site. Place layouts in your theme’s /_layouts folder, and place includes in your themes /_includes folder.
+
+For example, if your theme has a /_layouts/page.html file, and a page has layout: page in its front matter, Jekyll will first look to the site’s _layouts folder for the page layout, and if none exists, will use your theme’s page layout.
+
+AssetsPermalink
+Any file in /assets will be copied over to the user’s site upon build unless they have a file with the same relative path. You can ship any kind of asset here: SCSS, an image, a webfont, etc. These files behave like pages and static files in Jekyll:
+
+If the file has front matter at the top, it will be rendered.
+If the file does not have front matter, it will simply be copied over into the resulting site.
+This allows theme creators to ship a default /assets/styles.scss file which their layouts can depend on as /assets/styles.css.
+
+All files in /assets will be output into the compiled site in the /assets folder just as you’d expect from using Jekyll on your sites.
+
+StylesheetsPermalink
+Your theme’s stylesheets should be placed in your theme’s _sass folder, again, just as you would when authoring a Jekyll site.
+
+_sass
+└── jekyll-theme-awesome.scss
+Your theme’s styles can be included in the user’s stylesheet using the @import directive.
+
+@import "{{ site.theme }}";
+Theme-gem dependencies3.5.0 Permalink
+Jekyll will automatically require all whitelisted runtime_dependencies of your theme-gem even if they’re not explicitly included under the plugins array in the site’s config file. (Note: whitelisting is only required when building or serving with the --safe option.)
+
+With this, the end-user need not keep track of the plugins required to be included in their config file for their theme-gem to work as intended.
+
+Pre-configuring Theme-gems4.0 Permalink
+Jekyll will read-in a _config.yml at the root of the theme-gem and merge its data into the site’s existing configuration data.
+
+But unlike other entities loaded from within the theme, loading the config file comes with a few restrictions, as summarized below:
+
+Jekyll’s default settings cannot be overridden by a theme-config. That ball is still in the user’s court.
+The theme-config-file cannot be a symlink, irrespective of safe mode and whether the file pointed to by the symlink is a legitimate file within the theme-gem.
+The theme-config should be a set of key-value pairs. An empty config file, a config file that simply lists items under a key, or a config file with just a simple string of text will simply be ignored silently. Users will not get a warning or any log output regarding this discrepancy.
+Any settings defined by the theme-config can be overridden by the user.
+While this feature is to enable easier adoption of a theme, the restrictions ensure that a theme-config cannot affect the build in a concerning manner. Any plugins required by the theme will have to be listed manually by the user or provided by the theme’s gemspec file.
+
+This feature will let the theme-gem to work with theme-specific config variables out-of-the-box.
+
+Documenting your themePermalink
+Your theme should include a /README.md file, which explains how site authors can install and use your theme. What layouts are included? What includes? Do they need to add anything special to their site’s configuration file?
+
+Adding a screenshotPermalink
+Themes are visual. Show users what your theme looks like by including a screenshot as /screenshot.png within your theme’s repository where it can be retrieved programmatically. You can also include this screenshot within your theme’s documentation.
+
+Previewing your themePermalink
+To preview your theme as you’re authoring it, it may be helpful to add dummy content in, for example, /index.html and /page.html files. This will allow you to use the jekyll build and jekyll serve commands to preview your theme, just as you’d preview a Jekyll site.
+
+If you do preview your theme locally, be sure to add /_site to your theme’s .gitignore file to prevent the compiled site from also being included when you distribute your theme.
+
+Publishing your themePermalink
+Themes are published via RubyGems.org. You will need a RubyGems account, which you can create for free.
+
+First, you need to have it in a git repository:
+
+git init # Only the first time
+git add -A
+git commit -m "Init commit"
+Next, package your theme, by running the following command, replacing jekyll-theme-awesome with the name of your theme:
+
+gem build jekyll-theme-awesome.gemspec
+Finally, push your packaged theme up to the RubyGems service, by running the following command, again replacing jekyll-theme-awesome with the name of your theme:
+
+gem push jekyll-theme-awesome-*.gem
+To release a new version of your theme, update the version number in the gemspec file, ( jekyll-theme-awesome.gemspec in this example ), and then repeat Steps 1 - 3 above. We recommend that you follow Semantic Versioning while bumping your theme-version.
+
+VARIABLE	DESCRIPTION
+paginator.page	The number of the current page
+paginator.per_page	Number of posts per page
+paginator.posts	Posts available for the current page
+paginator.total_posts	Total number of posts
+paginator.total_pages	Total number of pages
+paginator.previous_page	The number of the previous page, or nil if no previous page exists
+paginator.previous_page_path	The path to the previous page, or nil if no previous page exists
+paginator.next_page	The number of the next page, or nil if no subsequent page exists
+paginator.next_page_path	The path to the next page, or nil if no subsequent page exists
+Plugins	
+Jekyll has a plugin system with hooks that allow you to create custom generated content specific to your site. You can run custom code for your site without having to modify the Jekyll source itself.	
+You can add specific plugins to the whitelist key in _config.yml to allow them to run in safe mode.
+
+Installation - How to install plugins
+Your first plugin - How to write plugins
+Generators - Create additional content on your site
+Converters - Change a markup language into another format
+Commands - Extend the jekyll executable with subcommands
+Tags - Create custom Liquid tags
+Filters - Create custom Liquid filters
+Hooks - Fine-grained control to extend the build process
+Blog Migrations
+If you’re switching to Jekyll from another blogging system, Jekyll’s importers can help you with the move. To learn more about importing your site to Jekyll, visit our jekyll-import docs site.
+Upgrading
+Upgrading from an older version of Jekyll? Upgrading to a new major version of Jekyll (e.g. from v2.x to v3.x) may cause some headaches. Take the following guides to aid your upgrade:
+
+From 0.x to 1.x and 2.x
+From 2.x to 3.x
+From 3.x to 4.x
+Minor updatesPermalink
+Stay Up to Date
+We recommend you update Jekyll as often as possible to benefit from the latest bug fixes.
+
+If you followed our setup recommendations and installed Bundler, run bundle update jekyll or simply bundle update and all your gems will update to the latest versions.
+
+If you don’t have Bundler installed, run gem update jekyll.
+
+The procedure is similar if you use the github-pages gem.
+Deployment
+Sites built using Jekyll can be deployed in a large number of ways due to the static nature of the generated output. Here’s some of the most common ways:
+
+Manually
+Automated
+Third Party
+
+ @CoreValExtreme
+CoreValExtreme 12 minutes ago • 
+ Author Owner
+GEMFILE:
+gem 'a', '~> 0.2.8'
+INSTALL:
+gem install a
+LICENSE:
+MIT
+
+REQUIRED RUBY VERSION:
+
+= 2.0.0
+LINKS:
+Homepage
+Documentation
+Download
+Review changes
+Badge
+Subscribe
+RSS
+Report abuse
+Reverse dependencies

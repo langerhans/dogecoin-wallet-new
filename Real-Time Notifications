@@ -1,0 +1,302 @@
+Real-Time Notifications
+Block.io updates you in real-time when your wallet addresses' balances change for Bitcoin, Dogecoin, and Litecoin. This features opens up a vast variety of ways you can integrate digital currencies in your applications, and we can't wait to see how you use these notifications.
+
+We provide real-time notifications through Web Hooks, and Web Sockets:
+
+Through Web Hooks, we push data to you through HTTP Post requests to web servers of your choice.
+Through Web Sockets, you subscribe to updates while staying connected to a Block.io Notifications server.
+The following document provides more details on each of these mechanisms.
+
+cURL
+Ruby
+NodeJS
+PHP
+Python
+C#
+Web Hooks
+You can start using Web Hooks by creating a Notification on your Block.io account below. Keep in mind, however, that since we are pushing data to you, we need a web server of yours to communicate with through POST requests.
+
+Some points of information regarding Web Hooks:
+
+All notifications (i.e., events that are not type=ping) will be issued using HTTP/S requests through n.block.io.
+The source server (n.block.io) IP can change at any time.
+Current list (updated Aug 3, 2020) of possible IP addresses for n.block.io is:
+45.56.79.5
+45.56.123.170
+45.33.20.161
+45.33.4.167
+2600:3c00::f03c:91ff:fe33:2e14
+2600:3c00::f03c:91ff:fe89:bb9b
+2600:3c00::f03c:91ff:fe33:d082
+2600:3c00::f03c:92ff:fe5e:4219
+Your Web Server must respond with a Status Code of 2xx (i.e., between 200-299) for us to consider the notification successful.
+Unsuccessful notifications will be retried for ~24 hours with exponential back-off, after which your failing Web Hook will be disabled.
+Web Hooks are available for Bitcoin, Dogecoin, Litecoin, and their Testnets.
+All notification events will use JSON objects.
+A notification event will use the following structure:
+
+	
+{ 
+  "notification_id" : "...", // a unique identifier issued when you created the notification
+  "delivery_attempt" : 1, // number of times we've tried deliverying this object
+  "type" : "...", // the type of notification, helps you understand the data sent below
+  "data" : {
+    ... // the notification data
+  },
+  "created_at" : 1426104819 // timestamp of when we created this notification
+}	
+      
+Create a Notification
+You can create a Web Hook notification for the following types of events:
+
+Account: Consists of balance changes for all your account's addresses for a given Network. Whenever an address' balance changes, this event is fired.
+Address: This event is fired when balance changes for a given address (internal or external).
+New-Blocks: Advanced. This event is fired whenever a new group of transactions is confirmed (i.e., a new block is mined).
+Furthermore, when you create a notification, you will specify a URL where we can perform POST requests. This URL will receive the following object, and must respond with a Status Code between 200-299. If successful, the notification will be created.
+
+        
+{
+  "type": "ping"
+}
+      
+You can specify normal URLs guarded by parameters, or by a username/password (i.e., using Basic Auth), or just a simple URL without any parameters whatsoever. Securing this endpoint on your Web Server is completely up to you.
+
+Finally, create a notification using the following endpoints. If you encounter any issues, please make sure the URL is URI encoded so it is distinguishable as a parameter value.
+
+
+/api/v2/create_notification/?api_key=6b50-6473-a9b0-454c&type=account&url="https://chain.so/a/9akgmj0
+"/api/v2/create_notification/?api_key=6b50-6473-a9b0-454c&type=9ssLTc6WJvx8KxgR21a5XHrZPmUo2gdWbc&A1Ujbgj8Ag55QUkP6maRhnxeWdmedi7Wui=ANY ADDRESS&url="https://chain.so/a/9akgmj0
+"/api/v2/create_notification/?api_key=6b50-6473-a9b0-454c&type=new-blocks&url="https://chain.so/a/9akgmj0
+"
+If successful, you will receive a response with the following structure:
+
+	
+{
+  "status" : "success",
+  "data" : {
+    "network" : "Dogecoin",
+    "notification_id" : "     ",
+    "type" : "default",
+    "enabled" : true,
+    "url" : "https://chain.so/a/9akgmj0
+"
+  }
+}
+      
+ Create a notification for balance changes for all your addresses
+ Create a notification for balance changes for a specific address
+ Create a notification for new blocksLatest TX	Size	Sent (Ď)
+...06622d12	0.19 kb	229.61
+...e62e01ff	0.52 kb	193,878.43
+...d0113235	0.22 kb	729.84
+...02b3e8c7	0.37 kb	112.41
+...8358d225	0.22 kb	1,547.45
+...b5f25a1e	0.22 kb	26,109.66
+...ee4a516a	0.81 kb	90,949.64
+...2e2da02f	0.09 kb	10,071.00
+...7c18bb1f	0.19 kb	297.24
+...ec615f89	0.22 kb	3,788.75
+Block #	Age	Miner	Transactions	Size
+3,764,664	less than a minute	DQvuJB3e...	36	17.24 kb
+3,764,663	less than a minute	DRJuzcqj...	31	9.82 kb
+3,764,662	2 minutes	D5gVXk2r...	9	4.65 kb
+3,764,661	4 minutes	F2Pool	8	3.23 kb
+3,764,660	4 minutes	DQvuJB3e...	13	4.64 kb
+3,764,659	5 minutes	D5gVXk2r...	35	14.20 kb
+3,764,658	6 minutes	DMr3fEiV...	1	0.64 kb
+3,764,657	6 minutes	DQvuJB3e...	1	0.75 kb
+3,764,656	7 minutes	F2Pool	4	2.24 kb
+3,764,655	8 minutes	DJjK7Yyw...	68	25.27 kbDisable a Notification
+You can disable a given notification at any time using the following action:
+
+
+/api/v2/disable_notification/?api_key=6b50-6473-a9b0-454c
+&notification_id=NOTIFICATION ID
+
+ Disable a given notification
+Enable a Notification
+You can enable a given notification at any time using the following action:
+
+
+/api/v2/enable_notification/?api_key=6b50-6473-a9b0-454c
+&notification_id=NOTIFICATION ID
+
+ Enable a given notification
+List Notifications
+You can list notifications for a given Network (specified by the API Key). These notifications can be enabled, or disabled. Upto 2500 notifications per page. Page parameter is optional.
+
+
+/api/v2/list_notifications/?api_key=6b50-6473-a9b0-454c
+&page=10f1
+/api/v2/list_notifications/?api_key=6b50-6473-a9b0-454c
+&notification_ids=NOTIFICATION_ID1,NOTIFICATION_ID2,...&page=PAGE_NUMBER
+
+ List all notifications
+ Get a particular notification
+Get Recent Notification Events
+Produces a log of the last 10 notification events we pushed, or attempted to push, to your web server for a given Notification ID.
+
+
+/api/v2/get_recent_notification_events/?api_key=6b50-6473-a9b0-454c
+&notification_id=NOTIFICATION ID
+
+ Get the last 10 events for a Web Hook
+Delete Notification
+You can delete a given notification completely if you wish.
+
+
+/api/v2/delete_notification/?api_key=6b50-6473-a9b0-454c
+&notification_id=NOTIFICATION ID
+
+ Delete a given notification
+Example Notifications
+For reference, here is the structure of each type of notification.
+
+Please note that Web Hooks of type account provide balance change notifications of type address.
+
+Balance Change Notification
+        
+{
+  "notification_id": "..."
+  "delivery_attempt": 1,
+  "created_at": 1426104819,
+  "type": "9ssLTc6WJvx8KxgR21a5XHrZPmUo2gdWbc",
+  "data": {
+    "network": "Dogecoin",
+    "address": "9ssLTc6WJvx8KxgR21a5XHrZPmUo2gdWbc",
+    "balance_change": "0.01000000", // net balance change, can be negative
+    "amount_sent": "0.00000000",
+    "amount_received": "0.00000000",
+    "txid": "7af5cf9f2...", // the transaction's identifier (hash)
+    "confirmations": X, // see below
+    "is_green": false // legacy, can be ignored
+  }
+}
+// X = {0,1,3} for Bitcoin, {0,1,10} for Dogecoin, {0,1,5} for Litecoin
+
+      
+New Block Notification
+        
+{
+  "notification_id": "..."
+  "delivery_attempt": 1,
+  "created_at": 1426104819,
+  "type": "new-blocks",
+  "data": {
+    "network": "BTC",
+    "block_hash": "fb0e1...", // the block identifier (hash)
+    "previous_block_hash": "5b217...",
+    "block_no": 456485, // the block's height
+    "confirmations": 1, // number of times this block has been confirmed
+                        // you will also receive an update at N confirmations:
+                        // N = 3 (Bitcoin), 10 (Dogecoin), 5 (Litecoin)
+    "merkle_root": "8173983...",
+    "time": 1426062467,
+    "nonce": 1544718438,
+    "difficulty": "0.01240701",
+    "txs": [
+      // an array of txids
+      "", ...
+      ""
+    ]
+  }
+}
+      
+Web Sockets
+You can start subscribing to real-time events by using the following Web Sockets link.
+
+	wss://ws.block.io/
+      
+Some important points to note:
+
+The real-time Web Sockets are available for Bitcoin, Dogecoin, Litecoin, and their Testnets.
+All requests/responses will use the JSON format.
+The following example responses are commented for your convenience.
+Web Sockets will not "replay" events that occurred in the past. You must stay connected to receive updates.
+See working example.
+Type account notifiactions are not unavailable via WebSockets.
+Once connected to our Web Sockets, you will receive the following response from the server. Please note that any successful subscription to a real-time event will result in this response from our servers.
+
+	
+{
+  "status": "success"
+}
+      
+If your request is invalid, the following error response will be received by you instead:
+
+	
+{
+  "status": "fail",
+  "error_message": "An exception occurred. Please check your JSON object for accuracy and try again."
+}
+      
+The notifications server will send the following connectedness check every 30 seconds to keep your connection to our Web Sockets server alive. This helps us maintain your connection to the websocket server in case there is little activity due to your subscriptions. You can ignore this message.
+
+        
+{
+  "type": "ping"
+}
+      
+Subscribing to a Single Address' Balance Updates
+You can subscribe to balance change updates for a specific address by issuing a request structured as follows. You can subscribe to a non-Block.io address' balance updates using this method.
+
+	
+{
+  "network": "Dogecoin",
+  "type": "9ssLTc6WJvx8KxgR21a5XHrZPmUo2gdWbc",
+  "address": "9ssLTc6WJvx8KxgR21a5XHrZPmUo2gdWbc"
+}
+      
+If successful, you will start receiving balance updates for the said address in the following format.
+
+        
+{
+  "type": "address",
+  "data": {
+    "network": "Dogecoin",
+    "address": "9ssLTc6WJvx8KxgR21a5XHrZPmUo2gdWbc",
+    "balance_change": "0.01000000", // net balance change, can be negative
+    "amount_sent": "0.00000000",
+    "amount_received": "0.01000000",
+    "txid": "           ", // the transaction's identifier (hash)
+    "confirmations": X, // see below
+    "is_green": false // legacy, can be ignored
+  }
+}
+// X = {0,1,3} for Bitcoin, {0,1,10} for Dogecoin, {0,1,5} for Litecoin
+
+      
+Subscribing to New Blocks (ADVANCED)
+Advanced. You can also subscribe to new Blocks as they occur on the Bitcoin, Dogecoin, Litecoin Block Chains. You can do this using requests structured as follows:
+
+	
+{
+  "network": "BTC",
+  "type": "new-blocks"
+}
+      
+If successful, you will start receiving updates when new Blocks are mined for the specified Network. A block update response will be structured as follows:
+
+        
+{
+  "type": "new-blocks",
+  "data": {
+    "network": "BTC",
+    "block_hash": "fb0e1...", // the block identifier (hash)
+    "previous_block_hash": "5b217...",
+    "block_no": 456485, // the block's height
+    "confirmations": 1, // number of times this block has been confirmed
+                        // you will also receive an update at N confirmations:
+                        // N = 3 (Bitcoin), 10 (Dogecoin), 5 (Litecoin)
+    "merkle_root": "8173983...",
+    "time": 1426062467,
+    "nonce": 1544718438,
+    "difficulty": "0.01240701",
+    "txs": [
+      // an array of txids
+      "81739...", ...
+      "ab123..."
+    ]
+  }
+}
+      
